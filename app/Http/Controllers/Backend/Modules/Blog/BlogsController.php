@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Modules\Blog;
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Blog;
@@ -173,11 +172,16 @@ class BlogsController extends Controller
             return abort(403, 'You are not allowed to access this page !');
         }
 
-        $request->validate([
-            'title'  => 'required|max:100',
-            'slug'  => 'nullable|max:100|unique:pages,slug',
-            'image'  => 'nullable|image'
-        ]);
+        $request->validate(
+            [
+                'title'  => 'required|max:100',
+                'slug'  => 'nullable|max:100|unique:pages,slug',
+                'image'  => 'nullable|image'
+            ],
+            [
+                'title.required' => 'Please give a title'
+            ]
+        );
 
         try {
             DB::beginTransaction();

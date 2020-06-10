@@ -158,30 +158,30 @@ Assigned: **Rafiul Alam**
 
 > **User Authentication** **@Abir**
 
-1. Registration
-   1. Normal User / Subscriber Registration
-   1. Editor Registration
-1. Login
-1. Forget Password
-1. Reset Password
+- [ ] Registration
+  - [ ] Normal User / Subscriber Registration
+  - [ ] Editor Registration
+- [ ] Login
+- [ ] Forget Password
+- [ ] Reset Password
 
 > **News Post of different types**
 
-1. All Recent news
-1. News on different categories
-1. News view by sorting/filtering news
-1. Region or area wise news list
-1. Most Liked News
-1. Most Commented News
+- [ ] All Recent news
+- [ ] News on different categories
+- [ ] News view by sorting/filtering news
+- [ ] Region or area wise news list
+- [ ] Most Liked News
+- [ ] Most Commented News
 
 > **Details News View**
 
-1. Details News Page
-1. News Comment
+- [ ] Details News Page
+- [ ] News Comment
 
 > **Polls**
 
-1. Polls Voting System
-1. Voting Details and a Report View
+- [ ] Polls Voting System
+- [ ] Voting Details and a Report View
 
 ---
