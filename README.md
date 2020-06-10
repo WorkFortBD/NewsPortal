@@ -15,14 +15,14 @@ Our News Portal is an application to minimize your problems while creating a new
 
 ## Application Features `Admin Panel`
 
-> **Admin Authentication**
+> **Admin Authentication** - **@Akash**
 
 - [ ] Registration
 - [x] Login
 - [ ] Forget Password
 - [ ] Reset Password
 
-> **Admin Management**
+> **Admin Management** - **@Akash**
 
 - [x] Admin Management
   - [x] Create Admin
@@ -36,7 +36,7 @@ Our News Portal is an application to minimize your problems while creating a new
 - [x] Permission Management
   - [x] Add Roles in Permission
 
-> **Category Management**
+> **Category Management** - **@Akash**
 
 - [x] Category Management
   - [x] Create Category
@@ -44,7 +44,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [x] List Category
   - [x] Delete Category
 
-> **Page Management**
+> **Page Management** - **@Akash**
 
 - [x] Page Management
   - [x] Create Page
@@ -52,7 +52,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [x] List Page
   - [x] Delete Page
 
-> **Blog Management**
+> **Blog Management** - **@Akash**
 
 - [x] Blog Management
   - [x] Create Blog
@@ -60,23 +60,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [x] List Blog
   - [x] Delete Blog
 
-> **Website Settings**
-
-- [ ] Website Information System Management
-  - [ ] Edit Settings
-- [ ] Slider Management
-  - [ ] Create Slider
-  - [ ] Edit Slider
-  - [ ] List Slider
-  - [ ] Delete Slider
-- [ ] Website Tracking Management
-  - [ ] Tracking List
-  - [ ] Delete Tracking
-- [ ] Notification System
-  - [ ] Email Notification
-  - [ ] Message Notification
-
-> **News Management**
+> **News Management** - **@Farid**
 
 - [ ] News Management
 
@@ -84,8 +68,9 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Create News
   - [ ] Edit News
   - [ ] Delete News
+  - [ ] News filtering on category, region, author etc.
 
-> **News Comment Management**
+> **News Comment Management** - **@Abir**
 
 - [ ] News Comment Management
   - [ ] List Comment News
@@ -93,7 +78,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Comment News
   - [ ] Delete Comment News
 
-> **Pole Management**
+> **Pole Management** - **@Shakib**
 
 - [ ] Pole Management
 
@@ -102,7 +87,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Pole
   - [ ] Delete Pole
 
-> **Image Gallery Management**
+> **Image Gallery Management** - **@Akash / @Abir**
 
 - [ ] Image Gallery Management
 
@@ -111,7 +96,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Image Gallery
   - [ ] Delete Image Gallery
 
-> **Video Gallery Management**
+> **Video Gallery Management** - **@Abir**
 
 - [ ] Video Gallery Management
   - [ ] List Video Gallery
@@ -119,7 +104,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Video Gallery
   - [ ] Delete Video Gallery
 
-> **Subscription Management**
+> **Subscription Management** - **@Shakib**
 
 - [ ] Subscription Management
   - [ ] List Subscription
@@ -127,13 +112,56 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Subscription
   - [ ] Delete Subscription
 
+> **Website Settings**
+
+- [ ] Website Information System Management
+
+  - [ ] Edit Settings
+
+- [ ] Slider Management - **@Shakib**
+
+  - [ ] Create Slider
+  - [ ] Edit Slider
+  - [ ] List Slider
+  - [ ] Delete Slider
+
+- [ ] Website Tracking Management
+
+  - [ ] Tracking List
+  - [ ] Delete Tracking
+
+- [ ] Notification System
+  - [ ] Email Notification
+  - [ ] Message Notification
+
 ## Application Features `Frontend Panel`
 
 > **User Authentication**
 
 1. Registration
+   1. Normal User / Subscriber Registration
+   1. Editor Registration
 1. Login
 1. Forget Password
 1. Reset Password
+
+> **News Post of different types**
+
+1. All Recent news
+1. News on different categories
+1. News view by sorting/filtering news
+1. Region or area wise news list
+1. Most Liked News
+1. Most Commented News
+
+> **Details News View**
+
+1. Details News Page
+1. News Comment
+
+> **Polls**
+
+1. Polls Voting System
+1. Voting Details and a Report View
 
 ---
