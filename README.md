@@ -114,7 +114,7 @@ Our News Portal is an application to minimize your problems while creating a new
 
 > **Website Settings**
 
-- [ ] Website Information System Management
+- [ ] Website Information System Management **@Abir**
 
   - [ ] Edit Settings
 
@@ -125,7 +125,7 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] List Slider
   - [ ] Delete Slider
 
-- [ ] Website Tracking Management
+- [ ] Website Tracking Management **@Abir**
 
   - [ ] Tracking List
   - [ ] Delete Tracking
@@ -134,9 +134,29 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Email Notification
   - [ ] Message Notification
 
+## Frontend Design
+
+Assigned: **Rafiul Alam**
+
+- [ ] Home Page
+- [ ] News List Page
+  - [ ] Featured News Page
+  - [ ] Top Commenting News Page
+  - [ ] Top Loved News Page
+- [ ] Category Page
+- [ ] News Details Page
+- [ ] News Commenting Page
+- [ ] Polls Page
+- [ ] Editor Registration Page
+- [ ] Video Page
+- [ ] Normal User / Subscriber Registration Page
+- [ ] Basic Pages -
+  - [ ] Privacy Page
+  - [ ] Terms and Condition Page
+
 ## Application Features `Frontend Panel`
 
-> **User Authentication**
+> **User Authentication** **@Abir**
 
 1. Registration
    1. Normal User / Subscriber Registration
