@@ -29,6 +29,9 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->boolean('status')->default(1)->comment('1=>active, 0=>inactive');
             $table->softDeletes('deleted_at', 0);
+            $table->boolean('is_slider')
+                ->default(0)
+                ->comment('1=>active, 0=>inactive');
 
             $table->unsignedBigInteger('total_view')->index()->default(0);
             $table->unsignedBigInteger('total_search')->index()->default(0);

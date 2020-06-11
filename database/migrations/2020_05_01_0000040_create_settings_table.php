@@ -55,6 +55,10 @@ class CreateSettingsTable extends Migration
             $table->string('voting_no_color')->default('#cc0000');
             $table->string('voting_no_comment_color')->default('#000000');
 
+            // Slider
+            $table->boolean('is_slider_enable')->default(true);
+            $table->boolean('is_post_slider_enable')->default(true);
+
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')
                 ->references('id')
