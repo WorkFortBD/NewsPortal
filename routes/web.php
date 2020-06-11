@@ -16,6 +16,9 @@ Route::get('/categories/{slug}', 'Frontend\CategoriesController@show')->name('ca
 Route::get('/p/{slug}', 'Frontend\SitePagesController@show')->name('pages.show');
 
 
+// Route::get('/articles/{id}/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
+
+
 
 
 /*

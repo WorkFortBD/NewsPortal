@@ -46,6 +46,10 @@ class CreateSettingsTable extends Migration
             $table->string('site_custom_data3')->nullable();
             $table->string('site_custom_data4')->nullable();
 
+            // Extra Data (if Needed)
+            $table->boolean('is_featured_image_enable')->default(1);
+            $table->string('default_featured_image')->default('/public/assets/images/defaults/default-post.png');
+
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')
                 ->references('id')
