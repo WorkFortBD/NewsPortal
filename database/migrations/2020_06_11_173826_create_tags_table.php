@@ -41,10 +41,6 @@ class CreateTagsTable extends Migration
                 ->references('id')
                 ->on('admins')
                 ->onDelete('cascade');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
             $table->timestamps();
         });
     }

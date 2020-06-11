@@ -50,6 +50,11 @@ class CreateSettingsTable extends Migration
             $table->boolean('is_featured_image_enable')->default(1);
             $table->string('default_featured_image')->default('/public/assets/images/defaults/default-post.png');
 
+            // Voting Colors
+            $table->string('voting_yes_color')->default('#537d00');
+            $table->string('voting_no_color')->default('#cc0000');
+            $table->string('voting_no_comment_color')->default('#000000');
+
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')
                 ->references('id')

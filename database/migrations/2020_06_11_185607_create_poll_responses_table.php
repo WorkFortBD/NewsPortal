@@ -15,6 +15,7 @@ class CreatePollResponsesTable extends Migration
     {
         Schema::create('poll_responses', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['yes', 'no', 'no_comment']);
             $table->unsignedBigInteger('poll_id');
             $table->ipAddress('ip_address')->nullable();
             $table->foreign('poll_id')
