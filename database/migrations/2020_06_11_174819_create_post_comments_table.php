@@ -22,12 +22,14 @@ class CreatePostCommentsTable extends Migration
                 ->comment('It\'s the main commment');
             $table->text('comment');
             $table->boolean('is_identity_visible')->default(1);
-            $table->string('ip_address')->nullable();
+            $table->ipAddress('ip_address')->nullable();
             $table->boolean('status')->default(0)->comment('1=>approved, 0=>unapproved');
 
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
-            $table->unsignedBigInteger('total_reaction')->default(0);
+            $table->unsignedBigInteger('total_reaction')
+                ->default(0)
+                ->comment('total reaction count');
 
             $table->foreign('updated_by')
                 ->references('id')
