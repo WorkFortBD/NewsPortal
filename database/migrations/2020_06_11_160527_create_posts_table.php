@@ -30,6 +30,13 @@ class CreatePostsTable extends Migration
             $table->boolean('status')->default(1)->comment('1=>active, 0=>inactive');
             $table->softDeletes('deleted_at', 0);
 
+            $table->unsignedBigInteger('total_view')->index()->default(0);
+            $table->unsignedBigInteger('total_search')->index()->default(0);
+            $table->unsignedBigInteger('total_liked')->index()->default(0);
+            $table->unsignedBigInteger('total_disliked')->index()->default(0);
+            $table->unsignedBigInteger('total_comment')->index()->default(0);
+            $table->unsignedBigInteger('total_reaction')->default(0)->comment('total reaction count');
+
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
