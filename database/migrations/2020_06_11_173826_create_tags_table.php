@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagesTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
@@ -21,9 +21,6 @@ class CreatePagesTable extends Migration
             $table->text('meta_description')->nullable();
             $table->string('image')->nullable();
             $table->string('banner_image')->nullable();
-            $table->unsignedBigInteger('category_id')
-                ->nullable()
-                ->comment('Null if page has no category');
             $table->boolean('status')->default(1)->comment('1=>active, 0=>inactive');
             $table->softDeletes('deleted_at', 0);
 
@@ -31,7 +28,6 @@ class CreatePagesTable extends Migration
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->unsignedBigInteger('total_reaction')->default(0)->comment('total reaction count');
-
 
             $table->foreign('created_by')
                 ->references('id')
@@ -45,10 +41,6 @@ class CreatePagesTable extends Migration
                 ->references('id')
                 ->on('admins')
                 ->onDelete('cascade');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -60,6 +52,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('tags');
     }
 }

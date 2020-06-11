@@ -87,6 +87,15 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Pole
   - [ ] Delete Pole
 
+> **Tags Management** - **@Abir**
+
+- [ ] Tag Management
+
+  - [ ] List Tag
+  - [ ] Create Tag
+  - [ ] Edit Tag
+  - [ ] Delete Tag
+
 > **Image Gallery Management** - **@Akash / @Abir**
 
 - [ ] Image Gallery Management

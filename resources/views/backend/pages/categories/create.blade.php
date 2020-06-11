@@ -61,13 +61,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="banner_image">Category Banner Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="banner_image" name="banner_image" value="{{ old('banner_image') }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="banner_image" name="banner_image" data-default-file="{{ old('banner_image') }}" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="logo_image">Category Logo Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="logo_image" name="logo_image" value="{{ old('logo_image') }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="logo_image" name="logo_image" data-default-file="{{ old('logo_image') }}" />
                                 </div>
                             </div>
                         </div>
@@ -77,13 +77,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="description">Category Description <span class="optional">(optional)</span></label>
-                                    <textarea type="text" class="form-control tinymce_simple" id="description" name="description" value="{{ old('description') }}"></textarea>
+                                    <textarea type="text" class="form-control tinymce_simple" id="description" name="description">{!! old('description') !!}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="meta_description">Category Meta Description <span class="optional">(optional)</span></label>
-                                    <textarea type="text" class="form-control" id="meta_description" name="meta_description" value="{{ old('meta_description') }}" placeholder="Meta description for SEO"></textarea>
+                                    <textarea type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Meta description for SEO">{{ old('meta_description') }}</textarea>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

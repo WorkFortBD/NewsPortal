@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Modules\Category;
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -182,18 +183,11 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryCreateRequest $request)
     {
         if (is_null($this->user) || !$this->user->can('category.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
-
-        $request->validate([
-            'name'  => 'required|max:100',
-            'slug'  => 'nullable|max:100|unique:categories,slug',
-            'logo_image'  => 'nullable|image',
-            'banner_image'  => 'nullable|image'
-        ]);
 
         try {
             DB::beginTransaction();

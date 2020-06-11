@@ -15,7 +15,7 @@ class ReturnPathHelper
   {
     $admin = Admin::find($admin_id);
 
-    if ($admin->avatar == NULL || $admin->avatar == "") {
+    if (is_null($admin) || $admin->avatar == NULL || $admin->avatar == "") {
       $image_url = 'public/assets/images/admins/default.jpg';
       //Find Gravator image from Gravaton
       // if (GravatarHelper::validate_gravatar($admin->email)) {
