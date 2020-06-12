@@ -151,6 +151,34 @@
                         </ul>
                     </li>
                 @endif
+
+                @if ($user->can('poll.view') || $user->can('poll.create'))
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-poll"></i>
+                            <span class="hide-menu">Polls </span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.polls.index') || Route::is('admin.polls.create') || Route::is('admin.polls.edit')) ? 'in' : null }}">
+                            @if ($user->can('poll.view'))
+                                <li class="sidebar-item">
+                                    <a href="{{ route('admin.polls.index') }}" class="sidebar-link {{ (Route::is('admin.polls.index') || Route::is('admin.polls.edit')) ? 'active' : null }}">
+                                        <i class="mdi mdi-view-list"></i>
+                                        <span class="hide-menu"> poll List </span>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ($user->can('poll.create'))
+                                <li class="sidebar-item">
+                                    <a href="{{ route('admin.polls.create') }}" class="sidebar-link {{ Route::is('admin.polls.create') ? 'active' : null }}">
+                                        <i class="mdi mdi-plus-circle"></i>
+                                        <span class="hide-menu"> New Poll </span>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
                 
                 {{-- <li class="nav-small-cap">
                     <i class="mdi mdi-dots-horizontal"></i>

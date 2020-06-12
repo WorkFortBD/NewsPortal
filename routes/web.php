@@ -93,6 +93,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('blogs/trashed/destroy/{id}', 'Backend\Modules\Blog\BlogsController@destroyTrash')->name('blogs.trashed.destroy');
         Route::put('blogs/trashed/revert/{id}', 'Backend\Modules\Blog\BlogsController@revertFromTrash')->name('blogs.trashed.revert');
     });
+
+    /**
+     * Poll Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('polls', 'Backend\Modules\Poll\PollsController');
+        Route::get('polls/trashed/view', 'Backend\Modules\Poll\PollsController@trashed')->name('polls.trashed');
+        Route::delete('polls/trashed/destroy/{id}', 'Backend\Modules\Poll\PollsController@destroyTrash')->name('polls.trashed.destroy');
+        Route::put('polls/trashed/revert/{id}', 'Backend\Modules\Poll\PollsController@revertFromTrash')->name('polls.trashed.revert');
+    });
 });
 
 Auth::routes();
