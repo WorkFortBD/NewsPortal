@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-5 align-self-center">
             <h4 class="page-title">
-                @if (Route::is('admin.blogs.index'))
-                    Blog List
-                @elseif(Route::is('admin.blogs.create'))
-                    Create New Blog    
-                @elseif(Route::is('admin.blogs.edit'))
-                    Edit Blog <span class="badge badge-info">{{ $blog->title }}</span>
-                @elseif(Route::is('admin.blogs.show'))
-                    View Blog <span class="badge badge-info">{{ $blog->title }}</span>
-                    <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.blogs.edit', $blog->id) }}"> <i class="fa fa-edit"></i></a>
+                @if (Route::is('admin.polls.index'))
+                    Poll List
+                @elseif(Route::is('admin.polls.create'))
+                    Create New Poll    
+                @elseif(Route::is('admin.polls.edit'))
+                    Edit Poll <span class="badge badge-info">{{ $poll->title }}</span>
+                @elseif(Route::is('admin.polls.show'))
+                    View Poll <span class="badge badge-info">{{ $poll->title }}</span>
+                    <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.polls.edit', $poll->id) }}"> <i class="fa fa-edit"></i></a>
                 @endif
             </h4>
         </div>
@@ -19,17 +19,17 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                        @if (Route::is('admin.blogs.index'))
-                            <li class="breadcrumb-item active" aria-current="page">Blog List</li>
-                        @elseif(Route::is('admin.blogs.create'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.blogs.index') }}">Blog List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create New Blog</li>
-                        @elseif(Route::is('admin.blogs.edit'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.blogs.index') }}">Blog List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Blog</li>
-                        @elseif(Route::is('admin.blogs.show'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.blogs.index') }}">Blog List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Show Blog</li>
+                        @if (Route::is('admin.polls.index'))
+                            <li class="breadcrumb-item active" aria-current="page">Poll List</li>
+                        @elseif(Route::is('admin.polls.create'))
+                        <li class="breadcrumb-item"><a href="{{ route('admin.polls.index') }}">Poll List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Create New Poll</li>
+                        @elseif(Route::is('admin.polls.edit'))
+                        <li class="breadcrumb-item"><a href="{{ route('admin.polls.index') }}">Poll List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Poll</li>
+                        @elseif(Route::is('admin.polls.show'))
+                        <li class="breadcrumb-item"><a href="{{ route('admin.polls.index') }}">Poll List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Show Poll</li>
                         @endif
                         
                     </ol>

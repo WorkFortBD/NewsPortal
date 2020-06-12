@@ -1,13 +1,13 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    @include('backend.pages.blogs.partials.title')
+    @include('backend.pages.polls.partials.title')
 @endsection
 
 @section('admin-content')
-    @include('backend.pages.blogs.partials.header-breadcrumbs')
+    @include('backend.pages.polls.partials.header-breadcrumbs')
     <div class="container-fluid">
-        @include('backend.pages.blogs.partials.top-show')
+        @include('backend.pages.polls.partials.top-show')
         @include('backend.layouts.partials.messages')
         <div class="table-responsive product-table">
             <table class="table table-striped table-bordered display ajax_view" id="blogs_table">

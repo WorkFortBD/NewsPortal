@@ -33,7 +33,7 @@ class PollsController extends Controller
      */
     public function index($isTrashed = false)
     {
-        if (is_null($this->user) || !$this->user->can('blog.view')) {
+        if (is_null($this->user) || !$this->user->can('poll.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
@@ -58,15 +58,15 @@ class PollsController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Blog Details" href="' . route('admin.blogs.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Blog Details" href="' . route('admin.polls.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
 
                         if ($row->deleted_at === null) {
-                            $deleteRoute =  route('admin.blogs.destroy', [$row->id]);
-                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Blog Details" href="' . route('admin.blogs.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
+                            $deleteRoute =  route('admin.polls.destroy', [$row->id]);
+                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Blog Details" href="' . route('admin.polls.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
-                            $deleteRoute =  route('admin.blogs.trashed.destroy', [$row->id]);
-                            $revertRoute = route('admin.blogs.trashed.revert', [$row->id]);
+                            $deleteRoute =  route('admin.polls.trashed.destroy', [$row->id]);
+                            $revertRoute = route('admin.polls.trashed.revert', [$row->id]);
 
                             $html .= '<a class="btn waves-effect waves-light btn-warning btn-sm btn-circle ml-1" title="Revert Back" id="revertItem' . $row->id . '"><i class="fa fa-check"></i></a>';
                             $html .= '
@@ -144,10 +144,10 @@ class PollsController extends Controller
                 ->make(true);
         }
 
-        $count_blogs = count(Poll::select('id')->get());
-        $count_active_blogs = count(Poll::select('id')->where('status', 1)->get());
-        $count_trashed_blogs = count(Poll::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.blogs.index', compact('count_blogs', 'count_active_blogs', 'count_trashed_blogs'));
+        $count_polls = count(Poll::select('id')->get());
+        $count_active_polls = count(Poll::select('id')->where('status', 1)->get());
+        $count_trashed_polls = count(Poll::select('id')->where('deleted_at', '!=', null)->get());
+        return view('backend.pages.polls.index', compact('count_polls', 'count_active_polls', 'count_trashed_polls'));
     }
 
     /**
@@ -157,7 +157,7 @@ class PollsController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.blogs.create');
+        return view('backend.pages.polls.create');
     }
 
     /**
@@ -168,7 +168,7 @@ class PollsController extends Controller
      */
     public function store(Request $request)
     {
-        if (is_null($this->user) || !$this->user->can('blog.create')) {
+        if (is_null($this->user) || !$this->user->can('poll.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
 
@@ -209,7 +209,7 @@ class PollsController extends Controller
             Track::newTrack($poll->title, 'New Blog has been created');
             DB::commit();
             session()->flash('success', 'New Blog has been created successfully !!');
-            return redirect()->route('admin.blogs.index');
+            return redirect()->route('admin.polls.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             DB::rollBack();
@@ -225,12 +225,12 @@ class PollsController extends Controller
      */
     public function show($id)
     {
-        if (is_null($this->user) || !$this->user->can('blog.view')) {
+        if (is_null($this->user) || !$this->user->can('poll.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
         $poll = Poll::find($id);
-        return view('backend.pages.blogs.show', compact('blog'));
+        return view('backend.pages.polls.show', compact('blog'));
     }
 
     /**
@@ -241,12 +241,12 @@ class PollsController extends Controller
      */
     public function edit($id)
     {
-        if (is_null($this->user) || !$this->user->can('blog.edit')) {
+        if (is_null($this->user) || !$this->user->can('poll.edit')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
         $poll = Poll::find($id);
-        return view('backend.pages.blogs.edit', compact('blog'));
+        return view('backend.pages.polls.edit', compact('poll'));
     }
 
     /**
@@ -258,7 +258,7 @@ class PollsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (is_null($this->user) || !$this->user->can('blog.edit')) {
+        if (is_null($this->user) || !$this->user->can('poll.edit')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
@@ -266,7 +266,7 @@ class PollsController extends Controller
         $poll = Poll::find($id);
         if (is_null($poll)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.blogs.index');
+            return redirect()->route('admin.polls.index');
         }
 
         $request->validate([
@@ -294,7 +294,7 @@ class PollsController extends Controller
             Track::newTrack($poll->title, 'Blog has been updated successfully !!');
             DB::commit();
             session()->flash('success', 'Blog has been updated successfully !!');
-            return redirect()->route('admin.blogs.index');
+            return redirect()->route('admin.polls.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             DB::rollBack();
@@ -310,7 +310,7 @@ class PollsController extends Controller
      */
     public function destroy($id)
     {
-        if (is_null($this->user) || !$this->user->can('blog.delete')) {
+        if (is_null($this->user) || !$this->user->can('poll.delete')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
@@ -318,7 +318,7 @@ class PollsController extends Controller
         $poll = Poll::find($id);
         if (is_null($poll)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.blogs.trashed');
+            return redirect()->route('admin.polls.trashed');
         }
         $poll->deleted_at = Carbon::now();
         $poll->deleted_by = Auth::guard('admin')->id();
@@ -326,7 +326,7 @@ class PollsController extends Controller
         $poll->save();
 
         session()->flash('success', 'Blog has been deleted successfully as trashed !!');
-        return redirect()->route('admin.blogs.trashed');
+        return redirect()->route('admin.polls.trashed');
     }
 
     /**
@@ -337,7 +337,7 @@ class PollsController extends Controller
      */
     public function revertFromTrash($id)
     {
-        if (is_null($this->user) || !$this->user->can('blog.delete')) {
+        if (is_null($this->user) || !$this->user->can('poll.delete')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
@@ -345,14 +345,14 @@ class PollsController extends Controller
         $poll = Poll::find($id);
         if (is_null($poll)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.blogs.trashed');
+            return redirect()->route('admin.polls.trashed');
         }
         $poll->deleted_at = null;
         $poll->deleted_by = null;
         $poll->save();
 
         session()->flash('success', 'Blog has been revert back successfully !!');
-        return redirect()->route('admin.blogs.trashed');
+        return redirect()->route('admin.polls.trashed');
     }
 
     /**
@@ -363,14 +363,14 @@ class PollsController extends Controller
      */
     public function destroyTrash($id)
     {
-        if (is_null($this->user) || !$this->user->can('blog.delete')) {
+        if (is_null($this->user) || !$this->user->can('poll.delete')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
         $poll = Poll::find($id);
         if (is_null($poll)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.blogs.trashed');
+            return redirect()->route('admin.polls.trashed');
         }
 
         // Remove Image
@@ -380,7 +380,7 @@ class PollsController extends Controller
         $poll->delete();
 
         session()->flash('success', 'Blog has been deleted permanently !!');
-        return redirect()->route('admin.blogs.trashed');
+        return redirect()->route('admin.polls.trashed');
     }
 
     /**
@@ -390,7 +390,7 @@ class PollsController extends Controller
      */
     public function trashed()
     {
-        if (is_null($this->user) || !$this->user->can('blog.view')) {
+        if (is_null($this->user) || !$this->user->can('poll.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
