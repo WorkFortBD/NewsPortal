@@ -93,6 +93,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('blogs/trashed/destroy/{id}', 'Backend\Modules\Blog\BlogsController@destroyTrash')->name('blogs.trashed.destroy');
         Route::put('blogs/trashed/revert/{id}', 'Backend\Modules\Blog\BlogsController@revertFromTrash')->name('blogs.trashed.revert');
     });
+
+    /**
+     * Tag Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('tags', 'Backend\Modules\Tag\TagController');
+        Route::get('tags/trashed/view', 'Backend\Modules\Tag\TagController@trashed')->name('tags.trashed');
+        Route::delete('tags/trashed/destroy/{id}', 'Backend\Modules\Tag\TagController@destroyTrash')->name('tags.trashed.destroy');
+        Route::put('tags/trashed/revert/{id}', 'Backend\Modules\Tag\TagController@revertFromTrash')->name('tags.trashed.revert');
+    });
 });
 
 Auth::routes();

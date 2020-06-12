@@ -151,6 +151,34 @@
                         </ul>
                     </li>
                 @endif
+
+                @if ($user->can('tag.view') || $user->can('tag.create'))
+                <li class="sidebar-item ">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-view-list"></i>
+                        <span class="hide-menu">Tags </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.tags.index') || Route::is('admin.tags.create') || Route::is('admin.tags.edit')) ? 'in' : null }}">
+                        @if ($user->can('tag.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.tags.index') }}" class="sidebar-link {{ (Route::is('admin.tags.index') || Route::is('admin.tags.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-view-list"></i>
+                                    <span class="hide-menu"> Tag List </span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if ($user->can('tag.create'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.tags.create') }}" class="sidebar-link {{ Route::is('admin.tags.create') ? 'active' : null }}">
+                                    <i class="mdi mdi-plus-circle"></i>
+                                    <span class="hide-menu"> New Tag </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
                 
                 {{-- <li class="nav-small-cap">
                     <i class="mdi mdi-dots-horizontal"></i>
