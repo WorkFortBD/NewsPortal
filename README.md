@@ -89,12 +89,12 @@ Our News Portal is an application to minimize your problems while creating a new
 
 > **Tags Management** - **@Abir**
 
-- [ ] Tag Management
+- [x] Tag Management
 
-  - [ ] List Tag
-  - [ ] Create Tag
-  - [ ] Edit Tag
-  - [ ] Delete Tag
+  - [x] List Tag
+  - [x] Create Tag
+  - [x] Edit Tag
+  - [x] Delete Tag
 
 > **Image Gallery Management** - **@Akash / @Abir**
 
