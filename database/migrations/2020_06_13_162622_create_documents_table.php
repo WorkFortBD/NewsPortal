@@ -25,7 +25,7 @@ class CreateDocumentsTable extends Migration
             $table->enum('link_type', ['local', 'external', 'embedded'])
                 ->default('local')
                 ->index();
-            $table->file('extension')->index();
+            $table->string('extension')->index();
 
             // Meta Texts
             $table->string('meta_title')->nullable();
