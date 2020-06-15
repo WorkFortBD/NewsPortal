@@ -14,6 +14,7 @@ class PollTableSeeder extends Seeder
     {
         $poll = new Poll();
         $poll->title = "This is a simple poll from admin panel";
+        $poll->slug = "this-is-a-simple-poll-from-admin-panel";
         $poll->status = 1;
         $poll->start_date = "2020-06-14";
         $poll->end_date = "2020-06-15";
@@ -24,6 +25,7 @@ class PollTableSeeder extends Seeder
 
         $poll = new Poll();
         $poll->title = "This is another poll from admin panel";
+        $poll->slug = "this-is-another-poll-from-admin-panel";
         $poll->status = 0;
         $poll->start_date = "2020-06-15";
         $poll->end_date = "2020-06-16";

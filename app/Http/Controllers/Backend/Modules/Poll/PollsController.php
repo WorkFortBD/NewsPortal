@@ -124,11 +124,8 @@ class PollsController extends Controller
                 ->editColumn('title', function ($row) {
                     return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 })
-                ->editColumn('image', function ($row) {
-                    if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/blogs/' . $row->image) . "' class='img img-display-list' />";
-                    }
-                    return '-';
+                ->editColumn('slug', function ($row) {
+                    return $row->slug . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
@@ -138,8 +135,23 @@ class PollsController extends Controller
                     } else {
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
+                })
+                ->editColumn('start_date', function ($row) {
+                    return $row->start_date . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                })
+                ->editColumn('end_date', function ($row) {
+                    return $row->end_date . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                })
+                ->editColumn('total_yes', function ($row) {
+                    return $row->total_yes . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                })
+                ->editColumn('total_no', function ($row) {
+                    return $row->total_no . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                })
+                ->editColumn('total_no_comment', function ($row) {
+                    return $row->total_no_comment . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 });
-            $rawColumns = ['action', 'title', 'status', 'image'];
+            $rawColumns = ['action', 'title', 'slug', 'status', 'start_date', 'end_date', 'total_yes', 'total_no', 'total_no_comment'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
