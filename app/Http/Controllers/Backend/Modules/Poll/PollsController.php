@@ -178,22 +178,11 @@ class PollsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PollCreateRequest $request)
     {
         if (is_null($this->user) || !$this->user->can('poll.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
-
-        $request->validate(
-            [
-                'title'  => 'required|max:100',
-                'slug'  => 'nullable|max:100|unique:pages,slug',
-                'image'  => 'nullable|image'
-            ],
-            [
-                'title.required' => 'Please give a title'
-            ]
-        );
 
         try {
             DB::beginTransaction();
@@ -203,24 +192,23 @@ class PollsController extends Controller
             if ($request->slug) {
                 $poll->slug = $request->slug;
             } else {
-                $poll->slug = StringHelper::createSlug($request->title, 'Blog', 'slug', '');
-            }
-
-            if (!is_null($request->image)) {
-                $poll->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/blogs');
+                $poll->slug = StringHelper::createSlug($request->title, 'Poll', 'slug', '');
             }
 
             $poll->status = $request->status;
-            $poll->description = $request->description;
-            $poll->meta_description = $request->meta_description;
+            $poll->start_date = $request->start_date;
+            $poll->end_date = $request->end_date;
+            $poll->total_yes = 0;
+            $poll->total_no = 0;
+            $poll->total_no_comment = 0;
             $poll->created_at = Carbon::now();
             $poll->created_by = Auth::guard('admin')->id();
             $poll->updated_at = Carbon::now();
             $poll->save();
 
-            Track::newTrack($poll->title, 'New Blog has been created');
+            Track::newTrack($poll->title, 'New Poll has been created');
             DB::commit();
-            session()->flash('success', 'New Blog has been created successfully !!');
+            session()->flash('success', 'New Poll has been created successfully !!');
             return redirect()->route('admin.polls.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
