@@ -14,16 +14,50 @@
                         <div class="row ">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="title">Blog Title</label>
+                                    <label class="control-label" for="title">Poll Title</label>
                                     <br>
-                                    {{ $blog->title }}
+                                    {{ $poll->title }}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="slug">Short URL</label>
                                     <br>
-                                    {{ $blog->slug }}
+                                    {{ $poll->slug }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="start_date">Start Date</label>
+                                    <br>
+                                    {{ $poll->start_date }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="end_date">End Date</label>
+                                    <br>
+                                    {{ $poll->end_date }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="total_yes">Total Yes</label>
+                                    <br>
+                                    {{ $poll->total_yes }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="total_no">Total No</label>
+                                    <br>
+                                    {{ $poll->total_no }}
                                 </div>
                             </div>
                         </div>
@@ -31,16 +65,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="image">Blog Featured Image</label>
+                                    <label class="control-label" for="total_no_comment">Total No Comment</label>
                                     <br>
-                                    @if ($blog->image != null)
-                                    <img src="{{ asset('public/assets/images/blogs/'.$blog->image) }}" alt="Image" class="img width-100" />
-                                    @else 
-                                    <span class="border p-2">
-                                        No Image
-                                    </span>
-                                    @endif
-                                    
+                                    {{ $poll->total_no_comment }}
                                 </div>
                             </div>
 
@@ -48,31 +75,12 @@
                                 <div class="form-group has-success">
                                     <label class="control-label" for="status">Status</label>
                                     <br>
-                                    {{ $blog->status === 1 ? 'Active' : 'Inactive' }}
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="row ">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label" for="description">Blog Description</label>
-                                    <div>
-                                        {!! $blog->description !!}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label" for="meta_description">Blog Meta Description</label>
-                                    <div>
-                                        {!! $blog->meta_description !!}
-                                    </div>
+                                    {{ $poll->status === 1 ? 'Active' : 'Inactive' }}
                                 </div>
                                 <div class="form-actions">
                                     <div class="card-body">
-                                        <a  class="btn btn-success" href="{{ route('admin.blogs.edit', $blog->id) }}"> <i class="fa fa-edit"></i> Edit Now</a>
-                                        <a href="{{ route('admin.blogs.index') }}" class="btn btn-dark ml-2">Cancel</a>
+                                        <a  class="btn btn-success" href="{{ route('admin.polls.edit', $poll->id) }}"> <i class="fa fa-edit"></i> Edit Now</a>
+                                        <a href="{{ route('admin.polls.index') }}" class="btn btn-dark ml-2">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -85,8 +93,5 @@
 
 @section('scripts')
     <script>
-    $(".categories_select").select2({
-        placeholder: "Select a Category"
-    });
     </script>
 @endsection

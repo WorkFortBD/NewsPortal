@@ -230,7 +230,7 @@ class PollsController extends Controller
             return view('errors.403', compact('message'));
         }
         $poll = Poll::find($id);
-        return view('backend.pages.polls.show', compact('blog'));
+        return view('backend.pages.polls.show', compact('poll'));
     }
 
     /**
