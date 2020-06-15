@@ -6,6 +6,7 @@ use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Poll\PollCreateRequest;
+use App\Http\Requests\Poll\PollUpdateRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Poll;
@@ -256,7 +257,7 @@ class PollsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PollUpdateRequest $request, $id)
     {
         if (is_null($this->user) || !$this->user->can('poll.edit')) {
             $message = 'You are not allowed to access this page !';
@@ -269,10 +270,13 @@ class PollsController extends Controller
             return redirect()->route('admin.polls.index');
         }
 
-        $request->validate([
-            'title'  => 'required|max:100',
-            'slug'  => 'required|max:100|unique:pages,slug,' . $poll->id,
-        ]);
+        // $request->validate([
+        //     'title'  => 'required|max:100',
+        //     'slug'  => 'nullable|max:100|unique:polls,slug,' . $poll->id,
+        //     'status'  => 'required',
+        //     'start_date'  => 'required',
+        //     'end_date'  => 'required'
+        // ]);
 
         try {
             DB::beginTransaction();
