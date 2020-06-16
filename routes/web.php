@@ -103,6 +103,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('polls/trashed/destroy/{id}', 'Backend\Modules\Poll\PollsController@destroyTrash')->name('polls.trashed.destroy');
         Route::put('polls/trashed/revert/{id}', 'Backend\Modules\Poll\PollsController@revertFromTrash')->name('polls.trashed.revert');
     });
+
+    /**
+     * Slider Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('sliders', 'Backend\Modules\Slider\SlidersController');
+        Route::get('sliders/trashed/view', 'Backend\Modules\Slider\SlidersController@trashed')->name('sliders.trashed');
+        Route::delete('sliders/trashed/destroy/{id}', 'Backend\Modules\Slider\SlidersController@destroyTrash')->name('sliders.trashed.destroy');
+        Route::put('sliders/trashed/revert/{id}', 'Backend\Modules\Slider\SlidersController@revertFromTrash')->name('sliders.trashed.revert');
+    });
 });
 
 Auth::routes();
