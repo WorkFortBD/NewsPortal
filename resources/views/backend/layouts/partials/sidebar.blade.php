@@ -207,6 +207,35 @@
                 </ul>
             </li>
         @endif
+
+
+        @if ($user->can('document.view') || $user->can('document.create'))
+            <li class="sidebar-item ">
+                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    <i class="mdi mdi-view-list"></i>
+                    <span class="hide-menu">Documents </span>
+                </a>
+                <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.documents.index') || Route::is('admin.documents.create') || Route::is('admin.documents.edit')) ? 'in' : null }}">
+                    @if ($user->can('document.view'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.documents.index') }}" class="sidebar-link {{ (Route::is('admin.documents.index') || Route::is('admin.documents.edit')) ? 'active' : null }}">
+                                <i class="mdi mdi-view-list"></i>
+                                <span class="hide-menu"> Document Gallary </span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if ($user->can('document.create'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.documents.create') }}" class="sidebar-link {{ Route::is('admin.documents.create') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu"> New Tag </span>
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
                 
                 {{-- <li class="nav-small-cap">
                     <i class="mdi mdi-dots-horizontal"></i>

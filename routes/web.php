@@ -105,13 +105,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     /**
-     * Tag Management Routes
+     * Post Comment Management Routes
      */
     Route::group(['prefix' => ''], function () {
         Route::resource('postcomments', 'Backend\Modules\PostComment\PostCommentsController');
         Route::get('postcomments/trashed/view', 'Backend\Modules\PostComment\PostCommentsController@trashed')->name('postcomments.trashed');
         Route::delete('postcomments/trashed/destroy/{id}', 'Backend\Modules\PostComment\PostCommentsController@destroyTrash')->name('postcomments.trashed.destroy');
         Route::put('postcomments/trashed/revert/{id}', 'Backend\Modules\PostComment\PostCommentsController@revertFromTrash')->name('postcomments.trashed.revert');
+    });
+
+    /**
+     * Document Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('documents', 'Backend\Modules\Document\DocumenstController');
     });
 });
 
