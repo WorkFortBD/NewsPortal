@@ -80,12 +80,12 @@ Our News Portal is an application to minimize your problems while creating a new
 
 > **Poll Management** - **@Shakib**
 
-- [ ] Poll Management
+- [x] Poll Management
 
-  - [ ] List Poll
-  - [ ] Create Poll
-  - [ ] Edit Poll
-  - [ ] Delete Poll
+  - [x] List Poll
+  - [x] Create Poll
+  - [x] Edit Poll
+  - [x] Delete Poll
 
 > **Tags Management** - **@Abir**
 
