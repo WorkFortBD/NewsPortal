@@ -28,7 +28,7 @@ class PostCommentsController extends Controller
      */
     public function index($isTrashed = false)
     {
-        if (is_null($this->user) || !$this->user->can('tag.view')) {
+        if (is_null($this->user) || !$this->user->can('postcomment.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
@@ -40,7 +40,7 @@ class PostCommentsController extends Controller
                     ->get();
             } else {
                 $postcomment = PostComment::orderBy('id', 'desc')
-                    ->where('deleted_at', null)
+                    // ->where('deleted_at', null)
                     ->where('status', 1)
                     ->get();
             }
@@ -53,15 +53,15 @@ class PostCommentsController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Tag Details" href="' . route('admin.tags.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Comment Details" href="' . route('admin.postcomments.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
 
                         if ($row->deleted_at === null) {
-                            $deleteRoute =  route('admin.tags.destroy', [$row->id]);
+                            $deleteRoute =  route('admin.postcomments.destroy', [$row->id]);
                             $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Tag Details" href="' . route('admin.tags.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Tag" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
-                            $deleteRoute =  route('admin.tags.trashed.destroy', [$row->id]);
-                            $revertRoute = route('admin.tags.trashed.revert', [$row->id]);
+                            $deleteRoute =  route('admin.postcomments.trashed.destroy', [$row->id]);
+                            $revertRoute = route('admin.postcomments.trashed.revert', [$row->id]);
 
                             $html .= '<a class="btn waves-effect waves-light btn-warning btn-sm btn-circle ml-1" title="Revert Back" id="revertItem' . $row->id . '"><i class="fa fa-check"></i></a>';
                             $html .= '
@@ -78,21 +78,21 @@ class PostCommentsController extends Controller
 
                         $html .= '<script>
                             $("#deleteItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Tag will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Comment will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deleteForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#deleteItemPermanent' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Tag will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Comment will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deletePermanentForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#revertItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Tag will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
+                                swal.fire({ title: "Are you sure?",text: "Comment will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
                                 }).then((result) => { if (result.value) {$("#revertForm' . $row->id . '").submit();}})
                             });
                         </script>';
@@ -121,7 +121,7 @@ class PostCommentsController extends Controller
                 })
                 ->editColumn('image', function ($row) {
                     if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/tags/' . $row->image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('public/assets/images/postcomments/' . $row->image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
@@ -139,10 +139,10 @@ class PostCommentsController extends Controller
                 ->make(true);
         }
 
-        $count_tags = count(Tag::select('id')->get());
-        $count_active_tags = count(Tag::select('id')->where('status', 1)->get());
-        $count_trashed_tags = count(Tag::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.tags.index', compact('count_tags', 'count_active_tags', 'count_trashed_tags'));
+        $count_tags = count(PostComment::select('id')->get());
+        $count_active_tags = count(PostComment::select('id')->where('status', 1)->get());
+        $count_trashed_tags = count(PostComment::select('id')->where('deleted_at', '!=', null)->get());
+        return view('backend.pages.postcomments.index', compact('count_tags', 'count_active_tags', 'count_trashed_tags'));
     }
 
     /**

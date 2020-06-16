@@ -103,6 +103,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('tags/trashed/destroy/{id}', 'Backend\Modules\Tag\TagController@destroyTrash')->name('tags.trashed.destroy');
         Route::put('tags/trashed/revert/{id}', 'Backend\Modules\Tag\TagController@revertFromTrash')->name('tags.trashed.revert');
     });
+
+    /**
+     * Tag Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('postcomments', 'Backend\Modules\PostComment\PostCommentsController');
+    });
 });
 
 Auth::routes();

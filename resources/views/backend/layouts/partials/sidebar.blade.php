@@ -179,6 +179,34 @@
                     </ul>
                 </li>
             @endif
+
+            @if ($user->can('postcomment.view') || $user->can('postcomment.create'))
+            <li class="sidebar-item ">
+                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    <i class="mdi mdi-view-list"></i>
+                    <span class="hide-menu">PostComments </span>
+                </a>
+                <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.postcomments.index') || Route::is('admin.postcomments.create') || Route::is('admin.postcomments.edit')) ? 'in' : null }}">
+                    @if ($user->can('postcomment.view'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.postcomments.index') }}" class="sidebar-link {{ (Route::is('admin.postcomments.index') || Route::is('admin.postcomments.edit')) ? 'active' : null }}">
+                                <i class="mdi mdi-view-list"></i>
+                                <span class="hide-menu"> Tag List </span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if ($user->can('tag.create'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.postcomments.create') }}" class="sidebar-link {{ Route::is('admin.postcomments.create') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu"> New Tag </span>
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
                 
                 {{-- <li class="nav-small-cap">
                     <i class="mdi mdi-dots-horizontal"></i>
