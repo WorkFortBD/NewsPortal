@@ -59,11 +59,11 @@ class PollsController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Blog Details" href="' . route('admin.polls.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Poll Details" href="' . route('admin.polls.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
 
                         if ($row->deleted_at === null) {
                             $deleteRoute =  route('admin.polls.destroy', [$row->id]);
-                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Blog Details" href="' . route('admin.polls.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Poll Details" href="' . route('admin.polls.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
                             $deleteRoute =  route('admin.polls.trashed.destroy', [$row->id]);
@@ -77,28 +77,28 @@ class PollsController extends Controller
                                 <button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary" data-dismiss="modal"><i
                                         class="fa fa-times"></i> Cancel</button>
                             </form>';
-                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Blog Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Poll Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         }
 
 
 
                         $html .= '<script>
                             $("#deleteItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Blog will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Poll will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deleteForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#deleteItemPermanent' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Blog will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Poll will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deletePermanentForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#revertItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Blog will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
+                                swal.fire({ title: "Are you sure?",text: "Poll will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
                                 }).then((result) => { if (result.value) {$("#revertForm' . $row->id . '").submit();}})
                             });
                         </script>';
@@ -332,7 +332,7 @@ class PollsController extends Controller
         $poll->status = 0;
         $poll->save();
 
-        session()->flash('success', 'Blog has been deleted successfully as trashed !!');
+        session()->flash('success', 'Poll has been deleted successfully as trashed !!');
         return redirect()->route('admin.polls.trashed');
     }
 
@@ -358,7 +358,7 @@ class PollsController extends Controller
         $poll->deleted_by = null;
         $poll->save();
 
-        session()->flash('success', 'Blog has been revert back successfully !!');
+        session()->flash('success', 'Poll has been revert back successfully !!');
         return redirect()->route('admin.polls.trashed');
     }
 
@@ -380,13 +380,10 @@ class PollsController extends Controller
             return redirect()->route('admin.polls.trashed');
         }
 
-        // Remove Image
-        UploadHelper::deleteFile('public/assets/images/blogs/' . $poll->image);
-
-        // Delete Blog permanently
+        // Delete Poll permanently
         $poll->delete();
 
-        session()->flash('success', 'Blog has been deleted permanently !!');
+        session()->flash('success', 'Poll has been deleted permanently !!');
         return redirect()->route('admin.polls.trashed');
     }
 
