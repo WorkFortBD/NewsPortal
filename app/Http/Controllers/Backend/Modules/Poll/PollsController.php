@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend\Modules\Poll;
 
 use App\Helpers\StringHelper;
-use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Poll\PollCreateRequest;
 use App\Http\Requests\Poll\PollUpdateRequest;
