@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Modules\PostComment;
 
 use App\Http\Controllers\Controller;
 use App\Models\PostComment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -40,7 +41,7 @@ class PostCommentsController extends Controller
                     ->get();
             } else {
                 $postcomment = PostComment::orderBy('id', 'desc')
-                    // ->where('deleted_at', null)
+                    ->where('deleted_at', null)
                     ->where('status', 1)
                     ->get();
             }
@@ -53,11 +54,10 @@ class PostCommentsController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Comment Details" href="' . route('admin.postcomments.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '';
 
                         if ($row->deleted_at === null) {
                             $deleteRoute =  route('admin.postcomments.destroy', [$row->id]);
-                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Tag Details" href="' . route('admin.tags.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Tag" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
                             $deleteRoute =  route('admin.postcomments.trashed.destroy', [$row->id]);
@@ -116,14 +116,8 @@ class PostCommentsController extends Controller
                     }
                 )
 
-                ->editColumn('title', function ($row) {
-                    return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
-                })
-                ->editColumn('image', function ($row) {
-                    if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/postcomments/' . $row->image) . "' class='img img-display-list' />";
-                    }
-                    return '-';
+                ->editColumn('comment', function ($row) {
+                    return $row->comment;
                 })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
@@ -134,15 +128,15 @@ class PostCommentsController extends Controller
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
                 });
-            $rawColumns = ['action', 'title', 'status', 'image'];
+            $rawColumns = ['action', 'comment', 'status'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
 
-        $count_tags = count(PostComment::select('id')->get());
-        $count_active_tags = count(PostComment::select('id')->where('status', 1)->get());
-        $count_trashed_tags = count(PostComment::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.postcomments.index', compact('count_tags', 'count_active_tags', 'count_trashed_tags'));
+        $count_comments = count(PostComment::select('id')->get());
+        $count_active_comments = count(PostComment::select('id')->where('status', 1)->get());
+        $count_trashed_comments = count(PostComment::select('id')->where('deleted_at', '!=', null)->get());
+        return view('backend.pages.postcomments.index', compact('count_comments', 'count_active_comments', 'count_trashed_comments'));
     }
 
     /**
@@ -208,6 +202,88 @@ class PostCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (is_null($this->user) || !$this->user->can('postcomment.delete')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
+
+        $postcomment = PostComment::find($id);
+        if (is_null($postcomment)) {
+            session()->flash('error', "The page is not found !");
+            return redirect()->route('admin.postcomments.trashed');
+        }
+        $postcomment->deleted_at = Carbon::now();
+        $postcomment->deleted_by = Auth::guard('admin')->id();
+        $postcomment->status = 0;
+        $postcomment->save();
+
+        session()->flash('success', 'Comment has been successfully moved to trashed !!');
+        return redirect()->route('admin.postcomments.trashed');
+    }
+
+
+    /**
+     * revertFromTrash
+     *
+     * @param integer $id
+     * @return Remove the item from trash to active -> make deleted_at = null
+     */
+    public function revertFromTrash($id)
+    {
+        if (is_null($this->user) || !$this->user->can('postcomment.delete')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
+
+        $postcomment = PostComment::find($id);
+        if (is_null($postcomment)) {
+            session()->flash('error', "The page is not found !");
+            return redirect()->route('admin.postcomments.trashed');
+        }
+        $postcomment->deleted_at = null;
+        $postcomment->deleted_by = null;
+        $postcomment->save();
+
+        session()->flash('success', 'Comment has been revert back successfully !!');
+        return redirect()->route('admin.postcomments.trashed');
+    }
+
+    /**
+     * destroyTrash
+     *
+     * @param integer $id
+     * @return void Destroy the data permanently
+     */
+    public function destroyTrash($id)
+    {
+        if (is_null($this->user) || !$this->user->can('postcomment.delete')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
+        $postcomment = PostComment::find($id);
+        if (is_null($postcomment)) {
+            session()->flash('error', "The page is not found !");
+            return redirect()->route('admin.postcomments.trashed');
+        }
+
+        // Delete Blog permanently
+        $postcomment->delete();
+
+        session()->flash('success', 'Comment has been deleted permanently !!');
+        return redirect()->route('admin.postcomments.trashed');
+    }
+
+    /**
+     * trashed
+     *
+     * @return view the trashed data list -> which data status = 0 and deleted_at != null
+     */
+    public function trashed()
+    {
+        if (is_null($this->user) || !$this->user->can('postcomment.view')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
+        return $this->index(true);
     }
 }

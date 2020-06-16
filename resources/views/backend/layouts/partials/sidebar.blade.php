@@ -191,19 +191,19 @@
                         <li class="sidebar-item">
                             <a href="{{ route('admin.postcomments.index') }}" class="sidebar-link {{ (Route::is('admin.postcomments.index') || Route::is('admin.postcomments.edit')) ? 'active' : null }}">
                                 <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Tag List </span>
+                                <span class="hide-menu"> PostComments List </span>
                             </a>
                         </li>
                     @endif
 
-                    @if ($user->can('tag.create'))
+                    {{-- @if ($user->can('tag.create'))
                         <li class="sidebar-item">
                             <a href="{{ route('admin.postcomments.create') }}" class="sidebar-link {{ Route::is('admin.postcomments.create') ? 'active' : null }}">
                                 <i class="mdi mdi-plus-circle"></i>
                                 <span class="hide-menu"> New Tag </span>
                             </a>
                         </li>
-                    @endif
+                    @endif --}}
                 </ul>
             </li>
         @endif
