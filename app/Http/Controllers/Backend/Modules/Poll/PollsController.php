@@ -281,23 +281,26 @@ class PollsController extends Controller
         try {
             DB::beginTransaction();
             $poll->title = $request->title;
-            $poll->slug = $request->slug;
-            $poll->status = $request->status;
 
-            if (!is_null($request->image)) {
-                $poll->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/blogs', $poll->image);
+            if ($request->slug) {
+                $poll->slug = $request->slug;
+            } else {
+                $poll->slug = StringHelper::createSlug($request->title, 'Poll', 'slug', '');
             }
 
             $poll->status = $request->status;
-            $poll->description = $request->description;
-            $poll->meta_description = $request->meta_description;
+            $poll->start_date = $request->start_date;
+            $poll->end_date = $request->end_date;
+            $poll->total_yes = 0;
+            $poll->total_no = 0;
+            $poll->total_no_comment = 0;
             $poll->updated_by = Auth::guard('admin')->id();
             $poll->updated_at = Carbon::now();
             $poll->save();
 
-            Track::newTrack($poll->title, 'Blog has been updated successfully !!');
+            Track::newTrack($poll->title, 'Poll has been updated successfully !!');
             DB::commit();
-            session()->flash('success', 'Blog has been updated successfully !!');
+            session()->flash('success', 'Poll has been updated successfully !!');
             return redirect()->route('admin.polls.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
