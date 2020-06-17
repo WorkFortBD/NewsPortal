@@ -16,6 +16,7 @@ class CreatePollsTable extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->text('title');
+            $table->string('slug')->unique();
             $table->boolean('status')->default(0)->comment('1=>approved, 0=>unapproved');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
@@ -24,6 +25,24 @@ class CreatePollsTable extends Migration
             $table->unsignedBigInteger('total_yes')->default(0);
             $table->unsignedBigInteger('total_no')->default(0);
             $table->unsignedBigInteger('total_no_comment')->default(0);
+
+            $table->softDeletes('deleted_at', 0);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('admins')
+                ->onDelete('cascade');
+            $table->foreign('updated_by')
+                ->references('id')
+                ->on('admins')
+                ->onDelete('cascade');
+            $table->foreign('deleted_by')
+                ->references('id')
+                ->on('admins')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
