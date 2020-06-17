@@ -1,15 +1,15 @@
 @extends('backend.layouts.master')
 
 @section('title')
-@include('backend.pages.pages.partials.title')
+@include('backend.pages.posts.partials.title')
 @endsection
 
 @section('admin-content')
-@include('backend.pages.pages.partials.header-breadcrumbs')
+@include('backend.pages.posts.partials.header-breadcrumbs')
 <div class="container-fluid">
     @include('backend.layouts.partials.messages')
     <div class="create-page">
-        <form action="{{ route('admin.pages.store') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data"
             data-parsley-validate data-parsley-focus="first">
             @csrf
             <div class="form-body">
@@ -61,22 +61,34 @@
                     <div class="row ">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label" for="image">Page Featured Image <span
+                                <label class="control-label" for="featured_image"> Featured image <span
                                         class="optional">(optional)</span></label>
                                 <input type="file" class="form-control dropify" data-height="70"
-                                    data-allowed-file-extensions="png jpg jpeg webp" id="image" name="image"
-                                    value="{{ old('image') }}" />
+                                    data-allowed-file-extensions="png jpg jpeg webp" id="featured_image"
+                                    name="featured_image" value="{{ old('featured_image') }}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label" for="banner_image">Page Banner Image <span
+                                <label class="control-label" for="short_description">Short Description <span
                                         class="optional">(optional)</span></label>
-                                <input type="file" class="form-control dropify" data-height="70"
-                                    data-allowed-file-extensions="png jpg jpeg webp" id="banner_image"
-                                    name="banner_image" value="{{ old('banner_image') }}" />
+                                <textarea type="text" class="form-control" id="short_description"
+                                    name="short_description" value="{{ old('short_description') }}"
+                                    placeholder="Short Description" rows="3"></textarea>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="featured_image_caption"> featured_image_caption
+                                    <span class="optional">(optional)</span></label></label>
+                                <input type="text" class="form-control" id="featured_image_caption"
+                                    name="featured_image_caption" value="{{ old('featured_image_caption') }}"
+                                    placeholder="Enter featured_image_caption" required="" />
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
                     </div>
 
 
@@ -101,7 +113,7 @@
                                 <div class="card-body">
                                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>
                                         Save</button>
-                                    <a href="{{ route('admin.pages.index') }}" class="btn btn-dark">Cancel</a>
+                                    <a href="{{ route('admin.posts.index') }}" class="btn btn-dark">Cancel</a>
                                 </div>
                             </div>
                         </div>

@@ -73,6 +73,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('categories/trashed/destroy/{id}', 'Backend\Modules\Category\CategoriesController@destroyTrash')->name('categories.trashed.destroy');
         Route::put('categories/trashed/revert/{id}', 'Backend\Modules\Category\CategoriesController@revertFromTrash')->name('categories.trashed.revert');
     });
+    /**
+     * Post Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('posts', 'Backend\Modules\Post\PostsController');
+        Route::get('posts/trashed/view', 'Backend\Modules\Post\PostsController@trashed')->name('posts.trashed');
+        Route::delete('posts/trashed/destroy/{id}', 'Backend\Modules\Post\PostsController@destroyTrash')->name('posts.trashed.destroy');
+        Route::put('posts/trashed/revert/{id}', 'Backend\Modules\Post\PostsController@revertFromTrash')->name('posts.trashed.revert');
+    });
 
     /**
      * Page Management Routes
