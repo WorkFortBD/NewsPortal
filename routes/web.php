@@ -114,7 +114,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     /**
-<<<<<<< HEAD
      * Poll Management Routes
      */
     Route::group(['prefix' => ''], function () {
@@ -132,9 +131,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('sliders/trashed/view', 'Backend\Modules\Slider\SlidersController@trashed')->name('sliders.trashed');
         Route::delete('sliders/trashed/destroy/{id}', 'Backend\Modules\Slider\SlidersController@destroyTrash')->name('sliders.trashed.destroy');
         Route::put('sliders/trashed/revert/{id}', 'Backend\Modules\Slider\SlidersController@revertFromTrash')->name('sliders.trashed.revert');
-=======
-     * Post Comment Management Routes
-     */
+    });
+
+    /* Post Comment Management Routes */
     Route::group(['prefix' => ''], function () {
         Route::resource('postcomments', 'Backend\Modules\PostComment\PostCommentsController');
         Route::get('postcomments/trashed/view', 'Backend\Modules\PostComment\PostCommentsController@trashed')->name('postcomments.trashed');
@@ -147,7 +146,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
      */
     Route::group(['prefix' => ''], function () {
         Route::resource('documents', 'Backend\Modules\Document\DocumenstController');
->>>>>>> origin/abir
     });
 });
 
