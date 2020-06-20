@@ -15,6 +15,17 @@ interface CrudInterface
     public function getAll($isTrashed = false);
 
     /**
+     * getPaginatedData
+     *
+     * Returns all of the items or Trashed Items
+     *
+     * @param int $page
+     * @param boolean $isTrashed
+     * @return Illuminate\Http\Response
+     */
+    public function getPaginatedData($page = 1, $isTrashed = false);
+
+    /**
      * findById
      *
      * Find an item by its id
