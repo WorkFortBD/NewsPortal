@@ -118,7 +118,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
      * Document Management Routes
      */
     Route::group(['prefix' => ''], function () {
-        Route::resource('documents', 'Backend\Modules\Document\DocumenstController');
+        Route::resource('documents', 'Backend\Modules\Document\DocumentsController');
+
+        Route::get('documents/videos', 'Backend\Modules\Document\DocumentsController@getAllVideos')->name('documents.videos');
+        Route::get('documents/images', 'Backend\Modules\Document\DocumentsController@getImages')->name('documents.images');
+        Route::get('documents/documents', 'Backend\Modules\Document\DocumentsController@getAllDocuments')->name('documents.documents');
+        Route::get('documents/audios', 'Backend\Modules\Document\DocumentsController@getAllAudios')->name('admin.documents.audios');
     });
 });
 

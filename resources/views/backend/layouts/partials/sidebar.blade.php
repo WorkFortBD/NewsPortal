@@ -227,7 +227,7 @@
 
                     @if ($user->can('document.create'))
                         <li class="sidebar-item">
-                            <a href="{{ route('admin.documents.create') }}" class="sidebar-link {{ Route::is('admin.documents.create') ? 'active' : null }}">
+                            <a href="" class="sidebar-link {{ Route::is('admin.documents.create') ? 'active' : null }}">
                                 <i class="mdi mdi-plus-circle"></i>
                                 <span class="hide-menu"> New Tag </span>
                             </a>
