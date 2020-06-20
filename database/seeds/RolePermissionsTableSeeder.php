@@ -81,11 +81,23 @@ class RolePermissionsTableSeeder extends Seeder
             'blog.edit',
             'blog.delete',
 
+            // document
+            'document.view',
+            'document.create',
+            'document.edit',
+            'document.delete',
+
             // tag
             'tag.view',
             'tag.create',
             'tag.edit',
             'tag.delete',
+
+            // post comment
+            'postcomment.view',
+            'postcomment.create',
+            'postcomment.edit',
+            'postcomment.delete',
 
             // slider
             'slider.view',
