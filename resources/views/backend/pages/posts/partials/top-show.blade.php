@@ -28,7 +28,7 @@
             <div class="box bg-primary text-center">
                 <h1 class="font-light text-white">{{ $count_pages - $count_active_pages }} / {{ $count_trashed_pages }}
                 </h1>
-                <h6 class="text-white">Inactive/Trashed Pages</h6>
+                <h6 class="text-white">Inactive/Trashed Post</h6>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                 <h1 class="font-light text-white">
                     <i class="fa fa-plus-circle"></i>
                 </h1>
-                <h6 class="text-white">Create New Page</h6>
+                <h6 class="text-white">Create New Post</h6>
             </div>
         </div>
     </div>

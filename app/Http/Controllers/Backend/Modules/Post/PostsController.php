@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend\Modules\Post;
 
 use App\Helpers\StringHelper;
+use app\Helpers\SummernoteImageHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PostCreateRequest;
 use App\Models\Category;
 use App\Models\Track;
 use Illuminate\Http\Request;
@@ -191,11 +193,11 @@ class PostsController extends Controller
             return abort(403, 'You are not allowed to access this page !');
         }
 
-        $request->validate([
-            'title'  => 'required|max:100',
-            'slug'  => 'nullable|max:100|unique:posts,slug',
-            'featured_image'  => 'nullable|image'
-        ]);
+        // $request->validate([
+        //     'title'  => 'required|max:100',
+        //     'slug'  => 'nullable|max:100|unique:posts,slug',
+        //     'featured_image'  => 'nullable|image'
+        // ]);
 
         try {
             DB::beginTransaction();
@@ -210,6 +212,8 @@ class PostsController extends Controller
             if (!is_null($request->featured_image)) {
                 $post->featured_image = UploadHelper::upload('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts');
             }
+
+
 
 
 
@@ -303,10 +307,13 @@ class PostsController extends Controller
             if (!is_null($request->featured_image)) {
                 $post->featured_image = UploadHelper::upload('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts');
             }
+
+
+
+
             $post->category_id = $request->category_id;
             $post->status = $request->status;
             $post->short_description = $request->short_description;
-            $post->description = $request->description;
             $post->featured_image_caption = $request->featured_image_caption;
             $post->meta_description = $request->meta_description;
             $post->updated_by = Auth::guard('admin')->id();
