@@ -73,6 +73,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('categories/trashed/destroy/{id}', 'Backend\Modules\Category\CategoriesController@destroyTrash')->name('categories.trashed.destroy');
         Route::put('categories/trashed/revert/{id}', 'Backend\Modules\Category\CategoriesController@revertFromTrash')->name('categories.trashed.revert');
     });
+    /**
+     * Post Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('posts', 'Backend\Modules\Post\PostsController');
+        Route::get('posts/trashed/view', 'Backend\Modules\Post\PostsController@trashed')->name('posts.trashed');
+        Route::delete('posts/trashed/destroy/{id}', 'Backend\Modules\Post\PostsController@destroyTrash')->name('posts.trashed.destroy');
+        Route::put('posts/trashed/revert/{id}', 'Backend\Modules\Post\PostsController@revertFromTrash')->name('posts.trashed.revert');
+    });
 
     /**
      * Page Management Routes
@@ -105,8 +114,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     /**
-     * Post Comment Management Routes
+     * Poll Management Routes
      */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('polls', 'Backend\Modules\Poll\PollsController');
+        Route::get('polls/trashed/view', 'Backend\Modules\Poll\PollsController@trashed')->name('polls.trashed');
+        Route::delete('polls/trashed/destroy/{id}', 'Backend\Modules\Poll\PollsController@destroyTrash')->name('polls.trashed.destroy');
+        Route::put('polls/trashed/revert/{id}', 'Backend\Modules\Poll\PollsController@revertFromTrash')->name('polls.trashed.revert');
+    });
+
+    /**
+     * Slider Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('sliders', 'Backend\Modules\Slider\SlidersController');
+        Route::get('sliders/trashed/view', 'Backend\Modules\Slider\SlidersController@trashed')->name('sliders.trashed');
+        Route::delete('sliders/trashed/destroy/{id}', 'Backend\Modules\Slider\SlidersController@destroyTrash')->name('sliders.trashed.destroy');
+        Route::put('sliders/trashed/revert/{id}', 'Backend\Modules\Slider\SlidersController@revertFromTrash')->name('sliders.trashed.revert');
+    });
+
+    /* Post Comment Management Routes */
     Route::group(['prefix' => ''], function () {
         Route::resource('postcomments', 'Backend\Modules\PostComment\PostCommentsController');
         Route::get('postcomments/trashed/view', 'Backend\Modules\PostComment\PostCommentsController@trashed')->name('postcomments.trashed');
@@ -118,12 +145,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
      * Document Management Routes
      */
     Route::group(['prefix' => ''], function () {
-        Route::resource('documents', 'Backend\Modules\Document\DocumentsController');
-
         Route::get('documents/videos', 'Backend\Modules\Document\DocumentsController@getAllVideos')->name('documents.videos');
-        Route::get('documents/images', 'Backend\Modules\Document\DocumentsController@getImages')->name('documents.images');
-        Route::get('documents/documents', 'Backend\Modules\Document\DocumentsController@getAllDocuments')->name('documents.documents');
-        Route::get('documents/audios', 'Backend\Modules\Document\DocumentsController@getAllAudios')->name('admin.documents.audios');
+        Route::get('documents/all/images', 'Backend\Modules\Document\DocumentsController@getImages')->name('documents.images');
+        Route::get('documents/all/documents', 'Backend\Modules\Document\DocumentsController@getAllDocuments')->name('documents.documents');
+        Route::get('documents/all/audios', 'Backend\Modules\Document\DocumentsController@getAllAudios')->name('admin.documents.audios');
+
+        Route::resource('documents', 'Backend\Modules\Document\DocumentsController');
+        // admin/documents/images -> show()
     });
 });
 

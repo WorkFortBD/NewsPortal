@@ -91,7 +91,7 @@ class DocumentsController extends Controller
      */
     public function getAllVideos()
     {
-        dd('enterd');
+        dd('enterd videos');
         return view('backend.pages.documents.elements.all-videos');
     }
 }

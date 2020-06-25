@@ -1,23 +1,22 @@
 @extends('backend.layouts.master')
 
 @section('title')
-@include('backend.pages.pages.partials.title')
+@include('backend.pages.posts.partials.title')
 @endsection
 
 @section('admin-content')
-@include('backend.pages.pages.partials.header-breadcrumbs')
+@include('backend.pages.posts.partials.header-breadcrumbs')
 <div class="container-fluid">
-    @include('backend.pages.pages.partials.top-show')
+    @include('backend.pages.posts.partials.top-show')
     @include('backend.layouts.partials.messages')
     <div class="table-responsive product-table">
-        <table class="table table-striped table-bordered display ajax_view" id="pages_table">
+        <table class="table table-striped table-bordered display ajax_view" id="posts_table">
             <thead>
                 <tr>
                     <th>Sl</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Featured Image</th>
-                    <th>Banner Image</th>
                     <th>Status</th>
                     <th width="100">Action</th>
                 </tr>
@@ -29,8 +28,8 @@
 
 @section('scripts')
 <script>
-    const ajaxURL = "<?php echo Route::is('admin.pages.trashed' ? 'pages/trashed/view' : 'pages') ?>";
-    $('table#pages_table').DataTable({
+    const ajaxURL = "<?php echo Route::is('admin.posts.trashed' ? 'posts/trashed/view' : 'posts') ?>";
+    $('table#posts_table').DataTable({
         dom: 'Blfrtip',
         language: {processing: "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading Data..."},
         processing: true,
@@ -42,8 +41,7 @@
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'title', name: 'title'},
             {data: 'category', name: 'category'},
-            {data: 'banner_image', name: 'banner_image'},
-            {data: 'image', name: 'image'},
+            {data: 'featured_image', name: 'featured_image'},
             {data: 'status', name: 'status'},
             {data: 'action', name: 'action'}
         ]

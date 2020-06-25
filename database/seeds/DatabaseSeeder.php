@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PageTableSeeder::class);
         $this->call(BlogTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
+        $this->call(PollTableSeeder::class);
+        $this->call(PollResponseTableSeeder::class);
+        $this->call(SliderTableSeeder::class);
         $this->call(TagTableSeeder::class);
         $this->call(PostCommentTableSeeder::class);
         $this->call(DocumentTableSeeder::class);
