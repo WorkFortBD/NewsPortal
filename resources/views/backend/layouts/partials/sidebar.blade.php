@@ -76,43 +76,11 @@ $user = Auth::guard('admin')->user();
                 </li>
                 @endcan
 
-                @if ($user->can('category.view') || $user->can('category.create'))
                 <li class="sidebar-item ">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
                         <i class="mdi mdi-tune"></i>
-                        <span class="hide-menu">Categories </span>
-                    </a>
-                    <ul aria-expanded="false"
-                        class="collapse first-level {{ (Route::is('admin.categories.index') || Route::is('admin.categories.create') || Route::is('admin.categories.edit')) ? 'in' : null }}">
-                        @if ($user->can('category.view'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.categories.index') }}"
-                                class="sidebar-link {{ (Route::is('admin.categories.index') || Route::is('admin.categories.edit')) ? 'active' : null }}">
-                                <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Category List </span>
-                            </a>
-                        </li>
-                        @endif
-
-                        @if ($user->can('category.create'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.categories.create') }}"
-                                class="sidebar-link {{ Route::is('admin.categories.create') ? 'active' : null }}">
-                                <i class="mdi mdi-plus-circle"></i>
-                                <span class="hide-menu"> New Category </span>
-                            </a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
-
-                <li class="sidebar-item ">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
-                        <i class="mdi mdi-tune"></i>
-                        <span class="hide-menu">posts </span>
+                        <span class="hide-menu">Posts </span>
                     </a>
                     <ul aria-expanded="false"
                         class="collapse first-level {{ (Route::is('admin.posts.index') || Route::is('admin.posts.create') || Route::is('admin.posts.edit')) ? 'in' : null }}">
@@ -121,7 +89,7 @@ $user = Auth::guard('admin')->user();
                             <a href="{{ route('admin.posts.index') }}"
                                 class="sidebar-link {{ (Route::is('admin.posts.index') || Route::is('admin.posts.edit')) ? 'active' : null }}">
                                 <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> posts List </span>
+                                <span class="hide-menu"> All Posts </span>
                             </a>
                         </li>
 
@@ -131,10 +99,40 @@ $user = Auth::guard('admin')->user();
                             <a href="{{ route('admin.posts.create') }}"
                                 class="sidebar-link {{ Route::is('admin.posts.create') ? 'active' : null }}">
                                 <i class="mdi mdi-plus-circle"></i>
-                                <span class="hide-menu"> New post </span>
+                                <span class="hide-menu"> New Post </span>
                             </a>
                         </li>
                         {{-- @endif --}}
+
+                        @if ($user->can('category.create'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.categories.index') }}"
+                                class="sidebar-link {{ Route::is('admin.categories.index') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu">Manage Categories </span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if ($user->can('tag.create'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.tags.index') }}"
+                                class="sidebar-link {{ Route::is('admin.tags.index') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu">Manage Tags </span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if ($user->can('postcomments.view'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.postcomments.index') }}"
+                                class="sidebar-link {{ Route::is('admin.postcomments.index') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu">Comments </span>
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                 </li>
 
@@ -203,125 +201,56 @@ $user = Auth::guard('admin')->user();
                 </li>
                 @endif
 
-                @if ($user->can('poll.view') || $user->can('poll.create'))
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-poll"></i>
-                            <span class="hide-menu">Polls </span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.polls.index') || Route::is('admin.polls.create') || Route::is('admin.polls.edit')) ? 'in' : null }}">
-                            @if ($user->can('poll.view'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.polls.index') }}" class="sidebar-link {{ (Route::is('admin.polls.index') || Route::is('admin.polls.edit')) ? 'active' : null }}">
-                                        <i class="mdi mdi-view-list"></i>
-                                        <span class="hide-menu"> Poll List </span>
-                                    </a>
-                                </li>
-                            @endif
+                <li class="sidebar-item ">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-poll"></i>
+                        <span class="hide-menu">News Portal </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.polls.index') || Route::is('admin.polls.create') || Route::is('admin.polls.edit')) ? 'in' : null }}">
+                        @if ($user->can('poll.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.polls.index') }}" class="sidebar-link {{ (Route::is('admin.polls.index') || Route::is('admin.polls.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-view-list"></i>
+                                    <span class="hide-menu"> Polls </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
 
-                            @if ($user->can('poll.create'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.polls.create') }}" class="sidebar-link {{ Route::is('admin.polls.create') ? 'active' : null }}">
-                                        <i class="mdi mdi-plus-circle"></i>
-                                        <span class="hide-menu"> New Poll </span>
-                                    </a>
-                                </li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
+                <li class="sidebar-item ">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-settings"></i>
+                        <span class="hide-menu">Settings </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.create') || Route::is('admin.sliders.edit')) ? 'in' : null }}">
+                        
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.sliders.index') }}" class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
+                                <i class="mdi mdi-settings"></i>
+                                <span class="hide-menu"> Website Settings </span>
+                            </a>
+                        </li>
 
-                @if ($user->can('slider.view') || $user->can('slider.create'))
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-image-filter-none"></i>
-                            <span class="hide-menu">Sliders </span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.create') || Route::is('admin.sliders.edit')) ? 'in' : null }}">
-                            @if ($user->can('slider.view'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.sliders.index') }}" class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
-                                        <i class="mdi mdi-view-list"></i>
-                                        <span class="hide-menu"> Slider List </span>
-                                    </a>
-                                </li>
-                            @endif
+                        @if ($user->can('slider.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.sliders.index') }}" class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-view-list"></i>
+                                    <span class="hide-menu"> Sliders </span>
+                                </a>
+                            </li>
+                        @endif
 
-                            @if ($user->can('slider.create'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.sliders.create') }}" class="sidebar-link {{ Route::is('admin.sliders.create') ? 'active' : null }}">
-                                        <i class="mdi mdi-plus-circle"></i>
-                                        <span class="hide-menu"> New Slider </span>
-                                    </a>
-                                </li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif 
-
-                @if ($user->can('postcomment.view') || $user->can('postcomment.create'))
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-view-list"></i>
-                            <span class="hide-menu">PostComments </span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.postcomments.index') || Route::is('admin.postcomments.create') || Route::is('admin.postcomments.edit')) ? 'in' : null }}">
-                            @if ($user->can('postcomment.view'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.postcomments.index') }}" class="sidebar-link {{ (Route::is('admin.postcomments.index') || Route::is('admin.postcomments.edit')) ? 'active' : null }}">
-                                        <i class="mdi mdi-view-list"></i>
-                                        <span class="hide-menu"> PostComments List </span>
-                                    </a>
-                                </li>
-                            @endif
-                            @if ($user->can('tag.create'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.tags.create') }}" class="sidebar-link {{ Route::is('admin.tags.create') ? 'active' : null }}">
-                                        <i class="mdi mdi-plus-circle"></i>
-                                        <span class="hide-menu"> New Tag </span>
-                                    </a>
-                                </li>
-                            @endif
-                            {{-- @if ($user->can('tag.create'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.postcomments.create') }}" class="sidebar-link {{ Route::is('admin.postcomments.create') ? 'active' : null }}">
-                                        <i class="mdi mdi-plus-circle"></i>
-                                        <span class="hide-menu"> New Tag </span>
-                                    </a>
-                                </li>
-                            @endif --}}
-                        </ul>
-                    </li>
-                @endif
-
-
-                @if ($user->can('document.view') || $user->can('document.create'))
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-view-list"></i>
-                            <span class="hide-menu">Documents </span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.documents.index') || Route::is('admin.documents.create') || Route::is('admin.documents.edit')) ? 'in' : null }}">
-                            @if ($user->can('document.view'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.documents.index') }}" class="sidebar-link {{ (Route::is('admin.documents.index') || Route::is('admin.documents.edit')) ? 'active' : null }}">
-                                        <i class="mdi mdi-view-list"></i>
-                                        <span class="hide-menu"> Document Gallary </span>
-                                    </a>
-                                </li>
-                            @endif
-
-                            @if ($user->can('document.create'))
-                                <li class="sidebar-item">
-                                    <a href="{{ route('admin.documents.create') }}" class="sidebar-link {{ Route::is('admin.documents.create') ? 'active' : null }}">
-                                        <i class="mdi mdi-plus-circle"></i>
-                                        <span class="hide-menu"> New Tag </span>
-                                    </a>
-                                </li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
+                        @if ($user->can('document.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.documents.index') }}" class="sidebar-link {{ (Route::is('admin.documents.index') || Route::is('admin.documents.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-image"></i>
+                                    <span class="hide-menu"> Gallary </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('admin.logout') }}"
