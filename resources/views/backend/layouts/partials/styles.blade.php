@@ -36,6 +36,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/backend/js/dropify/css/dropify.min.css') }}">
 
 <!-- Dropify CSS -->
+<!-- Dropify CSS -->
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/assets/backend/js/jquery-tags-input/jquery.tagsinput.min.js') }}">
+
+<!-- Dropify CSS -->
 
 <!-- Summernote CSS -->
 

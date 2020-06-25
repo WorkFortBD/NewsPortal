@@ -12,6 +12,7 @@ use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -178,7 +179,8 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::printCategory();
-        return view('backend.pages.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('backend.pages.posts.create', compact('categories', 'tags'));
     }
 
     /**

@@ -41,14 +41,19 @@
 
 <!-- Select2 JS -->
 <script src="{{ asset('public/assets/backend/js/select2/select2.min.js') }}"></script>
-<script>
+<script src="{{ asset('public/assets/backend/js/select2.js') }}"></script>
+{{-- <script>
     $(".select2").select2(); $('[data-toggle="tooltip"]').tooltip();
-</script>
+</script> --}}
 <!-- Select2 JS -->
 
 
 <!-- Tiny MCE JS -->
 <script src="{{ asset('public/assets/backend/js/tinymce/tinymce.min.js') }}"></script>
+<!-- Tiny MCE JS -->
+
+<!-- Tiny MCE JS -->
+<script src="{{ asset('public/assets/backend/js/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
 <!-- Tiny MCE JS -->
 
 
