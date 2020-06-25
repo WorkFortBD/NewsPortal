@@ -31,13 +31,19 @@
 <script src="{{ asset('public/assets/backend/js/parsley/parsley.min.js') }}"></script>
 <!-- Parsley JS -->
 
+<!-- Summernote JS -->
+<script src="{{ asset('public/assets/backend/js/summernote/summernote-bs4.min.js') }}"></script>
+<!-- Summernote JS -->
+
 <!-- Toaster JS -->
 <script src="{{ asset('public/assets/backend/js/toaster/toastr.min.js') }}"></script>
 <!-- Toaster JS -->
 
 <!-- Select2 JS -->
 <script src="{{ asset('public/assets/backend/js/select2/select2.min.js') }}"></script>
-<script> $(".select2").select2(); $('[data-toggle="tooltip"]').tooltip();</script>
+<script>
+    $(".select2").select2(); $('[data-toggle="tooltip"]').tooltip();
+</script>
 <!-- Select2 JS -->
 
 
@@ -48,7 +54,9 @@
 
 <!-- Dropify JS -->
 <script src="{{ asset('public/assets/backend/js/dropify/js/dropify.min.js') }}"></script>
-<script> $(".dropify").dropify(); </script>
+<script>
+    $(".dropify").dropify(); 
+</script>
 <!-- Dropify JS -->
 
 <!--Custom JavaScript -->

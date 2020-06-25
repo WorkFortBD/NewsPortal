@@ -17,8 +17,7 @@
                     <div class="row ">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label" for="title">Page Title <span
-                                        class="required">*</span></label>
+                                <label class="control-label" for="title"> Title <span class="required">*</span></label>
                                 <input type="text" class="form-control" id="title" name="title"
                                     value="{{ old('title') }}" placeholder="Enter Title" required="" />
                             </div>
@@ -37,7 +36,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label" for="category_id">Page Category <span
+                                <label class="control-label" for="category_id"> Category <span
                                         class="optional">(optional)</span></label>
                                 <br>
                                 <select class="categories_select form-control custom-select " id="categories"
@@ -85,7 +84,7 @@
                                     <span class="optional">(optional)</span></label></label>
                                 <input type="text" class="form-control" id="featured_image_caption"
                                     name="featured_image_caption" value="{{ old('featured_image_caption') }}"
-                                    placeholder="Enter featured_image_caption" required="" />
+                                    placeholder="Enter featured_image_caption" />
                             </div>
                         </div>
                         <div class="col-md-6"></div>
@@ -95,15 +94,17 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label" for="description">Page Description <span
+                                <label class="control-label" for="description">Post Description <span
                                         class="optional">(optional)</span></label>
-                                <textarea type="text" class="form-control tinymce_advance" id="description"
-                                    name="description" value="{{ old('description') }}"></textarea>
+                                {{-- <textarea type="text" class="form-control tinymce_advance" id="description"
+                                    name="description" value="{{ old('description') }}"></textarea> --}}
+                                <textarea type="text" class="form-control" id="summernote" name="description"
+                                    value="{{ old('description') }}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label" for="meta_description">Page Meta Description <span
+                                <label class="control-label" for="meta_description"> Meta Description <span
                                         class="optional">(optional)</span></label>
                                 <textarea type="text" class="form-control" id="meta_description" name="meta_description"
                                     value="{{ old('meta_description') }}"
@@ -133,5 +134,10 @@
     $(".categories_select").select2({
         placeholder: "Select a Category"
     });
+   
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+ 
 </script>
 @endsection
