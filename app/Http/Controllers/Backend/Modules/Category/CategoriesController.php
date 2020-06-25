@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend\Modules\Category;
 
-use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryCreateRequest;
-use App\Models\Track;
-use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Track;
+use App\Repository\CategoryRepository;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -18,9 +18,11 @@ class CategoriesController extends Controller
 {
 
     public $user;
+    public $categoryRepository;
 
-    public function __construct()
+    public function __construct(CategoryRepository $categoryRepository)
     {
+        $this->categoryRepository = $categoryRepository;
         $this->middleware(function ($request, $next) {
             $this->user = Auth::guard('admin')->user();
             return $next($request);
@@ -40,16 +42,7 @@ class CategoriesController extends Controller
         }
 
         if (request()->ajax()) {
-            if ($isTrashed) {
-                $categories = Category::orderBy('id', 'desc')
-                    ->where('status', 0)
-                    ->get();
-            } else {
-                $categories = Category::orderBy('id', 'desc')
-                    ->where('deleted_at', null)
-                    ->where('status', 1)
-                    ->get();
-            }
+            $categories = $this->categoryRepository->getAll($isTrashed);
 
             $datatable = DataTables::of($categories, $isTrashed)
                 ->addIndexColumn()
@@ -61,11 +54,11 @@ class CategoriesController extends Controller
                         $method_put = "" . method_field("put") . "";
 
                         if ($row->deleted_at === null) {
-                            $deleteRoute =  route('admin.categories.destroy', [$row->id]);
+                            $deleteRoute = route('admin.categories.destroy', [$row->id]);
                             $html = '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle" title="Edit Category Details" href="' . route('admin.categories.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-2 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
-                            $deleteRoute =  route('admin.categories.trashed.destroy', [$row->id]);
+                            $deleteRoute = route('admin.categories.trashed.destroy', [$row->id]);
                             $revertRoute = route('admin.categories.trashed.revert', [$row->id]);
 
                             $html = '<a class="btn waves-effect waves-light btn-warning btn-sm btn-circle" title="Revert Back" id="revertItem' . $row->id . '"><i class="fa fa-check"></i></a>';
@@ -78,8 +71,6 @@ class CategoriesController extends Controller
                             </form>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-2 text-white" title="Delete Category Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         }
-
-
 
                         $html .= '<script>
                             $("#deleteItem' . $row->id . '").click(function(){
@@ -160,9 +151,9 @@ class CategoriesController extends Controller
                 ->make(true);
         }
 
-        $count_categories = count(Category::select('id')->get());
-        $count_active_categories = count(Category::select('id')->where('status', 1)->get());
-        $count_trashed_categories = count(Category::select('id')->where('deleted_at', '!=', null)->get());
+        $count_active_categories = count($this->categoryRepository->getAll(false));
+        $count_trashed_categories = count($this->categoryRepository->getAll(true));
+        $count_categories = $count_active_categories + $count_trashed_categories;
         return view('backend.pages.categories.index', compact('count_categories', 'count_active_categories', 'count_trashed_categories'));
     }
 
@@ -173,7 +164,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $parent_categories = Category::select('id', 'name')->where('parent_category_id', null)->get();
+        $parent_categories = $this->categoryRepository->getAllParentCategories();
         return view('backend.pages.categories.create', compact('parent_categories'));
     }
 
@@ -191,37 +182,10 @@ class CategoriesController extends Controller
 
         try {
             DB::beginTransaction();
-            $category = new Category();
-            $category->name = $request->name;
-            if ($request->slug) {
-                $category->slug = $request->slug;
-            } else {
-                $category->slug = StringHelper::createSlug($request->name, 'Category', 'slug', '');
+            $category = $this->categoryRepository->store($request);
+            if (!is_null($category)) {
+                Track::newTrack($category->name, 'New Category has been created');
             }
-
-            if (!is_null($request->banner_image)) {
-                $category->banner_image = UploadHelper::upload('banner_image', $request->banner_image, $request->name . '-' . time() . '-banner', 'public/assets/images/categories');
-            }
-
-            if (!is_null($request->logo_image)) {
-                $category->logo_image = UploadHelper::upload('logo_image', $request->logo_image, $request->name . '-' . time() . '-logo', 'public/assets/images/categories');
-            }
-
-            $category->parent_category_id = $request->parent_category_id;
-            $category->status = $request->status;
-            if (!is_null($request->enable_bg)) {
-                $category->enable_bg = 1;
-                $category->bg_color = $request->bg_color;
-            }
-
-            $category->description = $request->description;
-            $category->meta_description = $request->meta_description;
-            $category->created_at = Carbon::now();
-            $category->created_by = Auth::guard('admin')->id();
-            $category->updated_at = Carbon::now();
-            $category->save();
-
-            Track::newTrack($category->name, 'New Category has been created');
             DB::commit();
             session()->flash('success', 'New Category has been created successfully !!');
             return redirect()->route('admin.categories.index');
@@ -281,8 +245,8 @@ class CategoriesController extends Controller
         }
 
         $request->validate([
-            'name'  => 'required|max:100',
-            'slug'  => 'required|max:100|unique:categories,slug,' . $category->id,
+            'name' => 'required|max:100',
+            'slug' => 'required|max:100|unique:categories,slug,' . $category->id,
         ]);
 
         try {

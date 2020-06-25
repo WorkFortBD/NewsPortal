@@ -102,6 +102,57 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('blogs/trashed/destroy/{id}', 'Backend\Modules\Blog\BlogsController@destroyTrash')->name('blogs.trashed.destroy');
         Route::put('blogs/trashed/revert/{id}', 'Backend\Modules\Blog\BlogsController@revertFromTrash')->name('blogs.trashed.revert');
     });
+
+    /**
+     * Tag Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('tags', 'Backend\Modules\Tag\TagController');
+        Route::get('tags/trashed/view', 'Backend\Modules\Tag\TagController@trashed')->name('tags.trashed');
+        Route::delete('tags/trashed/destroy/{id}', 'Backend\Modules\Tag\TagController@destroyTrash')->name('tags.trashed.destroy');
+        Route::put('tags/trashed/revert/{id}', 'Backend\Modules\Tag\TagController@revertFromTrash')->name('tags.trashed.revert');
+    });
+
+    /**
+     * Poll Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('polls', 'Backend\Modules\Poll\PollsController');
+        Route::get('polls/trashed/view', 'Backend\Modules\Poll\PollsController@trashed')->name('polls.trashed');
+        Route::delete('polls/trashed/destroy/{id}', 'Backend\Modules\Poll\PollsController@destroyTrash')->name('polls.trashed.destroy');
+        Route::put('polls/trashed/revert/{id}', 'Backend\Modules\Poll\PollsController@revertFromTrash')->name('polls.trashed.revert');
+    });
+
+    /**
+     * Slider Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('sliders', 'Backend\Modules\Slider\SlidersController');
+        Route::get('sliders/trashed/view', 'Backend\Modules\Slider\SlidersController@trashed')->name('sliders.trashed');
+        Route::delete('sliders/trashed/destroy/{id}', 'Backend\Modules\Slider\SlidersController@destroyTrash')->name('sliders.trashed.destroy');
+        Route::put('sliders/trashed/revert/{id}', 'Backend\Modules\Slider\SlidersController@revertFromTrash')->name('sliders.trashed.revert');
+    });
+
+    /* Post Comment Management Routes */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('postcomments', 'Backend\Modules\PostComment\PostCommentsController');
+        Route::get('postcomments/trashed/view', 'Backend\Modules\PostComment\PostCommentsController@trashed')->name('postcomments.trashed');
+        Route::delete('postcomments/trashed/destroy/{id}', 'Backend\Modules\PostComment\PostCommentsController@destroyTrash')->name('postcomments.trashed.destroy');
+        Route::put('postcomments/trashed/revert/{id}', 'Backend\Modules\PostComment\PostCommentsController@revertFromTrash')->name('postcomments.trashed.revert');
+    });
+
+    /**
+     * Document Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::get('documents/videos', 'Backend\Modules\Document\DocumentsController@getAllVideos')->name('documents.videos');
+        Route::get('documents/all/images', 'Backend\Modules\Document\DocumentsController@getImages')->name('documents.images');
+        Route::get('documents/all/documents', 'Backend\Modules\Document\DocumentsController@getAllDocuments')->name('documents.documents');
+        Route::get('documents/all/audios', 'Backend\Modules\Document\DocumentsController@getAllAudios')->name('admin.documents.audios');
+
+        Route::resource('documents', 'Backend\Modules\Document\DocumentsController');
+        // admin/documents/images -> show()
+    });
 });
 
 Auth::routes();

@@ -78,23 +78,23 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Comment News
   - [ ] Delete Comment News
 
-> **Pole Management** - **@Shakib**
+> **Poll Management** - **@Shakib**
 
-- [ ] Pole Management
+- [x] Poll Management
 
-  - [ ] List Pole
-  - [ ] Create Pole
-  - [ ] Edit Pole
-  - [ ] Delete Pole
+  - [x] List Poll
+  - [x] Create Poll
+  - [x] Edit Poll
+  - [x] Delete Poll
 
 > **Tags Management** - **@Abir**
 
-- [ ] Tag Management
+- [x] Tag Management
 
-  - [ ] List Tag
-  - [ ] Create Tag
-  - [ ] Edit Tag
-  - [ ] Delete Tag
+  - [x] List Tag
+  - [x] Create Tag
+  - [x] Edit Tag
+  - [x] Delete Tag
 
 > **Image Gallery Management** - **@Akash / @Abir**
 

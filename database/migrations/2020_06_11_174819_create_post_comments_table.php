@@ -27,6 +27,7 @@ class CreatePostCommentsTable extends Migration
 
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->unsignedBigInteger('deleted_at')->nullable();
             $table->unsignedBigInteger('total_reaction')
                 ->default(0)
                 ->comment('total reaction count');
