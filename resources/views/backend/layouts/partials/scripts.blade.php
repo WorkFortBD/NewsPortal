@@ -1,6 +1,9 @@
 <!-- ============================================================== -->
 <!-- All Jquery -->
 <!-- ============================================================== -->
+
+<script src="{{ asset('public/js/app.js') }}"></script> {{-- For React --}}
+
 <script src="{{ asset('public/assets/backend/js/jquery.min.js') }}"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="{{ asset('public/assets/backend/js/popper.min.js') }}"></script>
@@ -9,6 +12,7 @@
 <script src="{{ asset('public/assets/backend/js/app.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/app.init.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/app-style-switcher.js') }}"></script>
+
 <!-- slimscrollbar scrollbar JavaScript -->
 <script src="{{ asset('public/assets/backend/js/perfect-scrollbar.jquery.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/sparkline.js') }}"></script>

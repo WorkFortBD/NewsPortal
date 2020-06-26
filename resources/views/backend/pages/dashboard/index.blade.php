@@ -15,6 +15,8 @@
         {{-- @include('backend.pages.dashboard.partials.email-campaign') --}}
         {{-- @include('backend.pages.dashboard.partials.revinue-page-bounce') --}}
         @include('backend.pages.dashboard.partials.recent-data')
+        <div id="example"></div>
+        
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->

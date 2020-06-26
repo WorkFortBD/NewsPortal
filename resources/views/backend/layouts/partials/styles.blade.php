@@ -1,5 +1,5 @@
 <!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/assets/backend/css/bootstrap.min.css') }}">
+{{-- <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/assets/backend/css/bootstrap.min.css') }}"> --}}
 <!-- Custom CSS -->
 
 
