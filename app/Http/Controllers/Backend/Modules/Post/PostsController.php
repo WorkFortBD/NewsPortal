@@ -12,6 +12,7 @@ use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\PostTag;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -229,6 +230,17 @@ class PostsController extends Controller
             $post->created_by = Auth::guard('admin')->id();
             $post->updated_at = Carbon::now();
             $post->save();
+
+            $postSave = $post->save();
+            if ($postSave) {
+                $getId = $post->id;
+                for ($i = 0; $i < count($request->tag); $i++) {
+                    $PostTags = new PostTag();
+                    $PostTags->post_id = $getId;
+                    $PostTags->tag_id = $request->tag[$i];
+                    $PostTags->save();
+                }
+            }
             Track::newTrack($post->title, 'New Post has been created');
             DB::commit();
             session()->flash('success', 'New Post has been created successfully !!');
@@ -266,13 +278,14 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        // if (is_null($this->user) || !$this->user->can('page.edit')) {
-        //     $message = 'You are not allowed to access this page !';
-        //     return view('errors.403', compact('message'));
-        // }
+        if (is_null($this->user) || !$this->user->can('post.edit')) {
+            $message = 'You are not allowed to access this post !';
+            return view('errors.403', compact('message'));
+        }
         $post = Post::find($id);
         $categories = Category::printCategory($post->category_id);
-        return view('backend.pages.posts.edit', compact('categories', 'post'));
+        $tags = Tag::all();
+        return view('backend.pages.posts.edit', compact('categories', 'post', 'tags'));
     }
 
     /**
@@ -284,10 +297,10 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // if (is_null($this->user) || !$this->user->can('page.edit')) {
-        //     $message = 'You are not allowed to access this page !';
-        //     return view('errors.403', compact('message'));
-        // }
+        if (is_null($this->user) || !$this->user->can('post.edit')) {
+            $message = 'You are not allowed to access this post !';
+            return view('errors.403', compact('message'));
+        }
 
         $post = Post::find($id);
         if (is_null($post)) {
@@ -342,10 +355,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        // if (is_null($this->user) || !$this->user->can('page.delete')) {
-        //     $message = 'You are not allowed to access this page !';
-        //     return view('errors.403', compact('message'));
-        // }
+        if (is_null($this->user) || !$this->user->can('post.delete')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
 
         $post = Post::find($id);
         if (is_null($post)) {
@@ -357,7 +370,7 @@ class PostsController extends Controller
         $post->status = 0;
         $post->save();
 
-        session()->flash('success', 'Page has been deleted successfully as trashed !!');
+        session()->flash('success', 'Post has been deleted successfully as trashed !!');
         return redirect()->route('admin.posts.trashed');
     }
 
@@ -369,21 +382,21 @@ class PostsController extends Controller
      */
     public function revertFromTrash($id)
     {
-        // if (is_null($this->user) || !$this->user->can('page.delete')) {
-        //     $message = 'You are not allowed to access this page !';
-        //     return view('errors.403', compact('message'));
-        // }
+        if (is_null($this->user) || !$this->user->can('post.delete')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
 
         $post = Post::find($id);
         if (is_null($post)) {
-            session()->flash('error', "The page is not found !");
+            session()->flash('error', "The post is not found !");
             return redirect()->route('admin.posts.trashed');
         }
         $post->deleted_at = null;
         $post->deleted_by = null;
         $post->save();
 
-        session()->flash('success', 'Page has been revert back successfully !!');
+        session()->flash('success', 'Post has been revert back successfully !!');
         return redirect()->route('admin.posts.trashed');
     }
 
@@ -395,13 +408,13 @@ class PostsController extends Controller
      */
     public function destroyTrash($id)
     {
-        // if (is_null($this->user) || !$this->user->can('page.delete')) {
-        //     $message = 'You are not allowed to access this page !';
-        //     return view('errors.403', compact('message'));
-        // }
+        if (is_null($this->user) || !$this->user->can('post.delete')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
         $post = Post::find($id);
         if (is_null($post)) {
-            session()->flash('error', "The page is not found !");
+            session()->flash('error', "The post is not found !");
             return redirect()->route('admin.posts.trashed');
         }
 
@@ -411,7 +424,7 @@ class PostsController extends Controller
         // Delete Page permanently
         $post->delete();
 
-        session()->flash('success', 'Page has been deleted permanently !!');
+        session()->flash('success', 'Post has been deleted permanently !!');
         return redirect()->route('admin.posts.trashed');
     }
 
@@ -422,10 +435,10 @@ class PostsController extends Controller
      */
     public function trashed()
     {
-        // if (is_null($this->user) || !$this->user->can('page.view')) {
-        //     $message = 'You are not allowed to access this page !';
-        //     return view('errors.403', compact('message'));
-        // }
+        if (is_null($this->user) || !$this->user->can('post.view')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
         return $this->index(true);
     }
 }
