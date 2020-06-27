@@ -125,7 +125,7 @@ class PollsController extends Controller
                     return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 })
                 ->editColumn('slug', function ($row) {
-                    return $row->slug . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->slug;
                 })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
@@ -137,19 +137,19 @@ class PollsController extends Controller
                     }
                 })
                 ->editColumn('start_date', function ($row) {
-                    return $row->start_date . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->start_date;
                 })
                 ->editColumn('end_date', function ($row) {
-                    return $row->end_date . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->end_date;
                 })
                 ->editColumn('total_yes', function ($row) {
-                    return $row->total_yes . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->total_yes;
                 })
                 ->editColumn('total_no', function ($row) {
-                    return $row->total_no . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->total_no;
                 })
                 ->editColumn('total_no_comment', function ($row) {
-                    return $row->total_no_comment . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->total_no_comment;
                 });
             $rawColumns = ['action', 'title', 'slug', 'status', 'start_date', 'end_date', 'total_yes', 'total_no', 'total_no_comment'];
             return $datatable->rawColumns($rawColumns)
