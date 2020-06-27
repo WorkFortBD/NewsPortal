@@ -130,6 +130,9 @@ class SlidersController extends Controller
                     }
                     return '-';
                 })
+                ->editColumn('short_description', function ($row) {
+                    return $row->short_description;
+                })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
                         return '<span class="badge badge-success font-weight-100">Active</span>';
@@ -139,7 +142,7 @@ class SlidersController extends Controller
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
                 });
-            $rawColumns = ['action', 'title', 'status', 'image'];
+            $rawColumns = ['action', 'title', 'short_description', 'status', 'image'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
