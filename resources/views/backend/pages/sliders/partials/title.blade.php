@@ -1,11 +1,11 @@
-@if (Route::is('admin.blogs.index'))
-Blogs 
-@elseif(Route::is('admin.blogs.create'))
-Create New Blog
-@elseif(Route::is('admin.blogs.edit'))
-Edit Blog {{ $blog->title }}
-@elseif(Route::is('admin.blogs.show'))
-View Blog {{ $blog->title }}
+@if (Route::is('admin.sliders.index'))
+Sliders 
+@elseif(Route::is('admin.sliders.create'))
+Create New Slider
+@elseif(Route::is('admin.sliders.edit'))
+Edit Slider {{ $slider->title }}
+@elseif(Route::is('admin.sliders.show'))
+View Slider {{ $slider->title }}
 @endif
 | Admin Panel - 
 {{ config('app.name') }}
