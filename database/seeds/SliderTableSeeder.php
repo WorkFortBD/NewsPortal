@@ -12,16 +12,16 @@ class SliderTableSeeder extends Seeder
      */
     public function run()
     {
-        // $blog = new Slider();
-        // $blog->title = "This is a simple blog from admin panel";
-        // $blog->slug = "this-is-a-simple-blog-from-admin-panel";
-        // $blog->description = "<div>Welcome to our blog <br /></div>";
-        // $blog->save();
+        $slider = new Slider();
+        $slider->title = "This is a simple slider from admin panel";
+        $slider->slug = "this-is-a-simple-slider-from-admin-panel";
+        $slider->short_description = "<div>Welcome to our slider <br /></div>";
+        $slider->save();
 
-        // $blog = new Slider();
-        // $blog->title = "This is a another blog from admin panel";
-        // $blog->slug = "this-is-a-another-blog-from-admin-panel";
-        // $blog->description = "<div>Welcome to our blog <br /></div>";
-        // $blog->save();
+        $slider = new Slider();
+        $slider->title = "This is another slider from admin panel";
+        $slider->slug = "this-is-another-slider-from-admin-panel";
+        $slider->short_description = "<div>Welcome to our slider <br /></div>";
+        $slider->save();
     }
 }

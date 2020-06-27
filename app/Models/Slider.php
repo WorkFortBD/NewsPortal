@@ -12,6 +12,6 @@ class Slider extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'image', 'is_button_enable', 'button_text', 'button_link', 'is_blank_redirect', 'is_description_enable', 'short_description', 'status', 'deleted_at', 'created_by', 'updated_by', 'deleted_by'
+        'title', 'slug', 'image', 'is_button_enable', 'button_text', 'button_link', 'is_blank_redirect', 'is_description_enable', 'short_description', 'status', 'deleted_at', 'created_by', 'updated_by', 'deleted_by'
     ];
 }
