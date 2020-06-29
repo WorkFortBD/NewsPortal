@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Modules\Slider;
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Slider\SliderCreateRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Slider;
@@ -169,22 +170,11 @@ class SlidersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SliderCreateRequest $request)
     {
         if (is_null($this->user) || !$this->user->can('slider.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
-
-        $request->validate(
-            [
-                'title'  => 'required|max:100',
-                'slug'  => 'nullable|max:100|unique:pages,slug',
-                'image'  => 'nullable|image'
-            ],
-            [
-                'title.required' => 'Please give a title'
-            ]
-        );
 
         try {
             DB::beginTransaction();
