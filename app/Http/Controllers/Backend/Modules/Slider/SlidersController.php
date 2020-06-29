@@ -269,21 +269,32 @@ class SlidersController extends Controller
         $request->validate([
             'title'  => 'required|max:100',
             'slug'  => 'required|max:100|unique:pages,slug,' . $slider->id,
+            'image'  => 'nullable|image',
+            'is_button_enable'  => 'required',
+            'button_text'  => 'nullable',
+            'button_link'  => 'nullable',
+            'is_blank_redirect'  => 'required',
+            'is_description_enable'  => 'required',
+            'short_description'  => 'nullable',
+            'status'  => 'required',
         ]);
 
         try {
             DB::beginTransaction();
             $slider->title = $request->title;
             $slider->slug = $request->slug;
-            $slider->status = $request->status;
 
             if (!is_null($request->image)) {
                 $slider->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/sliders', $slider->image);
             }
 
+            $slider->is_button_enable = $request->is_button_enable;
+            $slider->button_text = $request->button_text;
+            $slider->button_link = $request->button_link;
+            $slider->is_blank_redirect = $request->is_blank_redirect;
+            $slider->is_description_enable = $request->is_description_enable;
+            $slider->short_description = $request->short_description;
             $slider->status = $request->status;
-            $slider->description = $request->description;
-            $slider->meta_description = $request->meta_description;
             $slider->updated_by = Auth::guard('admin')->id();
             $slider->updated_at = Carbon::now();
             $slider->save();
