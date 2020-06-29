@@ -191,9 +191,13 @@ class SlidersController extends Controller
                 $slider->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/sliders');
             }
 
+            $slider->is_button_enable = $request->is_button_enable;
+            $slider->button_text = $request->button_text;
+            $slider->button_link = $request->button_link;
+            $slider->is_blank_redirect = $request->is_blank_redirect;
+            $slider->is_description_enable = $request->is_description_enable;
+            $slider->short_description = $request->short_description;
             $slider->status = $request->status;
-            $slider->description = $request->description;
-            $slider->meta_description = $request->meta_description;
             $slider->created_at = Carbon::now();
             $slider->created_by = Auth::guard('admin')->id();
             $slider->updated_at = Carbon::now();
