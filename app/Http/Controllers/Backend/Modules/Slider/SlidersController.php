@@ -16,7 +16,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SlidersController extends Controller
 {
-
     public $user;
 
     public function __construct()
