@@ -90,7 +90,23 @@
                                     placeholder="Enter featured_image_caption" required="" />
                             </div>
                         </div>
-                        <div class="col-md-6"></div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+
+                                <label class="control-label">Post Tags</label>
+                                <select name="tag[]" class="js-example-basic-multiple" style="width:100%"
+                                    multiple="multiple">
+                                    @foreach ($tags as $tag)
+
+                                    @if($post->id === $tag->id)
+                                    <option value="{{$tag->id}}" selected>{{$tag->title}}</option>
+                                    @else
+                                    <option value="{{$tag->id}}">{{$tag->title}}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
 
