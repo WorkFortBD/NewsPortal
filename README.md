@@ -127,12 +127,12 @@ Our News Portal is an application to minimize your problems while creating a new
 
   - [ ] Edit Settings
 
-- [ ] Slider Management - **@Shakib**
+- [x] Slider Management - **@Shakib**
 
-  - [ ] Create Slider
-  - [ ] Edit Slider
-  - [ ] List Slider
-  - [ ] Delete Slider
+  - [x] Create Slider
+  - [x] Edit Slider
+  - [x] List Slider
+  - [x] Delete Slider
 
 - [ ] Website Tracking Management **@Abir**
 
