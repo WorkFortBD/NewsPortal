@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Modules\Slider;
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Slider\SliderCreateRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Slider;
@@ -130,6 +131,9 @@ class SlidersController extends Controller
                     }
                     return '-';
                 })
+                ->editColumn('short_description', function ($row) {
+                    return $row->short_description;
+                })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
                         return '<span class="badge badge-success font-weight-100">Active</span>';
@@ -139,7 +143,7 @@ class SlidersController extends Controller
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
                 });
-            $rawColumns = ['action', 'title', 'status', 'image'];
+            $rawColumns = ['action', 'title', 'short_description', 'status', 'image'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
@@ -166,22 +170,11 @@ class SlidersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SliderCreateRequest $request)
     {
         if (is_null($this->user) || !$this->user->can('slider.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
-
-        $request->validate(
-            [
-                'title'  => 'required|max:100',
-                'slug'  => 'nullable|max:100|unique:pages,slug',
-                'image'  => 'nullable|image'
-            ],
-            [
-                'title.required' => 'Please give a title'
-            ]
-        );
 
         try {
             DB::beginTransaction();
@@ -198,9 +191,13 @@ class SlidersController extends Controller
                 $slider->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/sliders');
             }
 
+            $slider->is_button_enable = $request->is_button_enable;
+            $slider->button_text = $request->button_text;
+            $slider->button_link = $request->button_link;
+            $slider->is_blank_redirect = $request->is_blank_redirect;
+            $slider->is_description_enable = $request->is_description_enable;
+            $slider->short_description = $request->short_description;
             $slider->status = $request->status;
-            $slider->description = $request->description;
-            $slider->meta_description = $request->meta_description;
             $slider->created_at = Carbon::now();
             $slider->created_by = Auth::guard('admin')->id();
             $slider->updated_at = Carbon::now();
@@ -272,21 +269,32 @@ class SlidersController extends Controller
         $request->validate([
             'title'  => 'required|max:100',
             'slug'  => 'required|max:100|unique:pages,slug,' . $slider->id,
+            'image'  => 'nullable|image',
+            'is_button_enable'  => 'required',
+            'button_text'  => 'nullable',
+            'button_link'  => 'nullable',
+            'is_blank_redirect'  => 'required',
+            'is_description_enable'  => 'required',
+            'short_description'  => 'nullable',
+            'status'  => 'required',
         ]);
 
         try {
             DB::beginTransaction();
             $slider->title = $request->title;
             $slider->slug = $request->slug;
-            $slider->status = $request->status;
 
             if (!is_null($request->image)) {
                 $slider->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/sliders', $slider->image);
             }
 
+            $slider->is_button_enable = $request->is_button_enable;
+            $slider->button_text = $request->button_text;
+            $slider->button_link = $request->button_link;
+            $slider->is_blank_redirect = $request->is_blank_redirect;
+            $slider->is_description_enable = $request->is_description_enable;
+            $slider->short_description = $request->short_description;
             $slider->status = $request->status;
-            $slider->description = $request->description;
-            $slider->meta_description = $request->meta_description;
             $slider->updated_by = Auth::guard('admin')->id();
             $slider->updated_at = Carbon::now();
             $slider->save();

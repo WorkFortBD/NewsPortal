@@ -232,12 +232,35 @@ $user = Auth::guard('admin')->user();
                             </a>
                         </li>
 
-                        @if ($user->can('slider.view'))
-                            <li class="sidebar-item">
-                                <a href="{{ route('admin.sliders.index') }}" class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
-                                    <i class="mdi mdi-view-list"></i>
-                                    <span class="hide-menu"> Sliders </span>
+                        @if ($user->can('slider.view') || $user->can('slider.create'))
+                            <li class="sidebar-item ">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-checkerboard"></i>
+                                    <span class="hide-menu">Sliders </span>
                                 </a>
+                                <ul aria-expanded="false"
+                                    class="collapse first-level {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.create') || Route::is('admin.sliders.edit')) ? 'in' : null }}">
+                                    @if ($user->can('slider.view'))
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('admin.sliders.index') }}"
+                                            class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
+                                            <i class="mdi mdi-view-list"></i>
+                                            <span class="hide-menu"> Slider List </span>
+                                        </a>
+                                    </li>
+                                    @endif
+
+                                    @if ($user->can('slider.create'))
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('admin.sliders.create') }}"
+                                            class="sidebar-link {{ Route::is('admin.sliders.create') ? 'active' : null }}">
+                                            <i class="mdi mdi-plus-circle"></i>
+                                            <span class="hide-menu"> New Slider </span>
+                                        </a>
+                                    </li>
+                                    @endif
+                                </ul>
                             </li>
                         @endif
 

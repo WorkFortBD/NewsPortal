@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Modules\Poll;
 use App\Helpers\StringHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Poll\PollCreateRequest;
-use App\Http\Requests\Poll\PollUpdateRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Poll;
@@ -125,7 +124,7 @@ class PollsController extends Controller
                     return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 })
                 ->editColumn('slug', function ($row) {
-                    return $row->slug . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->slug;
                 })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
@@ -137,19 +136,19 @@ class PollsController extends Controller
                     }
                 })
                 ->editColumn('start_date', function ($row) {
-                    return $row->start_date . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->start_date;
                 })
                 ->editColumn('end_date', function ($row) {
-                    return $row->end_date . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->end_date;
                 })
                 ->editColumn('total_yes', function ($row) {
-                    return $row->total_yes . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->total_yes;
                 })
                 ->editColumn('total_no', function ($row) {
-                    return $row->total_no . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->total_no;
                 })
                 ->editColumn('total_no_comment', function ($row) {
-                    return $row->total_no_comment . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
+                    return $row->total_no_comment;
                 });
             $rawColumns = ['action', 'title', 'slug', 'status', 'start_date', 'end_date', 'total_yes', 'total_no', 'total_no_comment'];
             return $datatable->rawColumns($rawColumns)
@@ -256,7 +255,7 @@ class PollsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PollUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         if (is_null($this->user) || !$this->user->can('poll.edit')) {
             $message = 'You are not allowed to access this page !';
@@ -269,13 +268,13 @@ class PollsController extends Controller
             return redirect()->route('admin.polls.index');
         }
 
-        // $request->validate([
-        //     'title'  => 'required|max:100',
-        //     'slug'  => 'nullable|max:100|unique:polls,slug,' . $poll->id,
-        //     'status'  => 'required',
-        //     'start_date'  => 'required',
-        //     'end_date'  => 'required'
-        // ]);
+        $request->validate([
+            'title'  => 'required|max:100',
+            'slug'  => 'nullable|max:100|unique:polls,slug,' . $poll->id,
+            'status'  => 'required',
+            'start_date'  => 'required',
+            'end_date'  => 'required'
+        ]);
 
         try {
             DB::beginTransaction();
