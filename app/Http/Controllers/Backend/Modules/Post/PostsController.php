@@ -305,11 +305,8 @@ class PostsController extends Controller
             $post->status = $request->status;
 
             if (!is_null($request->featured_image)) {
-                $post->featured_image = UploadHelper::upload('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts');
+                $post->featured_image = UploadHelper::update('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts', $post->featured_image);
             }
-
-
-
 
             $post->category_id = $request->category_id;
             $post->status = $request->status;
@@ -321,9 +318,9 @@ class PostsController extends Controller
             $post->save();
 
 
-            Track::newTrack($post->title, 'post has been updated successfully !!');
+            Track::newTrack($post->title, 'Post has been updated successfully !!');
             DB::commit();
-            session()->flash('success', 'post has been updated successfully !!');
+            session()->flash('success', 'Post has been updated successfully !!');
             return redirect()->route('admin.posts.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
