@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserTableSeeder extends Seeder
 {
@@ -12,16 +13,14 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $blog = new Blog();
-        $blog->title = "This is a simple blog from admin panel";
-        $blog->slug = "this-is-a-simple-blog-from-admin-panel";
-        $blog->description = "<div>Welcome to our blog <br /></div>";
-        $blog->save();
-
-        $blog = new Blog();
-        $blog->title = "This is a another blog from admin panel";
-        $blog->slug = "this-is-a-another-blog-from-admin-panel";
-        $blog->description = "<div>Welcome to our blog <br /></div>";
-        $blog->save();
+        $user = new User();
+        $user->first_name = "Maniruzzaman";
+        $user->last_name = "Akash";
+        $user->username = "akash";
+        $user->phone_no = "01951233084";
+        $user->email = "manirujjamanakash@gmail.com";
+        $user->password = Hash::make('123456');
+        $user->status = 1;
+        $user->save();
     }
 }

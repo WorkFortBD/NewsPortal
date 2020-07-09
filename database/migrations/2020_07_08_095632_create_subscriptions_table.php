@@ -21,10 +21,10 @@ class CreateSubscriptionsTable extends Migration
             $table->softDeletes('deleted_at', 0);
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
-            // $table->foreign('user_id')
-            //     ->references('id')
-            //     ->on('users')
-            //     ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreign('updated_by')
                 ->references('id')
                 ->on('admins')
