@@ -1,11 +1,11 @@
-@if (Route::is('admin.polls.index'))
-Polls 
-@elseif(Route::is('admin.polls.create'))
-Create New Poll
-@elseif(Route::is('admin.polls.edit'))
-Edit Poll {{ $poll->title }}
-@elseif(Route::is('admin.polls.show'))
-View Poll {{ $poll->title }}
+@if (Route::is('admin.subscriptions.index'))
+Subscriptions 
+@elseif(Route::is('admin.subscriptions.create'))
+Create New Subscription
+@elseif(Route::is('admin.subscriptions.edit'))
+Edit Subscription {{ $subscription->title }}
+@elseif(Route::is('admin.subscriptions.show'))
+View Subscription {{ $subscription->title }}
 @endif
 | Admin Panel - 
 {{ config('app.name') }}

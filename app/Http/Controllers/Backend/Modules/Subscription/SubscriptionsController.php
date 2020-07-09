@@ -57,11 +57,11 @@ class SubscriptionsController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Poll Details" href="' . route('admin.subscriptions.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '';
 
                         if ($row->deleted_at === null) {
                             $deleteRoute =  route('admin.subscriptions.destroy', [$row->id]);
-                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Poll Details" href="' . route('admin.subscriptions.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Subscription Details" href="' . route('admin.subscriptions.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
                             $deleteRoute =  route('admin.subscriptions.trashed.destroy', [$row->id]);
@@ -75,28 +75,28 @@ class SubscriptionsController extends Controller
                                 <button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary" data-dismiss="modal"><i
                                         class="fa fa-times"></i> Cancel</button>
                             </form>';
-                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Poll Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Subscription Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         }
 
 
 
                         $html .= '<script>
                             $("#deleteItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Poll will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Subscription will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deleteForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#deleteItemPermanent' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Poll will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Subscription will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deletePermanentForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#revertItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Poll will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
+                                swal.fire({ title: "Are you sure?",text: "Subscription will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
                                 }).then((result) => { if (result.value) {$("#revertForm' . $row->id . '").submit();}})
                             });
                         </script>';
@@ -120,11 +120,8 @@ class SubscriptionsController extends Controller
                     }
                 )
 
-                ->editColumn('title', function ($row) {
-                    return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
-                })
-                ->editColumn('slug', function ($row) {
-                    return $row->slug;
+                ->editColumn('email', function ($row) {
+                    return $row->email;
                 })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
@@ -134,31 +131,16 @@ class SubscriptionsController extends Controller
                     } else {
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
-                })
-                ->editColumn('start_date', function ($row) {
-                    return $row->start_date;
-                })
-                ->editColumn('end_date', function ($row) {
-                    return $row->end_date;
-                })
-                ->editColumn('total_yes', function ($row) {
-                    return $row->total_yes;
-                })
-                ->editColumn('total_no', function ($row) {
-                    return $row->total_no;
-                })
-                ->editColumn('total_no_comment', function ($row) {
-                    return $row->total_no_comment;
                 });
-            $rawColumns = ['action', 'title', 'slug', 'status', 'start_date', 'end_date', 'total_yes', 'total_no', 'total_no_comment'];
+            $rawColumns = ['action', 'email', 'status'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
 
-        $count_polls = count(Subscription::select('id')->get());
-        $count_active_polls = count(Subscription::select('id')->where('status', 1)->get());
-        $count_trashed_polls = count(Subscription::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.subscriptions.index', compact('count_polls', 'count_active_polls', 'count_trashed_polls'));
+        $count_subscriptions = count(Subscription::select('id')->get());
+        $count_active_subscriptions = count(Subscription::select('id')->where('status', 1)->get());
+        $count_trashed_subscriptions = count(Subscription::select('id')->where('deleted_at', '!=', null)->get());
+        return view('backend.pages.subscriptions.index', compact('count_subscriptions', 'count_active_subscriptions', 'count_trashed_subscriptions'));
     }
 
     /**
@@ -177,7 +159,7 @@ class SubscriptionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PollCreateRequest $request)
+    public function store(SubscriptionCreateRequest $request)
     {
         if (is_null($this->user) || !$this->user->can('subscription.create')) {
             return abort(403, 'You are not allowed to access this page !');
@@ -185,29 +167,23 @@ class SubscriptionsController extends Controller
 
         try {
             DB::beginTransaction();
-            $subscription = new Poll();
-            $subscription->title = $request->title;
+            $subscription = new Subscription();
 
-            if ($request->slug) {
-                $subscription->slug = $request->slug;
+            if (is_null($this->user)) {
+                $subscription->user_id = 1;
             } else {
-                $subscription->slug = StringHelper::createSlug($request->title, 'Poll', 'slug', '');
+                $subscription->user_id = Auth::guard('admin')->id();
             }
 
+            $subscription->email = $request->email;
             $subscription->status = $request->status;
-            $subscription->start_date = $request->start_date;
-            $subscription->end_date = $request->end_date;
-            $subscription->total_yes = 0;
-            $subscription->total_no = 0;
-            $subscription->total_no_comment = 0;
             $subscription->created_at = Carbon::now();
-            $subscription->created_by = Auth::guard('admin')->id();
             $subscription->updated_at = Carbon::now();
             $subscription->save();
 
-            Track::newTrack($subscription->title, 'New Poll has been created');
+            Track::newTrack($subscription->email, 'New Subscription has been created');
             DB::commit();
-            session()->flash('success', 'New Poll has been created successfully !!');
+            session()->flash('success', 'New Subscription has been created successfully !!');
             return redirect()->route('admin.subscriptions.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
@@ -224,12 +200,7 @@ class SubscriptionsController extends Controller
      */
     public function show($id)
     {
-        if (is_null($this->user) || !$this->user->can('subscription.view')) {
-            $message = 'You are not allowed to access this page !';
-            return view('errors.403', compact('message'));
-        }
-        $subscription = Subscription::find($id);
-        return view('backend.pages.subscriptions.show', compact('poll'));
+        //
     }
 
     /**
@@ -245,7 +216,7 @@ class SubscriptionsController extends Controller
             return view('errors.403', compact('message'));
         }
         $subscription = Subscription::find($id);
-        return view('backend.pages.subscriptions.edit', compact('poll'));
+        return view('backend.pages.subscriptions.edit', compact('subscription'));
     }
 
     /**
@@ -269,36 +240,27 @@ class SubscriptionsController extends Controller
         }
 
         $request->validate([
-            'title'  => 'required|max:100',
-            'slug'  => 'nullable|max:100|unique:polls,slug,' . $subscription->id,
-            'status'  => 'required',
-            'start_date'  => 'required',
-            'end_date'  => 'required'
+            'email'  => 'required|max:100|unique:subscriptions,email,' . $subscription->id,
+            'status'  => 'required'
         ]);
 
         try {
             DB::beginTransaction();
-            $subscription->title = $request->title;
-
-            if ($request->slug) {
-                $subscription->slug = $request->slug;
+            if (is_null($this->user)) {
+                $subscription->user_id = 1;
             } else {
-                $subscription->slug = StringHelper::createSlug($request->title, 'Poll', 'slug', '');
+                $subscription->user_id = Auth::guard('admin')->id();
             }
 
+            $subscription->email = $request->email;
             $subscription->status = $request->status;
-            $subscription->start_date = $request->start_date;
-            $subscription->end_date = $request->end_date;
-            $subscription->total_yes = 0;
-            $subscription->total_no = 0;
-            $subscription->total_no_comment = 0;
             $subscription->updated_by = Auth::guard('admin')->id();
             $subscription->updated_at = Carbon::now();
             $subscription->save();
 
-            Track::newTrack($subscription->title, 'Poll has been updated successfully !!');
+            Track::newTrack($subscription->email, 'Subscription has been updated successfully !!');
             DB::commit();
-            session()->flash('success', 'Poll has been updated successfully !!');
+            session()->flash('success', 'Subscription has been updated successfully !!');
             return redirect()->route('admin.subscriptions.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
@@ -330,7 +292,7 @@ class SubscriptionsController extends Controller
         $subscription->status = 0;
         $subscription->save();
 
-        session()->flash('success', 'Poll has been deleted successfully as trashed !!');
+        session()->flash('success', 'Subscription has been deleted successfully as trashed !!');
         return redirect()->route('admin.subscriptions.trashed');
     }
 
@@ -356,7 +318,7 @@ class SubscriptionsController extends Controller
         $subscription->deleted_by = null;
         $subscription->save();
 
-        session()->flash('success', 'Poll has been revert back successfully !!');
+        session()->flash('success', 'Subscription has been revert back successfully !!');
         return redirect()->route('admin.subscriptions.trashed');
     }
 
@@ -378,10 +340,10 @@ class SubscriptionsController extends Controller
             return redirect()->route('admin.subscriptions.trashed');
         }
 
-        // Delete Poll permanently
+        // Delete Subscription permanently
         $subscription->delete();
 
-        session()->flash('success', 'Poll has been deleted permanently !!');
+        session()->flash('success', 'Subscription has been deleted permanently !!');
         return redirect()->route('admin.subscriptions.trashed');
     }
 

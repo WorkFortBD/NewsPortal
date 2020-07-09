@@ -24,11 +24,8 @@ class SubscriptionCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'  => 'required|max:100',
-            'slug'  => 'nullable|max:100|unique:polls,slug',
-            'status'  => 'required',
-            'start_date'  => 'required',
-            'end_date'  => 'required'
+            'email'  => 'required|max:100|unique:subscriptions,email',
+            'status'  => 'required'
         ];
     }
 
@@ -40,13 +37,10 @@ class SubscriptionCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Please give a poll title.',
-            'title.max'  => 'Please give poll maximum of 100 characters.',
-            'slug.max'  => 'Please give slug text maximum of 100 characters.',
-            'slug.unique'  => 'Sorry, Slug (' . $this->slug . ') is already exist ! Please give an unique slug for polls.',
-            'status.required' => 'Please give a poll status.',
-            'start_date.required' => 'Please give a poll start date.',
-            'end_date.required' => 'Please give a poll end date.',
+            'email.required' => 'Please give your email id.',
+            'email.max'  => 'Please give email maximum of 100 characters.',
+            'email.unique'  => 'Sorry, Email (' . $this->email . ') is already exist ! Please give an unique email for subscriptions.',
+            'status.required' => 'Please give a subscription status.',
         ];
     }
 }

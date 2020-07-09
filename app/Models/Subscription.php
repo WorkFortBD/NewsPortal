@@ -12,6 +12,6 @@ class Subscription extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'status', 'start_date', 'end_date', 'total_yes', 'total_no', 'total_no_comment', 'deleted_at', 'created_by', 'updated_by', 'deleted_by'
+        'user_id', 'email', 'status', 'deleted_at', 'updated_by', 'deleted_by'
     ];
 }

@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-5 align-self-center">
             <h4 class="page-title">
-                @if (Route::is('admin.polls.index'))
-                    Poll List
-                @elseif(Route::is('admin.polls.create'))
-                    Create New Poll    
-                @elseif(Route::is('admin.polls.edit'))
-                    Edit Poll <span class="badge badge-info">{{ $poll->title }}</span>
-                @elseif(Route::is('admin.polls.show'))
-                    View Poll <span class="badge badge-info">{{ $poll->title }}</span>
-                    <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.polls.edit', $poll->id) }}"> <i class="fa fa-edit"></i></a>
+                @if (Route::is('admin.subscriptions.index'))
+                    Subscription List
+                @elseif(Route::is('admin.subscriptions.create'))
+                    Create New Subscription    
+                @elseif(Route::is('admin.subscriptions.edit'))
+                    Edit Subscription <span class="badge badge-info">{{ $subscription->title }}</span>
+                @elseif(Route::is('admin.subscriptions.show'))
+                    View Subscription <span class="badge badge-info">{{ $subscription->title }}</span>
+                    <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.subscriptions.edit', $subscription->id) }}"> <i class="fa fa-edit"></i></a>
                 @endif
             </h4>
         </div>
@@ -19,17 +19,17 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                        @if (Route::is('admin.polls.index'))
-                            <li class="breadcrumb-item active" aria-current="page">Poll List</li>
-                        @elseif(Route::is('admin.polls.create'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.polls.index') }}">Poll List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create New Poll</li>
-                        @elseif(Route::is('admin.polls.edit'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.polls.index') }}">Poll List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Poll</li>
-                        @elseif(Route::is('admin.polls.show'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.polls.index') }}">Poll List</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Show Poll</li>
+                        @if (Route::is('admin.subscriptions.index'))
+                            <li class="breadcrumb-item active" aria-current="page">Subscription List</li>
+                        @elseif(Route::is('admin.subscriptions.create'))
+                        <li class="breadcrumb-item"><a href="{{ route('admin.subscriptions.index') }}">Subscription List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Create New Subscription</li>
+                        @elseif(Route::is('admin.subscriptions.edit'))
+                        <li class="breadcrumb-item"><a href="{{ route('admin.subscriptions.index') }}">Subscription List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Subscription</li>
+                        @elseif(Route::is('admin.subscriptions.show'))
+                        <li class="breadcrumb-item"><a href="{{ route('admin.subscriptions.index') }}">Subscription List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Show Subscription</li>
                         @endif
                         
                     </ol>
