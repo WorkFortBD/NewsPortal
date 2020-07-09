@@ -136,8 +136,5 @@
 
 @section('scripts')
     <script>
-    $(".categories_select").select2({
-        placeholder: "Select a Category"
-    });
     </script>
 @endsection

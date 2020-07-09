@@ -153,6 +153,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('documents', 'Backend\Modules\Document\DocumentsController');
         // admin/documents/images -> show()
     });
+
+    /**
+     * Subscription Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('subscriptions', 'Backend\Modules\Subscription\SubscriptionsController');
+        Route::get('subscriptions/trashed/view', 'Backend\Modules\Subscription\SubscriptionsController@trashed')->name('subscriptions.trashed');
+        Route::delete('subscriptions/trashed/destroy/{id}', 'Backend\Modules\Subscription\SubscriptionsController@destroyTrash')->name('subscriptions.trashed.destroy');
+        Route::put('subscriptions/trashed/revert/{id}', 'Backend\Modules\Subscription\SubscriptionsController@revertFromTrash')->name('subscriptions.trashed.revert');
+    });
 });
 
 Auth::routes();

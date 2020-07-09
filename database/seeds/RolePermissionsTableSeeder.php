@@ -133,6 +133,12 @@ class RolePermissionsTableSeeder extends Seeder
             'poll.edit',
             'poll.delete',
 
+            // subscription
+            'subscription.view',
+            'subscription.create',
+            'subscription.edit',
+            'subscription.delete',
+
         ];
 
         for ($i = 0; $i < count($adminUserPermissions); $i++) {

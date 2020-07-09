@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Slider;
+namespace App\Http\Controllers\Backend\Modules\Subscription;
 
 use App\Helpers\StringHelper;
-use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Slider\SliderCreateRequest;
+use App\Http\Requests\Subscription\SubscriptionCreateRequest;
 use App\Models\Track;
 use Illuminate\Http\Request;
-use App\Models\Slider;
+use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class SlidersController extends Controller
+class SubscriptionsController extends Controller
 {
     public $user;
 
@@ -33,24 +32,24 @@ class SlidersController extends Controller
      */
     public function index($isTrashed = false)
     {
-        if (is_null($this->user) || !$this->user->can('slider.view')) {
+        if (is_null($this->user) || !$this->user->can('subscription.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
 
         if (request()->ajax()) {
             if ($isTrashed) {
-                $sliders = Slider::orderBy('id', 'desc')
+                $subscriptions = Subscription::orderBy('id', 'desc')
                     ->where('status', 0)
                     ->get();
             } else {
-                $sliders = Slider::orderBy('id', 'desc')
+                $subscriptions = Subscription::orderBy('id', 'desc')
                     ->where('deleted_at', null)
                     ->where('status', 1)
                     ->get();
             }
 
-            $datatable = DataTables::of($sliders, $isTrashed)
+            $datatable = DataTables::of($subscriptions, $isTrashed)
                 ->addIndexColumn()
                 ->addColumn(
                     'action',
@@ -58,15 +57,15 @@ class SlidersController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Slider Details" href="' . route('admin.sliders.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Poll Details" href="' . route('admin.subscriptions.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
 
                         if ($row->deleted_at === null) {
-                            $deleteRoute =  route('admin.sliders.destroy', [$row->id]);
-                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Slider Details" href="' . route('admin.sliders.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
+                            $deleteRoute =  route('admin.subscriptions.destroy', [$row->id]);
+                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Poll Details" href="' . route('admin.subscriptions.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
-                            $deleteRoute =  route('admin.sliders.trashed.destroy', [$row->id]);
-                            $revertRoute = route('admin.sliders.trashed.revert', [$row->id]);
+                            $deleteRoute =  route('admin.subscriptions.trashed.destroy', [$row->id]);
+                            $revertRoute = route('admin.subscriptions.trashed.revert', [$row->id]);
 
                             $html .= '<a class="btn waves-effect waves-light btn-warning btn-sm btn-circle ml-1" title="Revert Back" id="revertItem' . $row->id . '"><i class="fa fa-check"></i></a>';
                             $html .= '
@@ -76,28 +75,28 @@ class SlidersController extends Controller
                                 <button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary" data-dismiss="modal"><i
                                         class="fa fa-times"></i> Cancel</button>
                             </form>';
-                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Slider Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Poll Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         }
 
 
 
                         $html .= '<script>
                             $("#deleteItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Slider will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Poll will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deleteForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#deleteItemPermanent' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Slider will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Poll will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deletePermanentForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#revertItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Slider will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
+                                swal.fire({ title: "Are you sure?",text: "Poll will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
                                 }).then((result) => { if (result.value) {$("#revertForm' . $row->id . '").submit();}})
                             });
                         </script>';
@@ -124,14 +123,8 @@ class SlidersController extends Controller
                 ->editColumn('title', function ($row) {
                     return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 })
-                ->editColumn('image', function ($row) {
-                    if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/sliders/' . $row->image) . "' class='img img-display-list' />";
-                    }
-                    return '-';
-                })
-                ->editColumn('short_description', function ($row) {
-                    return $row->short_description;
+                ->editColumn('slug', function ($row) {
+                    return $row->slug;
                 })
                 ->editColumn('status', function ($row) {
                     if ($row->status) {
@@ -141,16 +134,31 @@ class SlidersController extends Controller
                     } else {
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
+                })
+                ->editColumn('start_date', function ($row) {
+                    return $row->start_date;
+                })
+                ->editColumn('end_date', function ($row) {
+                    return $row->end_date;
+                })
+                ->editColumn('total_yes', function ($row) {
+                    return $row->total_yes;
+                })
+                ->editColumn('total_no', function ($row) {
+                    return $row->total_no;
+                })
+                ->editColumn('total_no_comment', function ($row) {
+                    return $row->total_no_comment;
                 });
-            $rawColumns = ['action', 'title', 'short_description', 'status', 'image'];
+            $rawColumns = ['action', 'title', 'slug', 'status', 'start_date', 'end_date', 'total_yes', 'total_no', 'total_no_comment'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
 
-        $count_sliders = count(Slider::select('id')->get());
-        $count_active_sliders = count(Slider::select('id')->where('status', 1)->get());
-        $count_trashed_sliders = count(Slider::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.sliders.index', compact('count_sliders', 'count_active_sliders', 'count_trashed_sliders'));
+        $count_polls = count(Subscription::select('id')->get());
+        $count_active_polls = count(Subscription::select('id')->where('status', 1)->get());
+        $count_trashed_polls = count(Subscription::select('id')->where('deleted_at', '!=', null)->get());
+        return view('backend.pages.subscriptions.index', compact('count_polls', 'count_active_polls', 'count_trashed_polls'));
     }
 
     /**
@@ -160,7 +168,7 @@ class SlidersController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.sliders.create');
+        return view('backend.pages.subscriptions.create');
     }
 
     /**
@@ -169,43 +177,38 @@ class SlidersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SliderCreateRequest $request)
+    public function store(PollCreateRequest $request)
     {
-        if (is_null($this->user) || !$this->user->can('slider.create')) {
+        if (is_null($this->user) || !$this->user->can('subscription.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
 
         try {
             DB::beginTransaction();
-            $slider = new Slider();
-            $slider->title = $request->title;
+            $subscription = new Poll();
+            $subscription->title = $request->title;
 
             if ($request->slug) {
-                $slider->slug = $request->slug;
+                $subscription->slug = $request->slug;
             } else {
-                $slider->slug = StringHelper::createSlug($request->title, 'Slider', 'slug', '');
+                $subscription->slug = StringHelper::createSlug($request->title, 'Poll', 'slug', '');
             }
 
-            if (!is_null($request->image)) {
-                $slider->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/sliders');
-            }
+            $subscription->status = $request->status;
+            $subscription->start_date = $request->start_date;
+            $subscription->end_date = $request->end_date;
+            $subscription->total_yes = 0;
+            $subscription->total_no = 0;
+            $subscription->total_no_comment = 0;
+            $subscription->created_at = Carbon::now();
+            $subscription->created_by = Auth::guard('admin')->id();
+            $subscription->updated_at = Carbon::now();
+            $subscription->save();
 
-            $slider->is_button_enable = $request->is_button_enable;
-            $slider->button_text = $request->button_text;
-            $slider->button_link = $request->button_link;
-            $slider->is_blank_redirect = $request->is_blank_redirect;
-            $slider->is_description_enable = $request->is_description_enable;
-            $slider->short_description = $request->short_description;
-            $slider->status = $request->status;
-            $slider->created_at = Carbon::now();
-            $slider->created_by = Auth::guard('admin')->id();
-            $slider->updated_at = Carbon::now();
-            $slider->save();
-
-            Track::newTrack($slider->title, 'New Slider has been created');
+            Track::newTrack($subscription->title, 'New Poll has been created');
             DB::commit();
-            session()->flash('success', 'New Slider has been created successfully !!');
-            return redirect()->route('admin.sliders.index');
+            session()->flash('success', 'New Poll has been created successfully !!');
+            return redirect()->route('admin.subscriptions.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             DB::rollBack();
@@ -221,12 +224,12 @@ class SlidersController extends Controller
      */
     public function show($id)
     {
-        if (is_null($this->user) || !$this->user->can('slider.view')) {
+        if (is_null($this->user) || !$this->user->can('subscription.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $slider = Slider::find($id);
-        return view('backend.pages.sliders.show', compact('slider'));
+        $subscription = Subscription::find($id);
+        return view('backend.pages.subscriptions.show', compact('poll'));
     }
 
     /**
@@ -237,12 +240,12 @@ class SlidersController extends Controller
      */
     public function edit($id)
     {
-        if (is_null($this->user) || !$this->user->can('slider.edit')) {
+        if (is_null($this->user) || !$this->user->can('subscription.edit')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $slider = Slider::find($id);
-        return view('backend.pages.sliders.edit', compact('slider'));
+        $subscription = Subscription::find($id);
+        return view('backend.pages.subscriptions.edit', compact('poll'));
     }
 
     /**
@@ -254,54 +257,49 @@ class SlidersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (is_null($this->user) || !$this->user->can('slider.edit')) {
+        if (is_null($this->user) || !$this->user->can('subscription.edit')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
 
-        $slider = Slider::find($id);
-        if (is_null($slider)) {
+        $subscription = Subscription::find($id);
+        if (is_null($subscription)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.sliders.index');
+            return redirect()->route('admin.subscriptions.index');
         }
 
         $request->validate([
             'title'  => 'required|max:100',
-            'slug'  => 'required|max:100|unique:pages,slug,' . $slider->id,
-            'image'  => 'nullable|image',
-            'is_button_enable'  => 'required',
-            'button_text'  => 'nullable',
-            'button_link'  => 'nullable',
-            'is_blank_redirect'  => 'required',
-            'is_description_enable'  => 'required',
-            'short_description'  => 'nullable',
+            'slug'  => 'nullable|max:100|unique:polls,slug,' . $subscription->id,
             'status'  => 'required',
+            'start_date'  => 'required',
+            'end_date'  => 'required'
         ]);
 
         try {
             DB::beginTransaction();
-            $slider->title = $request->title;
-            $slider->slug = $request->slug;
+            $subscription->title = $request->title;
 
-            if (!is_null($request->image)) {
-                $slider->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/sliders', $slider->image);
+            if ($request->slug) {
+                $subscription->slug = $request->slug;
+            } else {
+                $subscription->slug = StringHelper::createSlug($request->title, 'Poll', 'slug', '');
             }
 
-            $slider->is_button_enable = $request->is_button_enable;
-            $slider->button_text = $request->button_text;
-            $slider->button_link = $request->button_link;
-            $slider->is_blank_redirect = $request->is_blank_redirect;
-            $slider->is_description_enable = $request->is_description_enable;
-            $slider->short_description = $request->short_description;
-            $slider->status = $request->status;
-            $slider->updated_by = Auth::guard('admin')->id();
-            $slider->updated_at = Carbon::now();
-            $slider->save();
+            $subscription->status = $request->status;
+            $subscription->start_date = $request->start_date;
+            $subscription->end_date = $request->end_date;
+            $subscription->total_yes = 0;
+            $subscription->total_no = 0;
+            $subscription->total_no_comment = 0;
+            $subscription->updated_by = Auth::guard('admin')->id();
+            $subscription->updated_at = Carbon::now();
+            $subscription->save();
 
-            Track::newTrack($slider->title, 'Slider has been updated successfully !!');
+            Track::newTrack($subscription->title, 'Poll has been updated successfully !!');
             DB::commit();
-            session()->flash('success', 'Slider has been updated successfully !!');
-            return redirect()->route('admin.sliders.index');
+            session()->flash('success', 'Poll has been updated successfully !!');
+            return redirect()->route('admin.subscriptions.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             DB::rollBack();
@@ -317,23 +315,23 @@ class SlidersController extends Controller
      */
     public function destroy($id)
     {
-        if (is_null($this->user) || !$this->user->can('slider.delete')) {
+        if (is_null($this->user) || !$this->user->can('subscription.delete')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
 
-        $slider = Slider::find($id);
-        if (is_null($slider)) {
+        $subscription = Subscription::find($id);
+        if (is_null($subscription)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.sliders.trashed');
+            return redirect()->route('admin.subscriptions.trashed');
         }
-        $slider->deleted_at = Carbon::now();
-        $slider->deleted_by = Auth::guard('admin')->id();
-        $slider->status = 0;
-        $slider->save();
+        $subscription->deleted_at = Carbon::now();
+        $subscription->deleted_by = Auth::guard('admin')->id();
+        $subscription->status = 0;
+        $subscription->save();
 
-        session()->flash('success', 'Slider has been deleted successfully as trashed !!');
-        return redirect()->route('admin.sliders.trashed');
+        session()->flash('success', 'Poll has been deleted successfully as trashed !!');
+        return redirect()->route('admin.subscriptions.trashed');
     }
 
     /**
@@ -344,22 +342,22 @@ class SlidersController extends Controller
      */
     public function revertFromTrash($id)
     {
-        if (is_null($this->user) || !$this->user->can('slider.delete')) {
+        if (is_null($this->user) || !$this->user->can('subscription.delete')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
 
-        $slider = Slider::find($id);
-        if (is_null($slider)) {
+        $subscription = Subscription::find($id);
+        if (is_null($subscription)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.sliders.trashed');
+            return redirect()->route('admin.subscriptions.trashed');
         }
-        $slider->deleted_at = null;
-        $slider->deleted_by = null;
-        $slider->save();
+        $subscription->deleted_at = null;
+        $subscription->deleted_by = null;
+        $subscription->save();
 
-        session()->flash('success', 'Slider has been revert back successfully !!');
-        return redirect()->route('admin.sliders.trashed');
+        session()->flash('success', 'Poll has been revert back successfully !!');
+        return redirect()->route('admin.subscriptions.trashed');
     }
 
     /**
@@ -370,24 +368,21 @@ class SlidersController extends Controller
      */
     public function destroyTrash($id)
     {
-        if (is_null($this->user) || !$this->user->can('slider.delete')) {
+        if (is_null($this->user) || !$this->user->can('subscription.delete')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $slider = Slider::find($id);
-        if (is_null($slider)) {
+        $subscription = Subscription::find($id);
+        if (is_null($subscription)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.sliders.trashed');
+            return redirect()->route('admin.subscriptions.trashed');
         }
 
-        // Remove Image
-        UploadHelper::deleteFile('public/assets/images/sliders/' . $slider->image);
+        // Delete Poll permanently
+        $subscription->delete();
 
-        // Delete Slider permanently
-        $slider->delete();
-
-        session()->flash('success', 'Slider has been deleted permanently !!');
-        return redirect()->route('admin.sliders.trashed');
+        session()->flash('success', 'Poll has been deleted permanently !!');
+        return redirect()->route('admin.subscriptions.trashed');
     }
 
     /**
@@ -397,7 +392,7 @@ class SlidersController extends Controller
      */
     public function trashed()
     {
-        if (is_null($this->user) || !$this->user->can('slider.view')) {
+        if (is_null($this->user) || !$this->user->can('subscription.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
