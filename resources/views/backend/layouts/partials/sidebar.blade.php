@@ -224,6 +224,51 @@ $user = Auth::guard('admin')->user();
                         <span class="hide-menu">Settings </span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.create') || Route::is('admin.sliders.edit')) ? 'in' : null }}">
+                        @if ($user->can('slider.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.sliders.index') }}" class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-checkerboard"></i>
+                                    <span class="hide-menu"> Sliders </span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if ($user->can('subscription.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.subscriptions.index') }}" class="sidebar-link {{ (Route::is('admin.subscriptions.index') || Route::is('admin.subscriptions.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-email-open"></i>
+                                    <span class="hide-menu"> Subscriptions </span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if ($user->can('document.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.documents.index') }}" class="sidebar-link {{ (Route::is('admin.documents.index') || Route::is('admin.documents.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-image"></i>
+                                    <span class="hide-menu"> Gallary </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                    {{-- <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.subscriptions.index') || Route::is('admin.subscriptions.create') || Route::is('admin.subscriptions.edit')) ? 'in' : null }}">
+                        @if ($user->can('subscription.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.subscriptions.index') }}" class="sidebar-link {{ (Route::is('admin.subscriptions.index') || Route::is('admin.subscriptions.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-email-open"></i>
+                                    <span class="hide-menu"> Subscription </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul> --}}
+                </li>
+
+                {{-- <li class="sidebar-item ">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-settings"></i>
+                        <span class="hide-menu">Settings </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.create') || Route::is('admin.sliders.edit')) ? 'in' : null }}">
                         
                         <li class="sidebar-item">
                             <a href="{{ route('admin.sliders.index') }}" class="sidebar-link {{ (Route::is('admin.sliders.index') || Route::is('admin.sliders.edit')) ? 'active' : null }}">
@@ -273,7 +318,7 @@ $user = Auth::guard('admin')->user();
                             </li>
                         @endif
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('admin.logout') }}"
