@@ -115,11 +115,11 @@ Our News Portal is an application to minimize your problems while creating a new
 
 > **Subscription Management** - **@Shakib**
 
-- [ ] Subscription Management
-  - [ ] List Subscription
-  - [ ] Create Subscription
-  - [ ] Edit Subscription
-  - [ ] Delete Subscription
+- [x] Subscription Management
+  - [x] List Subscription
+  - [x] Create Subscription
+  - [x] Edit Subscription
+  - [x] Delete Subscription
 
 > **Website Settings**
 
