@@ -97,12 +97,13 @@
                                 <select name="tag[]" class="js-example-basic-multiple" style="width:100%"
                                     multiple="multiple">
                                     @foreach ($tags as $tag)
-
-                                    @if($post->id === $tag->id)
-                                    <option value="{{$tag->id}}" selected>{{$tag->title}}</option>
-                                    @else
-                                    <option value="{{$tag->id}}">{{$tag->title}}</option>
-                                    @endif
+                                        @foreach ($post->tags as $postTag )
+                                            @if($postTag->tag_id === $tag->id)
+                                                <option value="{{$tag->id}}" selected>{{$tag->title}}</option>
+                                            @else
+                                                <option value="{{$tag->id}}">{{$tag->title}}</option>
+                                            @endif
+                                        @endforeach
                                     @endforeach
                                 </select>
                             </div>

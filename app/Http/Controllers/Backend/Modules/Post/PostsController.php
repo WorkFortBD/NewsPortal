@@ -216,10 +216,6 @@ class PostsController extends Controller
                 $post->featured_image = UploadHelper::upload('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts');
             }
 
-
-
-
-
             $post->category_id = $request->category_id;
             $post->status = $request->status;
             $post->short_description = $request->short_description;
@@ -324,7 +320,6 @@ class PostsController extends Controller
             }
 
             $post->category_id = $request->category_id;
-            $post->status = $request->status;
             $post->short_description = $request->short_description;
             $post->featured_image_caption = $request->featured_image_caption;
             $post->meta_description = $request->meta_description;
@@ -332,6 +327,24 @@ class PostsController extends Controller
             $post->updated_at = Carbon::now();
             $post->save();
 
+            $postSave = $post->save();
+            if ($postSave) {
+                // Delete previous tags
+                for ($i = 0; $i < count($request->tag); $i++) {
+                    $getId = $post->id;
+                    $tagToDelete = PostTag::where('post_id', $getId)->first();
+                    if ($tagToDelete) {
+                        $tagToDelete->delete();
+                    }
+                }
+                // Create new tags
+                for ($i = 0; $i < count($request->tag); $i++) {
+                    $PostTags = new PostTag();
+                    $PostTags->post_id = $getId;
+                    $PostTags->tag_id = $request->tag[$i];
+                    $PostTags->save();
+                }
+            }
 
             Track::newTrack($post->title, 'Post has been updated successfully !!');
             DB::commit();
