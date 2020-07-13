@@ -124,7 +124,9 @@
                     </div>
                    
                     <div class="add-image">
-                        <img src="{{ asset('public/assets/frontend/img/add-img.png') }}" alt="">
+                        <!-- Advertise Start -->
+                        @include('frontend.widgets.advertises.index')
+                        <!-- Advertise End -->
                     </div>
 
                 </div>
@@ -135,102 +137,25 @@
 
             <div class="col-lg-4">
                 {{-- Online Vote Section --}}
-                @include('frontend.pages.partials.online-vote')
+                @include('frontend.widgets.polls.index')
                 {{-- End of Online Vote Section --}}
 
-                <div class="HadithBox">
-                    <h2>অর্থহীন লেখা যার</h2>
-                    <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    <h3> অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। </h3>
-                </div>
+                <!-- Hadith Start -->
+                @include('frontend.widgets.hadiths.index')
+                <!-- Hadith End -->
 
-                <div class="HadithBox NamazBox">
-                    <h2>অর্থহীন লেখা যার</h2>
-                     <div class="namazList">
-                         <table>
-                             <tr>
-                                 <td>অর্থহীন</td>
-                                 <td> : </td>
-                                 <td>অর্থহীন</td>
-                             </tr>
+                <!-- Namaz Start -->
+                @include('frontend.widgets.namaz.index')
+                <!-- Namaz End -->
 
-                             <tr>
-                                <td>অর্থহীন</td>
-                                <td> : </td>
-                                <td>অর্থহীন</td>
-                            </tr>
-
-                            <tr>
-                                <td>অর্থহীন</td>
-                                <td> : </td>
-                                <td>অর্থহীন</td>
-                            </tr>
-                            <tr>
-                                <td>অর্থহীন</td>
-                                <td> : </td>
-                                <td>অর্থহীন</td>
-                            </tr>
-                            <tr>
-                                <td>অর্থহীন</td>
-                                <td> : </td>
-                                <td>অর্থহীন</td>
-                            </tr>
-                            <tr>
-                                <td>অর্থহীন</td>
-                                <td> : </td>
-                                <td>অর্থহীন</td>
-                            </tr>
-
-                            <tr>
-                                <td>অর্থহীন</td>
-                                <td> : </td>
-                                <td>অর্থহীন</td>
-                            </tr>
-                             
-                         </table>
-                     </div>
-                </div>
-                <div class="coronoUpdate">
-                    <h2>বিশ্বজুড়ে করোনাভাইরাস</h2>
-                    <div class="corona">
-
-                        <div class="status">
-                            <h3>বাংলাদেশে</h3>
-                            <div class="statusBox">
-                                <h4>আক্রান্ত</h4>
-                                <h5>৩৮২৯২</h5>
-                            </div>
-                            <div class="statusBox">
-                                <h4>সুস্থ</h4>
-                                <h5>৭৯২৫</h5>
-                            </div>
-                            <div class="statusBox">
-                                <h4>সুস্থ</h4>
-                                <h5>৫৪৪</h5>
-                            </div> 
-                        </div>
-
-                        <div class="status">
-                            <h3>বাংলাদেশে</h3>
-                            <div class="statusBox">
-                                <h4>আক্রান্ত</h4>
-                                <h5>৩৮২৯২</h5>
-                            </div>
-                            <div class="statusBox">
-                                <h4>সুস্থ</h4>
-                                <h5>৭৯২৫</h5>
-                            </div>
-                            <div class="statusBox">
-                                <h4>সুস্থ</h4>
-                                <h5>৫৪৪</h5>
-                            </div> 
-                        </div>
-
-                    </div>
-                </div>
+                <!-- Update Start -->
+                @include('frontend.widgets.updates.index')
+                <!-- Update End -->
 
                 <div class="rotin-img">
-                    <img src="{{ asset('public/assets/frontend/img/rotin.png') }}" alt="">
+                    <!-- Leaflet Start -->
+                    @include('frontend.widgets.leaflets.index')
+                    <!-- Leaflet End -->
                 </div>
 
             </div>
