@@ -6,52 +6,441 @@
 
 @section('main-content')
 
-<main class="main">
-
-  <!-- Page Content -->
-
-  <div class="main-header">
+<section id="mainWrapper">
     <div class="container">
-        <h1 class="display-3">A Warm Welcome to My Admin Dynamo</h1>
-        <p class="lead">
-            Admin Panel with Laravel
-        </p>
-        <a href="{{ route('admin.index') }}" class="btn btn-primary btn-lg">Just Go Now ...</a>
-    </div>
-    <!-- /.container -->
-  </div>
-  <!-- /.main-header -->
-
-    <!-- Contact Form -->
-    <div class="contact-form" id="contact">
-      <form method="post" class="container ">
-        <h3>Contact With Me</h3>
         <div class="row">
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
-                  </div>
-                  <div class="form-group">
-                      <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
-                  </div>
-                  <div class="form-group">
-                      <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
-                  </div>
-                  <div class="form-group">
-                      <input type="button" name="btnSubmit" class="btnContact" value="Send Message" />
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
-                  </div>
-              </div>
-          </div>
-      </form>
+
+            <div class="col-lg-8">
+
+                <div class="fullBannerBg">
+                    <div class="fullBanner">
+                        <img src="{{ asset('public/assets/frontend/img/banner-1.png') }}" alt="">
+                    </div>
+                    <div class="fullbannerDetails">
+                        <h2>অর্থহীন লেখা</h2>
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে অনেক কিছু। যদি তুমি মনে করো, এটা তোমার কাজে লাগবে, তাহলে তা লাগবে কাজে। নিজের ভাষায় লেখা দেখতে অভ্যস্ত হও। মনে রাখবে লেখা অর্থহীন হয়, যখন তুমি তাকে অর্থহীন মনে করো; আর লেখা অর্থবোধকতা তৈরি করে, যখন তুমি তাতে অর্থ ঢালো। যেকোনো লেখাই তোমার কাছে অর্থবোধকতা তৈরি করতে পারে, যদি তুমি সেখানে অর্থদ্যোতনা দেখতে পাও। …ছিদ্রান্বেষণ? না, তা হবে কেন?</p>
+                        <a href=""> Featured </a>
+                    </div>
+                </div>
+
+                <div class="gridBanner">
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+
+                  
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="HadithBox">
+                    <h2>অর্থহীন লেখা যার</h2>
+                    <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    <h3> অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। </h3>
+                </div>
+
+                <div class="HadithBox NamazBox">
+                    <h2>অর্থহীন লেখা যার</h2>
+                     <div class="namazList">
+                         <table>
+                             <tr>
+                                 <td>অর্থহীন</td>
+                                 <td> : </td>
+                                 <td>অর্থহীন</td>
+                             </tr>
+
+                             <tr>
+                                <td>অর্থহীন</td>
+                                <td> : </td>
+                                <td>অর্থহীন</td>
+                            </tr>
+
+                            <tr>
+                                <td>অর্থহীন</td>
+                                <td> : </td>
+                                <td>অর্থহীন</td>
+                            </tr>
+                            <tr>
+                                <td>অর্থহীন</td>
+                                <td> : </td>
+                                <td>অর্থহীন</td>
+                            </tr>
+                            <tr>
+                                <td>অর্থহীন</td>
+                                <td> : </td>
+                                <td>অর্থহীন</td>
+                            </tr>
+                            <tr>
+                                <td>অর্থহীন</td>
+                                <td> : </td>
+                                <td>অর্থহীন</td>
+                            </tr>
+
+                            <tr>
+                                <td>অর্থহীন</td>
+                                <td> : </td>
+                                <td>অর্থহীন</td>
+                            </tr>
+                             
+                         </table>
+                     </div>
+                </div>
+                <div class="coronoUpdate">
+                    <h2>বিশ্বজুড়ে করোনাভাইরাস</h2>
+                    <div class="corona">
+
+                        <div class="status">
+                            <h3>বাংলাদেশে</h3>
+                            <div class="statusBox">
+                                <h4>আক্রান্ত</h4>
+                                <h5>৩৮২৯২</h5>
+                            </div>
+                            <div class="statusBox">
+                                <h4>সুস্থ</h4>
+                                <h5>৭৯২৫</h5>
+                            </div>
+                            <div class="statusBox">
+                                <h4>সুস্থ</h4>
+                                <h5>৫৪৪</h5>
+                            </div> 
+                        </div>
+
+                        <div class="status">
+                            <h3>বাংলাদেশে</h3>
+                            <div class="statusBox">
+                                <h4>আক্রান্ত</h4>
+                                <h5>৩৮২৯২</h5>
+                            </div>
+                            <div class="statusBox">
+                                <h4>সুস্থ</h4>
+                                <h5>৭৯২৫</h5>
+                            </div>
+                            <div class="statusBox">
+                                <h4>সুস্থ</h4>
+                                <h5>৫৪৪</h5>
+                            </div> 
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="healthTips">
+                    <h2> বিশ্বজুড়ে করোনাভাইরাস </h2>
+                    <div class="healtipsDetails">
+                        <img src="{{ asset('public/assets/frontend/img/cartoon.png') }}" alt="">
+                        <h3>করোনাভাইরাস রোগ (সিওভিড -১৯) একটি সংক্রামক রোগ যা সদ্য আবিষ্কৃত করোন ভাইরাস দ্বারা সৃষ্ট।</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <!-- /.contact-form -->
+</section>
 
 
-</main>
+<section id="entertainment">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>বিনোদন</h2>
+                </div>
+                <div class="enternaimentNews owl-carousel">
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-@endsection()
+ <!-- Data Area Start -->
+ @include('frontend.layouts.partials.data-area')
+<!-- Data Area End -->
+
+<section id="mainWrapper">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div class="section-title">
+                    <h2>খেলা</h2>
+                </div>
+                <div class="gridBanner">
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                        <a href=""> লেখার মাঝেই </a>
+                    </div>
+
+                </div>
+
+                <div class="cityBanner">
+                    <img src="{{ asset('public/assets/frontend/img/add-img.png') }}" alt="">
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="rotin">
+                    <img src="{{ asset('public/assets/frontend/img/rotin.png') }}" alt="">
+                </div>    
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section id="mycity">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2> আমাদের নওয়াপাড়া </h2>
+                </div>
+                <div class="enternaimentNews owl-carousel">
+
+                    <div class="singleGridBanner">
+                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                        <h5>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h5>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="newsCatagoryList" class="bp">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div class="singleCatagoryWidget">
+                    <h2>অর্থনীতি</h2>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="singleCatagoryWidget">
+                    <h2> জীবনযাপন </h2>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="singleCatagoryWidget">
+                    <h2> বিজ্ঞান ও প্রযুক্তি </h2>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="singleCatagoryWidget">
+                    <h2> বাংলাদেশ </h2>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                    <div class="catagoryWidgetList">
+                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@endsection

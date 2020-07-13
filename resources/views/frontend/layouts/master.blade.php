@@ -15,6 +15,7 @@
 <body>
     <div class="page-wrapper">
         @include('frontend.layouts.partials.header')
+        @include('frontend.layouts.partials.data-area')
         @yield('main-content')
         @include('frontend.layouts.partials.footer')
     </div>
