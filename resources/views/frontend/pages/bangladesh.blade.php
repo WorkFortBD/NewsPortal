@@ -18,8 +18,8 @@
                 <div class="page-title">
                     <h1>বাংলাদেশ</h1>
                     <ul>
-                        <li><a href="index.html">হোম</a></li>
-                        <li><a href="bangladesh.html">বাংলাদেশ</a></li>
+                        <li><a href="{{ route('index') }}">হোম</a></li>
+                        <li><a href="{{ route('bangladesh') }}">বাংলাদেশ</a></li>
                     </ul>
                 </div>
             </div>
@@ -135,7 +135,7 @@
 
             <div class="col-lg-4">
                 {{-- Online Vote Section --}}
-                @include('frontend.pages.online-vote')
+                @include('frontend.pages.partials.online-vote')
                 {{-- End of Online Vote Section --}}
 
                 <div class="HadithBox">
