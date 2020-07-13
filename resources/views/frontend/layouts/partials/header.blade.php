@@ -21,6 +21,7 @@
                       <li> <a href="#"> বিনোদন </a> </li>
                       <li> <a href="#"> আকিজ সিটি </a> </li>
                       <li> <a href="#"> সব </a> </li> 
+                      <li> <a href="{{ route('admin.login') }}"> লগইন </a> </li> 
                       
                   </ul>
               </div>
