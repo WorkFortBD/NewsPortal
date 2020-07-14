@@ -78,14 +78,23 @@ Our News Portal is an application to minimize your problems while creating a new
   - [ ] Edit Comment News
   - [ ] Delete Comment News
 
-> **Pole Management** - **@Shakib**
+> **Poll Management** - **@Shakib**
 
-- [ ] Pole Management
+- [x] Poll Management
 
-  - [ ] List Pole
-  - [ ] Create Pole
-  - [ ] Edit Pole
-  - [ ] Delete Pole
+  - [x] List Poll
+  - [x] Create Poll
+  - [x] Edit Poll
+  - [x] Delete Poll
+
+> **Tags Management** - **@Abir**
+
+- [x] Tag Management
+
+  - [x] List Tag
+  - [x] Create Tag
+  - [x] Edit Tag
+  - [x] Delete Tag
 
 > **Image Gallery Management** - **@Akash / @Abir**
 
@@ -106,11 +115,11 @@ Our News Portal is an application to minimize your problems while creating a new
 
 > **Subscription Management** - **@Shakib**
 
-- [ ] Subscription Management
-  - [ ] List Subscription
-  - [ ] Create Subscription
-  - [ ] Edit Subscription
-  - [ ] Delete Subscription
+- [x] Subscription Management
+  - [x] List Subscription
+  - [x] Create Subscription
+  - [x] Edit Subscription
+  - [x] Delete Subscription
 
 > **Website Settings**
 
@@ -118,12 +127,12 @@ Our News Portal is an application to minimize your problems while creating a new
 
   - [ ] Edit Settings
 
-- [ ] Slider Management - **@Shakib**
+- [x] Slider Management - **@Shakib**
 
-  - [ ] Create Slider
-  - [ ] Edit Slider
-  - [ ] List Slider
-  - [ ] Delete Slider
+  - [x] Create Slider
+  - [x] Edit Slider
+  - [x] List Slider
+  - [x] Delete Slider
 
 - [ ] Website Tracking Management **@Abir**
 

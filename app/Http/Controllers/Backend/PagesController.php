@@ -206,7 +206,6 @@ class PagesController extends Controller
         if (is_null($this->user) || !$this->user->can('pages.create')) {
             return abort(403, 'You are not allowed to access this page !');
         }
-
         $pages = Page::find($id);
 
         return view('backend.pages.pages.edit')->with(compact('pages'));

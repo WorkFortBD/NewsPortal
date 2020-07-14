@@ -69,11 +69,35 @@ class RolePermissionsTableSeeder extends Seeder
             'page.edit',
             'page.delete',
 
+            // post
+            'post.view',
+            'post.create',
+            'post.edit',
+            'post.delete',
+
             // blog
             'blog.view',
             'blog.create',
             'blog.edit',
             'blog.delete',
+
+            // document
+            'document.view',
+            'document.create',
+            'document.edit',
+            'document.delete',
+
+            // tag
+            'tag.view',
+            'tag.create',
+            'tag.edit',
+            'tag.delete',
+
+            // post comment
+            'postcomment.view',
+            'postcomment.create',
+            'postcomment.edit',
+            'postcomment.delete',
 
             // slider
             'slider.view',
@@ -102,6 +126,18 @@ class RolePermissionsTableSeeder extends Seeder
             'module.edit',
             'module.delete',
             'module.toggle',
+
+            // poll
+            'poll.view',
+            'poll.create',
+            'poll.edit',
+            'poll.delete',
+
+            // subscription
+            'subscription.view',
+            'subscription.create',
+            'subscription.edit',
+            'subscription.delete',
 
         ];
 

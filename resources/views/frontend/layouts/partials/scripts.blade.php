@@ -1,6 +1,7 @@
 <!-- Plugins JS File -->
-<script src="{{ asset('public/assets/common/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('public/assets/common/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('public/assets/frontend/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('public/assets/frontend/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('public/assets/frontend/js/carousel.min.js') }}"></script>
 
 <!-- Main JS File -->
-<script src="{{ asset('public/assets/frontend/js/frontend-main.js') }}"></script>
+<script src="{{ asset('public/assets/frontend/js/custom.js') }}"></script>

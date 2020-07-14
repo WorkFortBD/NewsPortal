@@ -1,6 +1,9 @@
 <!-- ============================================================== -->
 <!-- All Jquery -->
 <!-- ============================================================== -->
+
+<script src="{{ asset('public/js/app.js') }}"></script> {{-- For React --}}
+
 <script src="{{ asset('public/assets/backend/js/jquery.min.js') }}"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="{{ asset('public/assets/backend/js/popper.min.js') }}"></script>
@@ -9,6 +12,7 @@
 <script src="{{ asset('public/assets/backend/js/app.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/app.init.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/app-style-switcher.js') }}"></script>
+
 <!-- slimscrollbar scrollbar JavaScript -->
 <script src="{{ asset('public/assets/backend/js/perfect-scrollbar.jquery.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/sparkline.js') }}"></script>
@@ -31,13 +35,20 @@
 <script src="{{ asset('public/assets/backend/js/parsley/parsley.min.js') }}"></script>
 <!-- Parsley JS -->
 
+<!-- Summernote JS -->
+<script src="{{ asset('public/assets/backend/js/summernote/summernote-bs4.min.js') }}"></script>
+<!-- Summernote JS -->
+
 <!-- Toaster JS -->
 <script src="{{ asset('public/assets/backend/js/toaster/toastr.min.js') }}"></script>
 <!-- Toaster JS -->
 
 <!-- Select2 JS -->
 <script src="{{ asset('public/assets/backend/js/select2/select2.min.js') }}"></script>
-<script> $(".select2").select2(); $('[data-toggle="tooltip"]').tooltip();</script>
+<script src="{{ asset('public/assets/backend/js/select2.js') }}"></script>
+{{-- <script>
+    $(".select2").select2(); $('[data-toggle="tooltip"]').tooltip();
+</script> --}}
 <!-- Select2 JS -->
 
 
@@ -45,10 +56,16 @@
 <script src="{{ asset('public/assets/backend/js/tinymce/tinymce.min.js') }}"></script>
 <!-- Tiny MCE JS -->
 
+<!-- Tiny MCE JS -->
+<script src="{{ asset('public/assets/backend/js/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+<!-- Tiny MCE JS -->
+
 
 <!-- Dropify JS -->
 <script src="{{ asset('public/assets/backend/js/dropify/js/dropify.min.js') }}"></script>
-<script> $(".dropify").dropify(); </script>
+<script>
+    $(".dropify").dropify(); 
+</script>
 <!-- Dropify JS -->
 
 <!--Custom JavaScript -->

@@ -1,0 +1,1 @@
+<img src="{{ asset('public/assets/frontend/img/add-img.png') }}" alt="">

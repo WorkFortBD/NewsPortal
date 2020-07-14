@@ -1,34 +1,34 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    @include('backend.pages.pages.partials.title')
+@include('backend.pages.pages.partials.title')
 @endsection
 
 @section('admin-content')
-    @include('backend.pages.pages.partials.header-breadcrumbs')
-    <div class="container-fluid">
-        @include('backend.pages.pages.partials.top-show')
-        @include('backend.layouts.partials.messages')
-        <div class="table-responsive product-table">
-            <table class="table table-striped table-bordered display ajax_view" id="pages_table">
-                <thead>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Featured Image</th>
-                        <th>Banner Image</th>
-                        <th>Status</th>
-                        <th width="100">Action</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+@include('backend.pages.pages.partials.header-breadcrumbs')
+<div class="container-fluid">
+    @include('backend.pages.pages.partials.top-show')
+    @include('backend.layouts.partials.messages')
+    <div class="table-responsive product-table">
+        <table class="table table-striped table-bordered display ajax_view" id="pages_table">
+            <thead>
+                <tr>
+                    <th>Sl</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Featured Image</th>
+                    <th>Banner Image</th>
+                    <th>Status</th>
+                    <th width="100">Action</th>
+                </tr>
+            </thead>
+        </table>
     </div>
+</div>
 @endsection
 
 @section('scripts')
-    <script>
+<script>
     const ajaxURL = "<?php echo Route::is('admin.pages.trashed' ? 'pages/trashed/view' : 'pages') ?>";
     $('table#pages_table').DataTable({
         dom: 'Blfrtip',
@@ -48,5 +48,5 @@
             {data: 'action', name: 'action'}
         ]
     });
-    </script>
+</script>
 @endsection

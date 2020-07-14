@@ -1,0 +1,145 @@
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    h2 {
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+    h3 {
+        font-size: 14px;
+        line-height: 23px; 
+    }
+    h4 {
+        font-size: 13px;
+        line-height: 1.4; 
+    }
+    h5 { 
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .singleGridBanner h4 {
+        font-size: 13px;
+        line-height: 1.4; 
+    }
+
+    p { 
+        line-height: 20px;
+    }
+
+    .check-container { 
+        padding-left: 22px; 
+        font-size: 13px; 
+        width: 32%;
+    }
+
+
+}
+
+/* All Mobile Devices */
+@media (min-width: 320px) and (max-width: 991.98px) {
+    h1 {
+        font-size: 22px; 
+    }
+    h2 {
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+    h3 {
+        font-size: 14px;
+        line-height: 23px; 
+    }
+    h4 {
+        font-size: 13px;
+        line-height: 1.4; 
+    }
+    h5 { 
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .singleGridBanner h4 {
+        font-size: 13px;
+        line-height: 1.4; 
+    }
+
+    p { 
+        line-height: 20px;
+    }
+    .logo-top {
+        text-align: center;
+        padding: 20px 0 10px;
+    }
+    .logoHere img {
+        width: 260px;
+    }
+    .navigationMenu ul li a {
+        font-size: 14px;
+        padding: 12px 0;
+    }
+    .navigationMenu {
+        float: unset;
+        text-align: center;
+        padding: 10px 0 20px;
+    }
+    .singleGridBanner {
+        width: 49.4%; 
+    }
+    .sb-khbr .singleGridBanner {
+        width: 49.4%;
+    }
+    .add-image {
+        padding-bottom: 30px;
+    }
+    .add-image img {
+        width: 100%;
+    }
+    .page-title ul li a { 
+        font-size: 12px;
+    }
+    .page-title ul::before { 
+        top: 11px; 
+        padding-bottom: 4px;
+    }
+    .single-tok {
+        padding-bottom: 30px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+	
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {}
+
+ 
+
+/*  */
+@media (min-width: 320px) and (max-width: 375px) {
+    .protibedon a {  
+        padding: 8px 15px; 
+        border-radius: 34px;
+        font-size: 12px;
+    }
+    .protibedon span {
+        font-size: 15px; 
+        padding-left: 12px;
+    }
+    .single-tags ul li a { 
+        font-size: 12px; 
+        padding: 7px 16px; 
+        margin: 6px 3px;
+    }
+    .navigationMenu ul li a {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+    .singleGridBanner {
+        width: 49%;
+    }
+
+}

@@ -1,6 +1,9 @@
 <!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/assets/backend/css/bootstrap.min.css') }}">
+{{-- <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/assets/backend/css/bootstrap.min.css') }}"> --}}
 <!-- Custom CSS -->
+
+
+
 
 {{-- <link href="{{ asset('public/assets/backend/css/chartist.min.css') }}" rel="stylesheet">
 <link href="{{ asset('public/assets/backend/css/c3.min.css') }}" rel="stylesheet"> --}}
@@ -13,7 +16,8 @@
 <!-- DataTable -->
 
 <!-- Sweet Alert -->
-<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/backend/js/sweetalert2/dist/sweetalert2.min.css') }}">
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/assets/backend/js/sweetalert2/dist/sweetalert2.min.css') }}">
 <!-- Sweet Alert -->
 
 <!-- Parsley CSS -->
@@ -30,6 +34,25 @@
 
 <!-- Dropify CSS -->
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/backend/js/dropify/css/dropify.min.css') }}">
+
+<!-- Dropify CSS -->
+<!-- Dropify CSS -->
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/assets/backend/js/jquery-tags-input/jquery.tagsinput.min.js') }}">
+
+<!-- Dropify CSS -->
+
+<!-- Summernote CSS -->
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+<!-- Summernote CSS -->
+
+
+
+
+
+
 <!-- Dropify CSS -->
 
 <!-- Custom CSS -->

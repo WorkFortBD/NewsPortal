@@ -46,6 +46,19 @@ class CreateSettingsTable extends Migration
             $table->string('site_custom_data3')->nullable();
             $table->string('site_custom_data4')->nullable();
 
+            // Extra Data (if Needed)
+            $table->boolean('is_featured_image_enable')->default(1);
+            $table->string('default_featured_image')->default('/public/assets/images/defaults/default-post.png');
+
+            // Voting Colors
+            $table->string('voting_yes_color')->default('#537d00');
+            $table->string('voting_no_color')->default('#cc0000');
+            $table->string('voting_no_comment_color')->default('#000000');
+
+            // Slider
+            $table->boolean('is_slider_enable')->default(true);
+            $table->boolean('is_post_slider_enable')->default(true);
+
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')
                 ->references('id')

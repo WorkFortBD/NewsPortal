@@ -25,6 +25,7 @@ class CreateBlogsTable extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->unsignedBigInteger('total_reaction')->default(0)->comment('total reaction count');
 
             $table->foreign('created_by')
                 ->references('id')

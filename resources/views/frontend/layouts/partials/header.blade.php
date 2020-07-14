@@ -1,25 +1,33 @@
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{{ route('index') }}">My Admin Dynamo - Frontend</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ route('index') }}">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.index') }}">Admin Panel</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-</nav>
+<!-- Navigation Area Start -->
+<section id="navigationArea">
+  <div class="container">
+      <div class="row">
 
+          <div class="col-lg-3 nav-col">
+              <div class="logo-top">
+                  <a href="{{ route('index') }}" class="logoHere">
+                      <img src="{{ asset('public/assets/frontend/img/logo.png') }}" alt="Logo">
+                  </a>
+              </div> 
+          </div>
+          <div class="col-lg-9 nav-col">
+              <div class="navigationMenu">
+                  <ul>
+                      <li> <a href="{{ route('bangladesh') }}"> বাংলাদেশ </a> </li>
+                      <li> <a href="{{ route('international') }}"> আন্তর্জাতিক </a> </li>
+                      <li> <a href="#"> অর্থনীতি </a> </li>
+                      <li> <a href="#"> মতামত </a> </li>
+                      <li> <a href="#">খেলা </a> </li>
+                      <li> <a href="#"> বিনোদন </a> </li>
+                      <li> <a href="#"> আকিজ সিটি </a> </li>
+                      <li> <a href="#"> সব </a> </li> 
+                      <li> <a href="{{ route('admin.login') }}"> লগইন </a> </li> 
+                      
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</section>
+<!-- Navigation Area End -->
