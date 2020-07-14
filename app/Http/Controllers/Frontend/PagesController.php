@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PagesController extends Controller
 {
@@ -16,7 +17,19 @@ class PagesController extends Controller
      */
     public function homePage()
     {
-        return view('frontend.pages.index');
+        $featureNews = Post::where('category_id', 4)
+            ->where('status', 1)
+            ->get();
+
+        $entertainmentNews = Post::where('category_id', 2)
+            ->where('status', 1)
+            ->get();
+
+        $sportsNews = Post::where('category_id', 5)
+            ->where('status', 1)
+            ->get();
+
+        return view('frontend.pages.index', compact('featureNews', 'entertainmentNews', 'sportsNews'));
     }
 
     /**
