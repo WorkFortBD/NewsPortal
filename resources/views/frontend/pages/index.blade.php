@@ -25,7 +25,14 @@
 
                 <div class="gridBanner">
 
-                    <div class="singleGridBanner">
+                    @foreach ($featureNews as $news)
+                        <div class="singleGridBanner">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h3>{{ $news->short_description }}</h3>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
                     </div>
@@ -48,12 +55,7 @@
                     <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
+                    </div> --}}
 
                   
 
@@ -98,7 +100,13 @@
                     <h2>বিনোদন</h2>
                 </div>
                 <div class="enternaimentNews owl-carousel">
-                    <div class="singleGridBanner">
+                    @foreach ($entertainmentNews as $news)
+                        <div class="singleGridBanner">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h3>{{ $news->short_description }}</h3>
+                        </div>
+                    @endforeach
+                    {{-- <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
                     </div>
@@ -129,11 +137,7 @@
                     <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -154,7 +158,15 @@
                 </div>
                 <div class="gridBanner">
 
-                    <div class="singleGridBanner">
+                    @foreach ($sportsNews as $news)
+                        <div class="singleGridBanner">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h4>{{ $news->short_description }}</h4>
+                            <a href="#"> বিস্তারিত </a>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
                         <a href=""> লেখার মাঝেই </a>
@@ -200,13 +212,7 @@
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
                         <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
+                    </div> --}}
 
                 </div>
 
