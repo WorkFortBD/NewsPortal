@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'users'], function () {
-    // Route::post('login', 'API\V1\Auth\LoginController@login');
-});
+// Route::group(['prefix' => 'users'], function () {
+//     // Route::post('login', 'API\V1\Auth\LoginController@login');
+// });
 
-Route::group(['middleware' => 'auth:api'], function () {
-});
+// Route::group(['middleware' => 'auth:api'], function () {
+// });
