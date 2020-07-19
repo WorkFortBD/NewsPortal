@@ -63,8 +63,10 @@ class PagesController extends Controller
      * 
      * @return void
      */
-    public function singleNews()
+    public function singleNews($slug)
     {
-        return view('frontend.pages.single-article');
+        $singleNews = Post::where('slug', $slug)
+            ->first();
+        return view('frontend.pages.single-article', compact('singleNews'));
     }
 }

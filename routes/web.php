@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Frontend\PagesController@homePage')->name('index');
 Route::get('/bangladesh', 'Frontend\PagesController@bangladeshNews')->name('bangladesh');
 Route::get('/international', 'Frontend\PagesController@internationalNews')->name('international');
-Route::get('/single-article', 'Frontend\PagesController@singleNews')->name('single-article');
+
+Route::get('/news/{slug}', 'Frontend\PagesController@singleNews')->name('single-article');
 Route::get('/categories/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
 Route::get('/p/{slug}', 'Frontend\SitePagesController@show')->name('pages.show');
 
