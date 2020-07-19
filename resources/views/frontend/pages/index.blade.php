@@ -101,7 +101,7 @@
                 </div>
                 <div class="enternaimentNews owl-carousel">
                     @foreach ($entertainmentNews as $news)
-                        <div class="singleGridBanner">
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
                             <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
                             <h3>{{ $news->short_description }}</h3>
                         </div>
@@ -159,10 +159,10 @@
                 <div class="gridBanner">
 
                     @foreach ($sportsNews as $news)
-                        <div class="singleGridBanner">
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
                             <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
                             <h4>{{ $news->short_description }}</h4>
-                            <a href="#"> বিস্তারিত </a>
+                            <a href="{{ route('single-article',  $news->slug) }}"> বিস্তারিত </a>
                         </div>
                     @endforeach
 
