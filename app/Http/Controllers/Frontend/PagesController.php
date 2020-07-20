@@ -17,19 +17,28 @@ class PagesController extends Controller
      */
     public function homePage()
     {
-        $featureNews = Post::where('category_id', 4)
-            ->where('status', 1)
+        $featureNews = Post::select('posts.id as id', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Featured')
+            ->where('posts.status', 1)
             ->get();
 
-        $entertainmentNews = Post::where('category_id', 2)
-            ->where('status', 1)
+        $entertainmentNews = Post::join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Fashion')
+            ->where('posts.status', 1)
             ->get();
 
-        $sportsNews = Post::where('category_id', 5)
-            ->where('status', 1)
+        $sportsNews = Post::join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Sports')
+            ->where('posts.status', 1)
             ->get();
 
-        return view('frontend.pages.index', compact('featureNews', 'entertainmentNews', 'sportsNews'));
+        $topNews = Post::join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Top News')
+            ->where('posts.status', 1)
+            ->first();
+
+        return view('frontend.pages.index', compact('featureNews', 'entertainmentNews', 'sportsNews', 'topNews'));
     }
 
     /**
@@ -67,6 +76,7 @@ class PagesController extends Controller
     {
         $singleNews = Post::where('slug', $slug)
             ->first();
+
         return view('frontend.pages.single-article', compact('singleNews'));
     }
 }

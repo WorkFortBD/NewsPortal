@@ -12,14 +12,14 @@
 
             <div class="col-lg-8">
 
-                <div class="fullBannerBg">
+                <div class="fullBannerBg" onclick="location.href='{{ route('single-article',  $topNews->slug) }}'">
                     <div class="fullBanner">
-                        <img src="{{ asset('public/assets/frontend/img/banner-1.png') }}" alt="">
+                        <img src="{{ asset('public/assets/images/posts/' . $topNews->featured_image) }}" alt="news_image">
                     </div>
                     <div class="fullbannerDetails">
-                        <h2>অর্থহীন লেখা</h2>
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে অনেক কিছু। যদি তুমি মনে করো, এটা তোমার কাজে লাগবে, তাহলে তা লাগবে কাজে। নিজের ভাষায় লেখা দেখতে অভ্যস্ত হও। মনে রাখবে লেখা অর্থহীন হয়, যখন তুমি তাকে অর্থহীন মনে করো; আর লেখা অর্থবোধকতা তৈরি করে, যখন তুমি তাতে অর্থ ঢালো। যেকোনো লেখাই তোমার কাছে অর্থবোধকতা তৈরি করতে পারে, যদি তুমি সেখানে অর্থদ্যোতনা দেখতে পাও। …ছিদ্রান্বেষণ? না, তা হবে কেন?</p>
-                        <a href="{{ route('index') }}"> Featured </a>
+                        <h2>{!! $topNews->title !!}</h2>
+                        <p>{!! $topNews->short_description !!}</p>
+                        <a href="{{ route('single-article',  $topNews->slug) }}"> Featured </a>
                     </div>
                 </div>
 
