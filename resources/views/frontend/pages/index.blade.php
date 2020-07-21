@@ -245,12 +245,12 @@
                     <h2> আমাদের নওয়াপাড়া </h2>
                 </div>
                 <div class="enternaimentNews owl-carousel">
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h5>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h5>
-                    </div>
-                 
+                    @foreach ($noaparaNews as $news)
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h5>{{ $news->title }}</h5>
+                        </div>
+                    @endforeach                 
                 </div>
             </div>
         </div>

@@ -17,28 +17,37 @@ class PagesController extends Controller
      */
     public function homePage()
     {
-        $featureNews = Post::select('posts.id as id', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.status as status', 'c.name as name')
+        $topNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Top News')
+            ->where('posts.status', 1)
+            ->first();
+
+        $featureNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Featured')
             ->where('posts.status', 1)
             ->get();
 
-        $entertainmentNews = Post::join('categories as c', 'posts.category_id', 'c.id')
+        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Fashion')
             ->where('posts.status', 1)
             ->get();
 
-        $sportsNews = Post::join('categories as c', 'posts.category_id', 'c.id')
+        $sportsNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Sports')
             ->where('posts.status', 1)
             ->get();
 
-        $topNews = Post::join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Top News')
+        $noaparaNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Noapara')
             ->where('posts.status', 1)
-            ->first();
+            ->get();
 
-        return view('frontend.pages.index', compact('featureNews', 'entertainmentNews', 'sportsNews', 'topNews'));
+        return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews'));
     }
 
     /**
