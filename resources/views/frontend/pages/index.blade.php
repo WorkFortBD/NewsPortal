@@ -266,7 +266,13 @@
                 <div class="singleCatagoryWidget">
                     <h2>অর্থনীতি</h2>
 
-                    <div class="catagoryWidgetList">
+                    @foreach ($economicNews as $news)
+                        <div class="catagoryWidgetList" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <p>{!! $news->title !!}</p>
+                        </div>
+                    @endforeach 
+
+                    {{-- <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
                     </div>
 
@@ -284,7 +290,7 @@
 
                     <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -293,7 +299,13 @@
                 <div class="singleCatagoryWidget">
                     <h2> জীবনযাপন </h2>
 
-                    <div class="catagoryWidgetList">
+                    @foreach ($lifeNews as $news)
+                        <div class="catagoryWidgetList" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <p>{!! $news->title !!}</p>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
                     </div>
 
@@ -311,7 +323,7 @@
 
                     <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -320,7 +332,13 @@
                 <div class="singleCatagoryWidget">
                     <h2> বিজ্ঞান ও প্রযুক্তি </h2>
 
-                    <div class="catagoryWidgetList">
+                    @foreach ($scienceNews as $news)
+                        <div class="catagoryWidgetList" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <p>{!! $news->title !!}</p>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
                     </div>
 
@@ -338,7 +356,7 @@
 
                     <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -347,7 +365,13 @@
                 <div class="singleCatagoryWidget">
                     <h2> বাংলাদেশ </h2>
 
-                    <div class="catagoryWidgetList">
+                    @foreach ($bangladeshNews as $news)
+                        <div class="catagoryWidgetList" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <p>{!! $news->title !!}</p>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
                     </div>
 
@@ -365,7 +389,7 @@
 
                     <div class="catagoryWidgetList">
                         <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
