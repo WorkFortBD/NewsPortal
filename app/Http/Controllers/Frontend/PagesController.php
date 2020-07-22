@@ -110,6 +110,8 @@ class PagesController extends Controller
         $singleNews = Post::where('slug', $slug)
             ->first();
 
-        return view('frontend.pages.single-article', compact('singleNews'));
+        $allNews = Post::where('status', 1)->get();
+
+        return view('frontend.pages.single-article', compact('singleNews', 'allNews'));
     }
 }
