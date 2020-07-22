@@ -15,12 +15,12 @@
                   <ul>
                       <li> <a href="{{ route('bangladesh') }}"> বাংলাদেশ </a> </li>
                       <li> <a href="{{ route('international') }}"> আন্তর্জাতিক </a> </li>
-                      <li> <a href="#"> অর্থনীতি </a> </li>
+                      <li> <a href="{{ route('economic') }}"> অর্থনীতি </a> </li>
                       <li> <a href="#"> মতামত </a> </li>
-                      <li> <a href="#">খেলা </a> </li>
-                      <li> <a href="#"> বিনোদন </a> </li>
-                      <li> <a href="#"> আকিজ সিটি </a> </li>
-                      <li> <a href="#"> সব </a> </li> 
+                      <li> <a href="{{ route('sports') }}">খেলা </a> </li>
+                      <li> <a href="{{ route('entertainment') }}"> বিনোদন </a> </li>
+                      <li> <a href="{{ route('akij-city') }}"> আকিজ সিটি </a> </li>
+                      <li> <a href="{{ route('all-news') }}"> সব </a> </li> 
                       <li> <a href="{{ route('admin.login') }}"> লগইন </a> </li> 
                       
                   </ul>

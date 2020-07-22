@@ -16,10 +16,10 @@
 
             <div class="col-lg-12">
                 <div class="page-title">
-                    <h1>বাংলাদেশ</h1>
+                    <h1>বিনোদন</h1>
                     <ul>
                         <li><a href="{{ route('index') }}">হোম</a></li>
-                        <li><a href="{{ route('bangladesh') }}">বাংলাদেশ</a></li>
+                        <li><a href="{{ route('entertainment') }}">বিনোদন</a></li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +29,7 @@
 
                 <div class="gridBanner mt-0">
 
-                    @foreach ($bangladeshNews as $news)
+                    @foreach ($entertainmentNews as $news)
                         <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
                             <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
                             <h4>{{ $news->title }}</h4>

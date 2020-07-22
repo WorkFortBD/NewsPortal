@@ -29,99 +29,37 @@
 
                 <div class="gridBanner mt-0">
 
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>ইউনাইটেড হাসপাতালে আগুনে মৃতদের মধ্যে তিনজন করোনারোগী</h4>
-                        <a href="#" class="date">24 June</a>
-                    </div>
+                    @foreach ($internationalNews as $news)
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h4>{{ $news->title }}</h4>
+                            <a href="{{ route('single-article',  $news->slug) }}" class="date">24 June</a>
+                        </div>
+                    @endforeach 
 
-                    <div class="singleGridBanner">
+                    {{-- <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
                         <h4>ইউনাইটেড হাসপাতালে আগুনে মৃতদের মধ্যে তিনজন করোনারোগী</h4>
                         <a href="#" class="date">24 June</a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>ইউনাইটেড হাসপাতালে আগুনে মৃতদের মধ্যে তিনজন করোনারোগী</h4>
-                        <a href="#" class="date">24 June</a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>ইউনাইটেড হাসপাতালে আগুনে মৃতদের মধ্যে তিনজন করোনারোগী</h4>
-                        <a href="#" class="date">24 June</a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>ইউনাইটেড হাসপাতালে আগুনে মৃতদের মধ্যে তিনজন করোনারোগী</h4>
-                        <a href="#" class="date">24 June</a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>ইউনাইটেড হাসপাতালে আগুনে মৃতদের মধ্যে তিনজন করোনারোগী</h4>
-                        <a href="#" class="date">24 June</a>
-                    </div>
+                    </div> --}}
 
                     <div class="section-title">
                         <h2>বিনোদন</h2>
                     </div>
 
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
+                    @foreach ($entertainmentNews as $news)
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h4>{{ $news->title }}</h4>
+                            <div class="singleGridBanner-border"></div>
+                        </div>
+                    @endforeach 
 
-                    <div class="singleGridBanner">
+                    {{-- <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
                         <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
                         <div class="singleGridBanner-border"></div>
-                    </div>
-                    
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
-                        <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
-                        <div class="singleGridBanner-border"></div>
-                    </div>
+                    </div> --}}
                    
                     <div class="add-image">
                         <!-- Advertise Start -->
@@ -172,67 +110,19 @@
             <div class="col-12">
                 <div class="section-title">
                     <h2> বাংলাদেশের সব খবর </h2>
-                </div> 
+                </div>
 
-                <div class="singleGridBanner">
+                @foreach ($bangladeshNews as $news)
+                    <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                        <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                        <h5>{{ $news->title }}</h5>
+                    </div>
+                @endforeach 
+
+                {{-- <div class="singleGridBanner">
                     <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
                     <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
-
-                <div class="singleGridBanner">
-                    <img src="{{ asset('public/assets/frontend/img/khobor.png') }}" alt="">
-                    <h5>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h5>
-                </div> 
+                </div> --}}
 
             </div>
         </div>

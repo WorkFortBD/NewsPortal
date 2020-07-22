@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Frontend\PagesController@homePage')->name('index');
 Route::get('/bangladesh', 'Frontend\PagesController@bangladeshNews')->name('bangladesh');
 Route::get('/international', 'Frontend\PagesController@internationalNews')->name('international');
+Route::get('/economic', 'Frontend\PagesController@economicalNews')->name('economic');
+Route::get('/sports', 'Frontend\PagesController@sportsNews')->name('sports');
+Route::get('/entertainment', 'Frontend\PagesController@entertainmentNews')->name('entertainment');
+Route::get('/akij-city', 'Frontend\PagesController@akijCityNews')->name('akij-city');
+Route::get('/all-news', 'Frontend\PagesController@allNews')->name('all-news');
 
 Route::get('/news/{slug}', 'Frontend\PagesController@singleNews')->name('single-article');
 Route::get('/categories/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
