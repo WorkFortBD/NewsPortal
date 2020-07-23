@@ -52,4 +52,9 @@
           </div>
       </div>
   </div>
+  <p style="background: #ff5400;
+font-size: 25px;
+padding: 10px;
+text-align: center;
+color: #FFF;">Site is under construction !</p>
 </section>
