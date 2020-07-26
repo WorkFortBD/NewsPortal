@@ -12,6 +12,7 @@
 
             <div class="col-lg-8">
 
+                @if($topNews != null)
                 <div class="fullBannerBg" onclick="location.href='{{ route('single-article',  $topNews->slug) }}'">
                     <div class="fullBanner">
                         <img src="{{ asset('public/assets/images/posts/' . $topNews->featured_image) }}" alt="news_image">
@@ -22,6 +23,7 @@
                         <a href="{{ route('single-article',  $topNews->slug) }}"> Featured </a>
                     </div>
                 </div>
+                @endif
 
                 <div class="gridBanner">
 
