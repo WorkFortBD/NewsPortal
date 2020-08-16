@@ -9,25 +9,31 @@
 
                   <div class="footerMenu">
                       <ul>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li>
-                          <li><a href="">বাংলাদেশ </a></li> 
+                          <li><a href="{{ route('bangladesh') }}">বাংলাদেশ </a></li>
+                          <li><a href="{{ route('international') }}">আন্তর্জাতিক </a></li>
+                          <li><a href="{{ route('economic') }}">অর্থনীতি </a></li>
+                          <li><a href="#">মতামত </a></li>
+                          <li><a href="{{ route('sports') }}">খেলা </a></li>
+                          <li><a href="{{ route('entertainment') }}">বিনোদন </a></li>
+                          <li><a href="{{ route('akij-city') }}">আকিজ সিটি </a></li>
+                          <li><a href="{{ route('all-news') }}">সব </a></li>
                       </ul>
                   </div>
 
-                  <div class="socialIcon">
+                  {{-- <div class="socialIcon">
                       <a href=""> <i class="fab fa-facebook"></i>  </a>
                       <a href=""> <i class="fab fa-facebook"></i>  </a>
                       <a href=""> <i class="fab fa-facebook"></i>  </a>
                       <a href=""> <i class="fab fa-facebook"></i>  </a>
                       <a href=""> <i class="fab fa-facebook"></i>  </a>
-                   </div>
+                   </div> --}}
+
+                    <div class="single-socle">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-viber"></i></a>
+                    </div>
 
                    <div class="footerLogo">
                        <a href=""> <img src="{{ asset('public/assets/frontend/img/l1.png') }}" alt=""> </a>

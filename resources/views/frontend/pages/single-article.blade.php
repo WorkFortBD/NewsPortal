@@ -72,7 +72,7 @@
             <div class="col-lg-4">
 
                 {{-- Online Vote Section --}}
-                @include('frontend.widgets.polls.index')
+                {{-- @include('frontend.widgets.polls.index') --}}
                 {{-- End of Online Vote Section --}}
 
                 <!-- Hadith Start -->

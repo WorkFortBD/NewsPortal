@@ -79,13 +79,13 @@
                 @include('frontend.widgets.updates.index')
                 <!-- Update End -->
 
-                <div class="healthTips">
+                {{-- <div class="healthTips">
                     <h2> বিশ্বজুড়ে করোনাভাইরাস </h2>
                     <div class="healtipsDetails">
                         <img src="{{ asset('public/assets/frontend/img/cartoon.png') }}" alt="">
                         <h3>করোনাভাইরাস রোগ (সিওভিড -১৯) একটি সংক্রামক রোগ যা সদ্য আবিষ্কৃত করোন ভাইরাস দ্বারা সৃষ্ট।</h3>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
