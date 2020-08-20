@@ -228,7 +228,7 @@ class PostsController extends Controller
             $post->save();
 
             $postSave = $post->save();
-            if ($postSave) {
+            if ($postSave && $request->tag) {
                 $getId = $post->id;
                 for ($i = 0; $i < count($request->tag); $i++) {
                     $PostTags = new PostTag();

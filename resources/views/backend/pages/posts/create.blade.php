@@ -90,7 +90,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
 
-                                <label class="control-label">Post Tags</label>
+                                <label class="control-label">Post Tags <span
+                                    class="optional">(optional)</span></label>
                                 <select name="tag[]" class="js-example-basic-multiple" style="width:100%"
                                     multiple="multiple">
                                     @foreach ($tags as $tag)
@@ -105,8 +106,7 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label" for="description">Post Description <span
-                                        class="optional">(optional)</span></label>
+                                <label class="control-label" for="description">Post Description </label>
                                 {{-- <textarea type="text" class="form-control tinymce_advance" id="description"
                                     name="description" value="{{ old('description') }}"></textarea> --}}
                                 <textarea type="text" class="form-control" id="summernote" name="description"
