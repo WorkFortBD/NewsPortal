@@ -29,7 +29,7 @@
 
                     @foreach ($featureNews as $news)
                         <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
-                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image" style="margin-bottom: 50px">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image" style="margin-bottom: 5px">
                             <h3>{{ $news->short_description }}</h3>
                         </div>
                     @endforeach

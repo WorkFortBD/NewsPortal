@@ -165,6 +165,7 @@
      position: relative;
      font-weight: bold;
      margin-top: 5px;
+     display: -webkit-box;
  }
  
  .singleGridBanner h3:after {
