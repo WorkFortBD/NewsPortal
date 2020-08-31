@@ -19,4 +19,8 @@ class Post extends Model
     {
         return $this->hasMany(PostTag::class);
     }
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }

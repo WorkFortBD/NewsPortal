@@ -52,6 +52,7 @@
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Reuters')
             ->where('posts.status', 1)
+            ->limit(3)
             ->get();
     @endphp
     @foreach ($reutersNews as $news)
