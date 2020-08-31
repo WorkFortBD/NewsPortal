@@ -160,8 +160,14 @@ class PostsController extends Controller
                     } else {
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
+                })
+                ->editColumn('editor', function ($row) {
+                    return $row->creator->first_name . " " . $row->creator->last_name;
+                })
+                ->editColumn('updated_at', function ($row) {
+                    return $row->updated_at->toDayDateTimeString();
                 });
-            $rawColumns = ['action', 'title', 'status', 'category', 'featured_image', 'image'];
+            $rawColumns = ['action', 'title', 'status', 'category', 'featured_image', 'image', 'editor', 'updated_at'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }

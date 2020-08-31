@@ -12,6 +12,7 @@
 
             <div class="col-lg-8">
                 
+                @if($singleNews->featured_image != null)
                 <div class="fullBannerBg">
                     <div class="fullBanner">
                         <img src="{{ asset('public/assets/images/posts/' . $singleNews->featured_image) }}" alt="news_image">
@@ -19,7 +20,8 @@
                     <div class="fullbannerDetails"> 
                         <a href=""> Featured </a>
                     </div>
-                </div> 
+                </div>
+                @endif 
 
                 <div class="single-content">
                     <h2>{{ $singleNews->title }}</h2>

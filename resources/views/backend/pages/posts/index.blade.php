@@ -18,6 +18,8 @@
                     <th>Category</th>
                     <th>Featured Image</th>
                     <th>Status</th>
+                    <th>Post Creator</th>
+                    <th>Last Modified</th>
                     <th width="100">Action</th>
                 </tr>
             </thead>
@@ -43,6 +45,8 @@
             {data: 'category', name: 'category'},
             {data: 'featured_image', name: 'featured_image'},
             {data: 'status', name: 'status'},
+            {data: 'editor', name: 'editor'},
+            {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action'}
         ]
     });
