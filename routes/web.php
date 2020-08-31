@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Frontend\PagesController@homePage')->name('index');
+Route::get('/c', 'Frontend\PagesController@homePage')->name('index');
 Route::get('/bangladesh', 'Frontend\PagesController@bangladeshNews')->name('bangladesh');
 Route::get('/international', 'Frontend\PagesController@internationalNews')->name('international');
 Route::get('/economic', 'Frontend\PagesController@economicalNews')->name('economic');
