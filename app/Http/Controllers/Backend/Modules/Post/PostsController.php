@@ -161,13 +161,13 @@ class PostsController extends Controller
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
                 })
-                ->editColumn('editor', function ($row) {
+                ->editColumn('creator_name', function ($row) {
                     return $row->creator->first_name . " " . $row->creator->last_name;
                 })
                 ->editColumn('updated_at', function ($row) {
                     return $row->updated_at->toDayDateTimeString();
                 });
-            $rawColumns = ['action', 'title', 'status', 'category', 'featured_image', 'image', 'editor', 'updated_at'];
+            $rawColumns = ['action', 'title', 'status', 'category', 'featured_image', 'image', 'creator_name', 'updated_at'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
@@ -218,12 +218,24 @@ class PostsController extends Controller
                 $post->slug = StringHelper::createSlug($request->title, 'Post', 'slug', '');
             }
 
+            if ($post->slug  === null) {
+                $post->slug = $this->make_slug($request->title);
+            }
+
             if (!is_null($request->featured_image)) {
                 $post->featured_image = UploadHelper::upload('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts');
+            } else {
+                $post->featured_image = 'defaultNews.jpg';
             }
 
             $post->category_id = $request->category_id;
-            $post->status = $request->status;
+
+            if ($this->user->can('post.approve')) {
+                $post->status = $request->status;
+            } else {
+                $post->status = 0;
+            }
+
             $post->short_description = $request->short_description;
             $post->description = $request->description;
             $post->featured_image_caption = $request->featured_image_caption;
@@ -262,7 +274,6 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-
         if (is_null($this->user) || !$this->user->can('post.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
@@ -319,7 +330,12 @@ class PostsController extends Controller
             DB::beginTransaction();
             $post->title = $request->title;
             $post->slug = $request->slug;
-            $post->status = $request->status;
+
+            if ($this->user->can('post.approve')) {
+                $post->status = $request->status;
+            } else {
+                $post->status = 0;
+            }
 
             if (!is_null($request->featured_image)) {
                 $post->featured_image = UploadHelper::update('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts', $post->featured_image);
@@ -328,13 +344,14 @@ class PostsController extends Controller
             $post->category_id = $request->category_id;
             $post->short_description = $request->short_description;
             $post->featured_image_caption = $request->featured_image_caption;
+            $post->description = $request->description;
             $post->meta_description = $request->meta_description;
             $post->updated_by = Auth::guard('admin')->id();
             $post->updated_at = Carbon::now();
             $post->save();
 
             $postSave = $post->save();
-            if ($postSave) {
+            if ($postSave && $request->tag) {
                 // Delete previous tags
                 for ($i = 0; $i < count($request->tag); $i++) {
                     $getId = $post->id;
@@ -456,5 +473,16 @@ class PostsController extends Controller
             return view('errors.403', compact('message'));
         }
         return $this->index(true);
+    }
+
+    /**
+     * make_slug
+     *
+     * @param string $string
+     * @return string slug
+     */
+    public function make_slug($string)
+    {
+        return preg_replace('/\s+/u', '-', trim($string));
     }
 }

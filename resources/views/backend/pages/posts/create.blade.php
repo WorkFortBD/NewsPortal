@@ -46,15 +46,17 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group has-success">
-                                <label class="control-label" for="status">Status <span class="required">*</span></label>
-                                <select class="form-control custom-select" id="status" name="status" required>
-                                    <option value="1" {{ old('status') === 1 ? 'selected' : null }}>Active</option>
-                                    <option value="0" {{ old('status') === 0 ? 'selected' : null }}>Inactive</option>
-                                </select>
+                        @if(Auth::guard('admin')->user()->can('post.approve'))
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="status">Status <span class="required">*</span></label>
+                                    <select class="form-control custom-select" id="status" name="status" required>
+                                        <option value="1" {{ old('status') === 1 ? 'selected' : null }}>Active</option>
+                                        <option value="0" {{ old('status') === 0 ? 'selected' : null }}>Inactive</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
 
                     <div class="row ">
@@ -80,11 +82,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label" for="featured_image_caption"> featured_image_caption
+                                <label class="control-label" for="featured_image_caption"> Featured Image Caption
                                     <span class="optional">(optional)</span></label></label>
                                 <input type="text" class="form-control" id="featured_image_caption"
                                     name="featured_image_caption" value="{{ old('featured_image_caption') }}"
-                                    placeholder="Enter featured_image_caption" />
+                                    placeholder="Enter featured image caption" />
                             </div>
                         </div>
                         <div class="col-lg-6">

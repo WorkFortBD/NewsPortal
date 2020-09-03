@@ -45,7 +45,7 @@
             {data: 'category', name: 'category'},
             {data: 'featured_image', name: 'featured_image'},
             {data: 'status', name: 'status'},
-            {data: 'editor', name: 'editor'},
+            {data: 'creator_name', name: 'creator_name'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action'}
         ]

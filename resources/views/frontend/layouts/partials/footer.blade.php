@@ -29,18 +29,19 @@
                    </div> --}}
 
                     <div class="single-socle">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/akijeralo/", target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/channel/UC9Vj1XTycjptY4Pc0cfJ4ew?view_as=subscriber", target="_blank"><i class="fab fa-youtube"></i></a>
+                        {{-- <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-viber"></i></a>
+                        <a href="#"><i class="fab fa-viber"></i></a> --}}
                     </div>
 
-                   <div class="footerLogo">
+                   {{-- <div class="footerLogo">
                        <a href=""> <img src="{{ asset('public/assets/frontend/img/l1.png') }}" alt=""> </a>
                        <a href=""> <img src="{{ asset('public/assets/frontend/img/l2.png') }}" alt=""> </a>
                        <a href=""> <img src="{{ asset('public/assets/frontend/img/l3.png') }}" alt=""> </a>
                        <a href=""> <img src="{{ asset('public/assets/frontend/img/l4.png') }}" alt=""> </a>
-                    </div>
+                    </div> --}}
 
               </div>
           </div>
@@ -58,9 +59,9 @@
           </div>
       </div>
   </div>
-  <p style="background: #ff5400;
+  {{-- <p style="background: #ff5400;
 font-size: 25px;
 padding: 10px;
 text-align: center;
-color: #FFF;">Site is under construction !</p>
+color: #FFF;">Site is under construction !</p> --}}
 </section>

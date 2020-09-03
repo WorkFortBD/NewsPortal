@@ -33,7 +33,7 @@
                         <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
                             <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
                             <h4>{{ $news->title }}</h4>
-                            <a href="{{ route('single-article',  $news->slug) }}" class="date">24 June</a>
+                            <a href="{{ route('single-article',  $news->slug) }}" class="date">{{ $news->created_at->toFormattedDateString() }}</a>
                         </div>
                     @endforeach 
 

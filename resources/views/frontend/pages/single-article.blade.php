@@ -24,16 +24,25 @@
                 @endif 
 
                 <div class="single-content">
-                    <h2>{{ $singleNews->title }}</h2>
+                    <h2 style="margin-top: {{ $singleNews->featured_image === null ? '50px' : '0px' }}">{{ $singleNews->title }}</h2>
                     <div class="protibedon">
-                        <a href="#">নিজস্ব প্রতিবেদক, ঢাকা</a>
-                        <span>২৮ মে ২০২০, ০১:২৭</span>
+                        <a href="#">নিজস্ব প্রতিবেদক, যশোর</a>
+                        {{-- <span>২৮ মে ২০২০, ০১:২৭</span> --}}
+                        @php
+                            $time1 = App\Helpers\Dates\DateHelper::getBanglaDate();
+                            $time2 = App\Helpers\Dates\DateHelper::getArabicDate();
+                        @endphp
+                        <span>
+                            {{ $time1 }},
+                            {{ $time2 }}
+                        </span>
                     </div>
                     <div class="single-socle">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/akijeralo/", target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/channel/UC9Vj1XTycjptY4Pc0cfJ4ew?view_as=subscriber", target="_blank"><i class="fab fa-youtube"></i></a>
+                        {{-- <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-viber"></i></a>
+                        <a href="#"><i class="fab fa-viber"></i></a> --}}
                     </div>
                     <p>{!! $singleNews->description !!}</p>
                 </div>
@@ -45,7 +54,7 @@
                 </div> 
 
                 <div class="single-tags">
-                    <h3>tags</h3>
+                    <h3>tagszzzzz</h3>
                     <ul>
                         @foreach ($singleNews->tags as $item)
                         <li><a href="#">{{ $item->tag->title }}</a></li>
@@ -58,10 +67,11 @@
                 </div>
 
                 <div class="single-socle">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/akijeralo/", target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/channel/UC9Vj1XTycjptY4Pc0cfJ4ew?view_as=subscriber", target="_blank"><i class="fab fa-youtube"></i></a>
+                    {{-- <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-viber"></i></a>
+                    <a href="#"><i class="fab fa-viber"></i></a> --}}
                 </div>
                 
                 <div class="single-tok">

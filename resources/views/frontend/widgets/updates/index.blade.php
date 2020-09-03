@@ -1,4 +1,4 @@
-<div class="coronoUpdate">
+{{-- <div class="coronoUpdate">
     <h2>বিশ্বজুড়ে করোনাভাইরাস</h2>
     <div class="corona">
 
@@ -35,4 +35,4 @@
         </div>
 
     </div>
-</div>
+</div> --}}

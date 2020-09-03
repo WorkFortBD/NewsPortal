@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'description' => env('APP_DESCRIPTION', 'App Moto'),
+    'description' => env('APP_DESCRIPTION', 'Akij City Jessore'),
 
     /*
     |--------------------------------------------------------------------------

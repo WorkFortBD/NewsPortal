@@ -32,6 +32,9 @@ class CreatePostsTable extends Migration
             $table->boolean('is_slider')
                 ->default(0)
                 ->comment('1=>active, 0=>inactive');
+            $table->boolean('is_top')
+                ->default(0)
+                ->comment('1=>yes, 0=>no');
 
             $table->unsignedBigInteger('total_view')->index()->default(0);
             $table->unsignedBigInteger('total_search')->index()->default(0);

@@ -147,7 +147,7 @@
 </section>
 
  <!-- Data Area Start -->
- @include('frontend.layouts.partials.data-area')
+ {{-- @include('frontend.layouts.partials.data-area') --}}
 <!-- Data Area End -->
 
 <section id="mainWrapper">

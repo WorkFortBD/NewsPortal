@@ -1,1 +1,2 @@
-<img src="{{ asset('public/assets/frontend/img/add-img.png') }}" alt="">
+{{-- <img src="{{ asset('public/assets/frontend/img/add-img.png') }}" alt=""> --}}
+<a href="http://www.akijcity.com/" target="_blank" rel="noopener noreferrer"><img src="{{ asset('public/assets/frontend/img/add-img.png') }}" alt=""></a>

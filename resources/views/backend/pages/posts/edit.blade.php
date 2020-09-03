@@ -48,6 +48,7 @@
                             </div>
                         </div>
 
+                        @if(Auth::guard('admin')->user()->can('post.approve'))
                         <div class="col-md-6">
                             <div class="form-group has-success">
                                 <label class="control-label" for="status">Status <span class="required">*</span></label>
@@ -57,6 +58,7 @@
                                 </select>
                             </div>
                         </div>
+                        @endif
                     </div>
 
                     <div class="row ">
@@ -83,11 +85,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label" for="featured_image_caption"> featured_image_caption
+                                <label class="control-label" for="featured_image_caption"> Featured Image Caption
                                     <span class="optional">(optional)</span></label></label>
                                 <input type="text" class="form-control" id="featured_image_caption"
                                     name="featured_image_caption" value="{{ $post->featured_image_caption }}"
-                                    placeholder="Enter featured_image_caption" required="" />
+                                    placeholder="Enter featured image caption" />
                             </div>
                         </div>
                         <div class="col-lg-6">

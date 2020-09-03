@@ -21,6 +21,6 @@ class Post extends Model
     }
     public function creator()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
+        return $this->belongsTo(Admin::class, 'created_by', 'id');
     }
 }

@@ -52,12 +52,13 @@
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Reuters')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->limit(3)
             ->get();
     @endphp
     @foreach ($reutersNews as $news)
         <div onclick="location.href='{{ route('single-article',  $news->slug) }}'">
-            <p><i class="fas fa-newspaper"></i> <a href="#" style="font-size: 0.9rem">{{ $news->short_description }}</a></p>
+            <p><a href="#" style="font-size: 0.9rem">{{ $news->short_description }}</a></p>
         </div>
     @endforeach
 </div>

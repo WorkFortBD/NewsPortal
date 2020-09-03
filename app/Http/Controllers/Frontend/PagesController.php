@@ -21,54 +21,71 @@ class PagesController extends Controller
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Top News')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->first();
 
         $featureNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Featured')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(9)
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Fashion')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(20)
             ->get();
 
         $sportsNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Sports')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(6)
             ->get();
 
         $noaparaNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Noapara')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(20)
             ->get();
 
         $economicNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Economic')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(4)
             ->get();
 
         $lifeNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Life')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(4)
             ->get();
 
         $scienceNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Science')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(4)
             ->get();
 
         $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Bangladesh')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(4)
             ->get();
 
         return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews'));
@@ -83,10 +100,11 @@ class PagesController extends Controller
      */
     public function bangladeshNews()
     {
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Bangladesh')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
@@ -107,10 +125,11 @@ class PagesController extends Controller
      */
     public function internationalNews()
     {
-        $internationalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $internationalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'International')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
@@ -137,10 +156,11 @@ class PagesController extends Controller
      */
     public function economicalNews()
     {
-        $economicalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $economicalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Economic')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
@@ -167,10 +187,11 @@ class PagesController extends Controller
      */
     public function sportsNews()
     {
-        $sportsNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $sportsNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Sports')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
@@ -197,10 +218,11 @@ class PagesController extends Controller
      */
     public function entertainmentNews()
     {
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Fashion')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->get();
 
         $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
@@ -221,10 +243,11 @@ class PagesController extends Controller
      */
     public function akijCityNews()
     {
-        $akijCityNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $akijCityNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Noapara')
             ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
@@ -251,9 +274,9 @@ class PagesController extends Controller
      */
     public function allNews()
     {
-        $allNews = Post::where('status', 1)->get();
+        $allNews = Post::where('status', 1)->orderBy('posts.created_at', 'desc')->get();
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Fashion')
             ->where('posts.status', 1)
