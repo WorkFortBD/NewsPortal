@@ -25,7 +25,7 @@
 }
 
 section.dateArea {
-    background: #00018d;
+    background: #6a6c6c;
     height: 50px;
 }
 
@@ -750,4 +750,17 @@ section#footerArea {
 
 .single-tok p a {
     color: #ff1f1f;
+}
+
+.mottoArea {
+    background: #610629;
+    height: 50px;
+}
+
+.mottoArea h2 {
+    font-size: 16;
+    color: #f79e21;
+    text-align: center;
+    /* padding: 5px; */
+    margin: 5px;
 }

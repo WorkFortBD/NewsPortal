@@ -270,7 +270,7 @@
 </section>
 
 
-<section id="newsCatagoryList" class="bp">
+{{-- <section id="newsCatagoryList" class="bp">
     <div class="container">
         <div class="row">
 
@@ -283,26 +283,6 @@
                             <p>{!! $news->title !!}</p>
                         </div>
                     @endforeach 
-
-                    {{-- <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div> --}}
 
                 </div>
             </div>
@@ -317,26 +297,6 @@
                         </div>
                     @endforeach
 
-                    {{-- <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div> --}}
-
                 </div>
             </div>
 
@@ -349,26 +309,6 @@
                             <p>{!! $news->title !!}</p>
                         </div>
                     @endforeach
-
-                    {{-- <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div> --}}
 
                 </div>
             </div>
@@ -383,31 +323,11 @@
                         </div>
                     @endforeach
 
-                    {{-- <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div>
-
-                    <div class="catagoryWidgetList">
-                        <p>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</p>
-                    </div> --}}
-
                 </div>
             </div>
 
         </div>
     </div>
-</section>
+</section> --}}
 
 @endsection
