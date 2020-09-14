@@ -773,7 +773,8 @@ section#footerArea {
 }
 
 .braking {
-    background: #fff;
+    /* background: #fff; */
+    background: #ED2126;
     float: left;
     width: 100%;
     margin-top: 10px;
@@ -828,7 +829,8 @@ section#footerArea {
 
 .headline ul li,
 .headline ul li a {
-    color: #19a530;
+    /* color: #19a530; */
+    color: #FFFFFF;
 }
 
 .braking ul li .fa {
