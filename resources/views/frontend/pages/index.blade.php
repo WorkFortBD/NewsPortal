@@ -7,13 +7,34 @@
 @section('main-content')
 
 {{-- Scroll --}}
-{{-- <marquee style="font-size: 30px; font-weight: 800; color: #8ebf42; font-family: sans-serif;">A scrolling text created with HTML Marquee element.</marquee> --}}
-
-{{-- @foreach ($featureNews as $news)
-    <div onclick="location.href='{{ route('single-article',  $news->slug) }}'">
-    <marquee style="font-size: 30px; font-weight: 800; color: #8ebf42; font-family: sans-serif; display: inline">{{ $news->title }}</marquee>
-    </div>
-@endforeach --}}
+{{-- <div class="topScrollDiv">
+    <marquee style="font-size: 15px; font-weight: 600; color: #FFFFFF; font-family: sans-serif; display: inline">
+        @foreach ($featureNews as $news)
+            <span onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                {{ "  " }} {{ $news->title }} || {{ "  " }}
+            </span>
+        @endforeach
+    </marquee>
+</div> --}}
+<div class="container">
+   <div class="row">
+    <div class="braking headline">
+        <span>শিরোনাম</span>
+        <marquee behavior="scroll" direction="left" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">
+           <ul><!--bof Caching-->
+            @foreach ($featureNews as $news)
+            {{-- <span onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                {{ "  " }} {{ $news->title }} || {{ "  " }}
+            </span> --}}
+            <li><a href="{{ route('single-article',  $news->slug) }}" title=""><i class="fas fa-newspaper" aria-hidden="true"></i> {{ $news->title }}</a></li>
+            @endforeach
+    
+            <!--/eof Caching-->
+        </ul>
+        </marquee>
+      </div>
+   </div>
+</div>
 {{-- End Scroll --}}
 
 <section id="mainWrapper">
