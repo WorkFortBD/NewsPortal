@@ -307,4 +307,35 @@ class PagesController extends Controller
 
         return view('frontend.pages.single-article', compact('singleNews', 'allNews'));
     }
+
+    /**
+     * educationNews
+     *
+     * Education News
+     * 
+     * @return void
+     */
+    public function educationNews()
+    {
+        $educationNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Education')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+
+        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Fashion')
+            ->where('posts.status', 1)
+            ->get();
+
+        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Bangladesh')
+            ->where('posts.status', 1)
+            ->get();
+
+        return view('frontend.pages.education', compact('educationNews', 'entertainmentNews', 'bangladeshNews'));
+    }
 }

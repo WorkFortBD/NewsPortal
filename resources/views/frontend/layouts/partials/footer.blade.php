@@ -12,6 +12,7 @@
                           <li><a href="{{ route('bangladesh') }}">বাংলাদেশ </a></li>
                           <li><a href="{{ route('international') }}">আন্তর্জাতিক </a></li>
                           <li><a href="{{ route('economic') }}">অর্থনীতি </a></li>
+                          <li><a href="{{ route('education') }}">শিক্ষা ও সংস্কৃতি </a></li>
                           <li><a href="#">মতামত </a></li>
                           <li><a href="{{ route('sports') }}">খেলা </a></li>
                           <li><a href="{{ route('entertainment') }}">বিনোদন </a></li>
