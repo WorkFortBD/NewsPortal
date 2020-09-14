@@ -10,14 +10,14 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ 'http://www.akijeralo.com/news/' .  $singleNews->slug}}">
 <meta property="og:title" content="{{ $singleNews->title }}">
-<meta property="og:description" content="{{ $singleNews->description }}">
+<meta property="og:description" content="{{ $singleNews->short_description }}">
 <meta property="og:image" content="{{ asset('public/assets/images/posts/' . $singleNews->featured_image) }}">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="{{ 'http://www.akijeralo.com/news/' .  $singleNews->slug}}">
 <meta property="twitter:title" content="{{ $singleNews->title }}">
-<meta property="twitter:description" content="{{ $singleNews->description }}">
+<meta property="twitter:description" content="{{ $singleNews->short_description }}">
 <meta property="twitter:image" content="{{ asset('public/assets/images/posts/' . $singleNews->featured_image) }}">
 
 @endsection

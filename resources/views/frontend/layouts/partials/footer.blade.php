@@ -16,7 +16,7 @@
                           <li><a href="{{ route('sports') }}">খেলা </a></li>
                           <li><a href="{{ route('entertainment') }}">বিনোদন </a></li>
                           <li><a href="{{ route('akij-city') }}">আকিজ সিটি </a></li>
-                          <li><a href="{{ route('all-news') }}">সব </a></li>
+                          <li><a href="{{ route('all-news') }}">অন্যান্য </a></li>
                       </ul>
                   </div>
 

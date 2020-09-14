@@ -6,6 +6,16 @@
 
 @section('main-content')
 
+{{-- Scroll --}}
+{{-- <marquee style="font-size: 30px; font-weight: 800; color: #8ebf42; font-family: sans-serif;">A scrolling text created with HTML Marquee element.</marquee> --}}
+
+{{-- @foreach ($featureNews as $news)
+    <div onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+    <marquee style="font-size: 30px; font-weight: 800; color: #8ebf42; font-family: sans-serif; display: inline">{{ $news->title }}</marquee>
+    </div>
+@endforeach --}}
+{{-- End Scroll --}}
+
 <section id="mainWrapper">
     <div class="container">
         <div class="row">
