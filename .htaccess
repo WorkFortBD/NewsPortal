@@ -4,6 +4,10 @@
     </IfModule>
 
     RewriteEngine On
+    
+    # Redirect to https
+    RewriteCond %{HTTPS} !on
+    RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -27,3 +31,19 @@
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
 
+
+# Hide a specific file
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files .env.live>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files .env.local>
+    Order allow,deny
+    Deny from all
+</Files>
