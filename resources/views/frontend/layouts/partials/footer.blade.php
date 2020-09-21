@@ -55,7 +55,7 @@
       <div class="row">
           <div class="col-lg-12">
               <div class="copyrightp">
-                  <p> Copyright © 2020. Akijer Alo is number one newsportal in Bangladesh. </p>
+                  <p> Copyright © 2020. Akijer Alo </p>
               </div>
           </div>
       </div>

@@ -14,8 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Redirect to https
-        \URL::forceScheme('https');
+        //
     }
 
     /**
@@ -25,7 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \URL::forceScheme('https');
         JsonResource::withoutWrapping();
     }
 }
