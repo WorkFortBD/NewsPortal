@@ -43,6 +43,7 @@ class PostsController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
+        ini_set('memory_limit', '300M');
 
         if (request()->ajax()) {
             if ($isTrashed) {
