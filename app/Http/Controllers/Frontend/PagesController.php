@@ -29,7 +29,7 @@ class PagesController extends Controller
             ->where('c.name', 'Featured')
             ->where('posts.status', 1)
             ->orderBy('posts.created_at', 'desc')
-            ->limit(9)
+            ->limit(12)
             ->get();
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
