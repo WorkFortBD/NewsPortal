@@ -73,21 +73,6 @@
                     <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
                     </div> --}}
 
                   
@@ -192,30 +177,6 @@
                     <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
                         <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
-                    </div>
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h3>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h3>
                     </div> --}}
                 </div>
             </div>
@@ -230,87 +191,64 @@
 <section id="mainWrapper">
     <div class="container">
         <div class="row">
-
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="section-title">
                     <h2>খেলা</h2>
                 </div>
-                <div class="gridBanner">
+                {{-- <div class="gridBanner"> --}}
+                    <div class="enternaimentNews owl-carousel">
 
-                    @foreach ($sportsNews as $news)
-                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
-                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
-                            <h4>{{ $news->short_description }}</h4>
-                            <a href="{{ route('single-article',  $news->slug) }}"> বিস্তারিত </a>
+                        @foreach ($sportsNews as $news)
+                            <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                                <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                                <h4>{{ $news->short_description }}</h4>
+                                <a href="{{ route('single-article',  $news->slug) }}"> বিস্তারিত </a>
+                            </div>
+                        @endforeach
+
+                        {{-- <div class="singleGridBanner">
+                            <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                            <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                            <a href=""> লেখার মাঝেই </a>
                         </div>
-                    @endforeach
 
-                    {{-- <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
+                        <div class="singleGridBanner">
+                            <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
+                            <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
+                            <a href=""> লেখার মাঝেই </a>
+                        </div> --}}
+
                     </div>
 
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
-                    </div>
-
-                    <div class="singleGridBanner">
-                        <img src="{{ asset('public/assets/frontend/img/gridBanner.png') }}" alt="">
-                        <h4>অর্থহীন লেখা যার মাঝে আছে অনেক কিছু। হ্যাঁ, এই লেখার মাঝেই আছে</h4>
-                        <a href=""> লেখার মাঝেই </a>
+                    {{-- <div class="cityBanner">
+                        <!-- Advertise Start -->
+                        @include('frontend.widgets.advertises.index')
+                        <!-- Advertise End -->
                     </div> --}}
 
+                {{-- </div> --}}
+
+                <div class="col-lg-4">
+                    <div class="rotin">
+                        <!-- Leaflet Start -->
+                        {{-- @include('frontend.widgets.leaflets.index') --}}
+                        <!-- Leaflet End -->
+                    </div>    
                 </div>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
                 <div class="cityBanner">
                     <!-- Advertise Start -->
                     @include('frontend.widgets.advertises.index')
                     <!-- Advertise End -->
                 </div>
-
             </div>
-
-            <div class="col-lg-4">
-                <div class="rotin">
-                    <!-- Leaflet Start -->
-                    {{-- @include('frontend.widgets.leaflets.index') --}}
-                    <!-- Leaflet End -->
-                </div>    
+            <div class="col-lg-5">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/46p5FwQdA64" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-
         </div>
     </div>
 </section>
