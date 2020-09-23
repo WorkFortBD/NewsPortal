@@ -837,3 +837,12 @@ section#footerArea {
     margin-right: 5px;
     font-size: 14px;
 }
+
+.bangladeshNews .singleGridBanner {
+    width: 100%;
+}
+
+section#bangladesh {
+    background: #dceaff;
+    padding: 40px 0;
+}

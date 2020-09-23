@@ -85,7 +85,7 @@ class PagesController extends Controller
             ->where('c.name', 'Bangladesh')
             ->where('posts.status', 1)
             ->orderBy('posts.created_at', 'desc')
-            ->limit(4)
+            ->limit(20)
             ->get();
 
         return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews'));
