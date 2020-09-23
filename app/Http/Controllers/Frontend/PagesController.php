@@ -88,7 +88,15 @@ class PagesController extends Controller
             ->limit(20)
             ->get();
 
-        return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews'));
+        $internationalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'International')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->limit(20)
+            ->get();
+
+        return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews', 'internationalNews'));
     }
 
     /**

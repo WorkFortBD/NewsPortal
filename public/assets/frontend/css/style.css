@@ -846,3 +846,12 @@ section#bangladesh {
     background: #dceaff;
     padding: 40px 0;
 }
+
+.internationalNews .singleGridBanner {
+    width: 100%;
+}
+
+section#international {
+    background: #FFFFFF;
+    padding: 40px 0;
+}

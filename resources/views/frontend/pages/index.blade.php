@@ -151,6 +151,25 @@
     </div>
 </section>
 
+<section id="international">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>আন্তর্জাতিক</h2>
+                </div>
+                <div class="enternaimentNews owl-carousel">
+                    @foreach ($internationalNews as $news)
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h3>{{ $news->short_description }}</h3>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section id="entertainment">
     <div class="container">
