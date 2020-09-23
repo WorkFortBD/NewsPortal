@@ -110,6 +110,13 @@
                 @include('frontend.widgets.updates.index')
                 <!-- Update End -->
 
+                {{-- For Temporary --}}
+                <div class="rotin-img">
+                    <!-- Leaflet Start -->
+                    @include('frontend.widgets.leaflets.index')
+                    <!-- Leaflet End -->
+                </div>
+
                 {{-- <div class="healthTips">
                     <h2> বিশ্বজুড়ে করোনাভাইরাস </h2>
                     <div class="healtipsDetails">
@@ -260,7 +267,7 @@
             <div class="col-lg-4">
                 <div class="rotin">
                     <!-- Leaflet Start -->
-                    @include('frontend.widgets.leaflets.index')
+                    {{-- @include('frontend.widgets.leaflets.index') --}}
                     <!-- Leaflet End -->
                 </div>    
             </div>
