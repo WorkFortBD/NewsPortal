@@ -72,7 +72,7 @@
                 </div> 
 
                 <div class="single-tags">
-                    <h3>tagszzzzz</h3>
+                    <h3>tags</h3>
                     <ul>
                         @foreach ($singleNews->tags as $item)
                         <li><a href="#">{{ $item->tag->title }}</a></li>
