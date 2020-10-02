@@ -213,15 +213,18 @@ class PostsController extends Controller
             DB::beginTransaction();
             $post = new Post();
             $post->title = $request->title;
-            if ($request->slug) {
-                $post->slug = $request->slug;
-            } else {
-                $post->slug = StringHelper::createSlug($request->title, 'Post', 'slug', '');
-            }
 
-            if ($post->slug  === null) {
-                $post->slug = $this->make_slug($request->title);
-            }
+            // if ($request->slug) {
+            //     $post->slug = $request->slug;
+            // } else {
+            //     $post->slug = StringHelper::createSlug($request->title, 'Post', 'slug', '');
+            // }
+
+            // if ($post->slug  === null) {
+            //     $post->slug = $this->make_slug($request->title);
+            // }
+
+            $post->slug = $this->make_slug($request->title);
 
             if (!is_null($request->featured_image)) {
                 $post->featured_image = UploadHelper::upload('featured_image', $request->featured_image, $request->title . '-' . time() . '-featured_images', 'public/assets/images/posts');
