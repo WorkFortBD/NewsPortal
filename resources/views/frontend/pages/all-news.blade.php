@@ -16,12 +16,34 @@
 
             <div class="col-lg-12">
                 <div class="page-title">
-                    <h1>সব</h1>
+                    <h1>অন্যান্য</h1>
                     <ul>
                         <li><a href="{{ route('index') }}">হোম</a></li>
-                        <li><a href="{{ route('all-news') }}">সব</a></li>
+                        <li><a href="{{ route('all-news') }}">অন্যান্য</a></li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="col-lg-7 m-4">
+                <form action="{{ route('category-news') }}" method="POST" enctype="multipart/form-data"
+                    data-parsley-validate data-parsley-focus="first">
+                    @csrf
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">News Filter</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="category">
+                      <option selected>Choose Category</option>
+                      <option value="Bangladesh">বাংলাদেশ</option>
+                      <option value="International">আন্তর্জাতিক</option>
+                      <option value="Economic">অর্থনীতি</option>
+                      <option value="Education">শিক্ষা ও সংস্কৃতি</option>
+                      {{-- <option value="3">কোরআন ও হাদিস</option> --}}
+                      <option value="Sports">খেলা</option>
+                      <option value="Fashion">বিনোদন</option>
+                      <option value="Noapara">আকিজ সিটি</option>
+                      {{-- <option value="All">সব</option> --}}
+                    </select>
+                  
+                    <button type="submit" class="btn btn-primary my-1">Submit</button>
+                </form>
             </div>
 
             <div class="col-lg-8">
