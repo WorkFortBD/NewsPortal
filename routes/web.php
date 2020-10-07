@@ -21,6 +21,7 @@ Route::get('/akij-city', 'Frontend\PagesController@akijCityNews')->name('akij-ci
 Route::get('/all-news', 'Frontend\PagesController@allNews')->name('all-news');
 Route::get('/education', 'Frontend\PagesController@educationNews')->name('education');
 Route::post('/category', 'Frontend\PagesController@categoryNews')->name('category-news');
+Route::get('/quran-hadith', 'Frontend\PagesController@quranNews')->name('quran-hadith');
 
 Route::get('/news/{slug}', 'Frontend\PagesController@singleNews')->name('single-article');
 Route::get('/categories/{slug}', 'Frontend\CategoriesController@show')->name('category.show');

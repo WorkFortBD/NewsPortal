@@ -400,4 +400,37 @@ class PagesController extends Controller
 
         return view('frontend.pages.category-news', compact('allNews', 'entertainmentNews', 'bangladeshNews'));
     }
+
+    /**
+     * quranNews
+     *
+     * Quran and Hadith News
+     * 
+     * @return void
+     */
+    public function quranNews()
+    {
+        $quranNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Quran Hadith')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+
+        $educationNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Education')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+
+        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Bangladesh')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+
+        return view('frontend.pages.quran', compact('quranNews', 'educationNews', 'bangladeshNews'));
+    }
 }
