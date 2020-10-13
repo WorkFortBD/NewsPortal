@@ -362,44 +362,44 @@ class PagesController extends Controller
         return view('frontend.pages.education', compact('educationNews', 'entertainmentNews', 'bangladeshNews'));
     }
 
-    /**
-     * categoryNews
-     *
-     * Category News
-     * 
-     * @return void
-     */
-    public function categoryNews(Request $request)
-    {
-        $category = $request->category;
+    // /**
+    //  * categoryNews
+    //  *
+    //  * Category News
+    //  * 
+    //  * @return void
+    //  */
+    // public function categoryNews(Request $request)
+    // {
+    //     $category = $request->category;
 
-        if ($category === "All") {
-            $allNews = Post::where('status', 1)->orderBy('posts.created_at', 'desc')->get();
-        } else {
-            $allNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-                ->join('categories as c', 'posts.category_id', 'c.id')
-                ->where('c.name', $category)
-                ->where('posts.status', 1)
-                ->orderBy('posts.created_at', 'desc')
-                ->get();
-        }
+    //     if ($category === "All") {
+    //         $allNews = Post::where('status', 1)->orderBy('posts.created_at', 'desc')->get();
+    //     } else {
+    //         $allNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
+    //             ->join('categories as c', 'posts.category_id', 'c.id')
+    //             ->where('c.name', $category)
+    //             ->where('posts.status', 1)
+    //             ->orderBy('posts.created_at', 'desc')
+    //             ->get();
+    //     }
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+    //     $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
+    //         ->join('categories as c', 'posts.category_id', 'c.id')
+    //         ->where('c.name', 'Fashion')
+    //         ->where('posts.status', 1)
+    //         ->orderBy('posts.created_at', 'desc')
+    //         ->get();
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+    //     $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+    //         ->join('categories as c', 'posts.category_id', 'c.id')
+    //         ->where('c.name', 'Bangladesh')
+    //         ->where('posts.status', 1)
+    //         ->orderBy('posts.created_at', 'desc')
+    //         ->get();
 
-        return view('frontend.pages.category-news', compact('allNews', 'entertainmentNews', 'bangladeshNews'));
-    }
+    //     return view('frontend.pages.category-news', compact('allNews', 'entertainmentNews', 'bangladeshNews'));
+    // }
 
     /**
      * quranNews

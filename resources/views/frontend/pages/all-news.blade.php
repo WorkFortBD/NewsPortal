@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-7 m-4">
+            {{-- <div class="col-lg-7 m-4">
                 <form action="{{ route('category-news') }}" method="POST" enctype="multipart/form-data"
                     data-parsley-validate data-parsley-focus="first">
                     @csrf
@@ -35,16 +35,15 @@
                       <option value="International">আন্তর্জাতিক</option>
                       <option value="Economic">অর্থনীতি</option>
                       <option value="Education">শিক্ষা ও সংস্কৃতি</option>
-                      {{-- <option value="3">কোরআন ও হাদিস</option> --}}
+                      <option value="Quran Hadith">কোরআন ও হাদিস</option>
                       <option value="Sports">খেলা</option>
                       <option value="Fashion">বিনোদন</option>
                       <option value="Noapara">আকিজ সিটি</option>
-                      {{-- <option value="All">সব</option> --}}
                     </select>
                   
                     <button type="submit" class="btn btn-primary my-1">Submit</button>
                 </form>
-            </div>
+            </div> --}}
 
             <div class="col-lg-8">
 
