@@ -324,6 +324,9 @@ class PagesController extends Controller
         $singleNews = Post::where('slug', $slug)
             ->first();
 
+        // Increment news view number
+        $singleNews->increment('total_view');
+
         $allNews = Post::where('status', 1)->get();
 
         return view('frontend.pages.single-article', compact('singleNews', 'allNews'));

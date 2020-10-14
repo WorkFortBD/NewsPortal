@@ -139,6 +139,12 @@ class RolePermissionsTableSeeder extends Seeder
             'subscription.edit',
             'subscription.delete',
 
+            // job
+            'job.view',
+            'job.create',
+            'job.edit',
+            'job.delete',
+
         ];
 
         for ($i = 0; $i < count($adminUserPermissions); $i++) {

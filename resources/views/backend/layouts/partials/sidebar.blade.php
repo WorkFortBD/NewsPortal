@@ -136,6 +136,39 @@ $user = Auth::guard('admin')->user();
                     </ul>
                 </li>
 
+                {{-- Job Management --}}
+                @if ($user->can('job.view') || $user->can('job.create'))
+                <li class="sidebar-item ">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="mdi mdi-view-list"></i>
+                        <span class="hide-menu">Jobs </span>
+                    </a>
+                    <ul aria-expanded="false"
+                        class="collapse first-level {{ (Route::is('admin.jobs.index') || Route::is('admin.jobs.create') || Route::is('admin.jobs.edit')) ? 'in' : null }}">
+                        @if ($user->can('job.view'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.jobs.index') }}"
+                                class="sidebar-link {{ (Route::is('admin.jobs.index') || Route::is('admin.jobs.edit')) ? 'active' : null }}">
+                                <i class="mdi mdi-view-list"></i>
+                                <span class="hide-menu"> Job List </span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if ($user->can('job.create'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.jobs.create') }}"
+                                class="sidebar-link {{ Route::is('admin.jobs.create') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu"> New Job </span>
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+                {{-- Job Management --}}
 
                 @if ($user->can('page.view') || $user->can('page.create'))
                 <li class="sidebar-item ">

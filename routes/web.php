@@ -175,6 +175,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('subscriptions/trashed/destroy/{id}', 'Backend\Modules\Subscription\SubscriptionsController@destroyTrash')->name('subscriptions.trashed.destroy');
         Route::put('subscriptions/trashed/revert/{id}', 'Backend\Modules\Subscription\SubscriptionsController@revertFromTrash')->name('subscriptions.trashed.revert');
     });
+
+    /**
+     * Job Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('jobs', 'Backend\Modules\Job\JobsController');
+        Route::get('jobs/trashed/view', 'Backend\Modules\Job\JobsController@trashed')->name('jobs.trashed');
+        Route::delete('jobs/trashed/destroy/{id}', 'Backend\Modules\Job\JobsController@destroyTrash')->name('jobs.trashed.destroy');
+        Route::put('jobs/trashed/revert/{id}', 'Backend\Modules\Job\JobsController@revertFromTrash')->name('jobs.trashed.revert');
+    });
 });
 
 Auth::routes();
