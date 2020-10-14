@@ -25,4 +25,9 @@ class JobCircular extends Model
         'updated_by', 
         'deleted_by'
     ];
+
+    public function attachments()
+    {
+        return $this->hasMany(JobAttachment::class);
+    }
 }

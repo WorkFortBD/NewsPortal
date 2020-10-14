@@ -42,14 +42,15 @@ class JobsController extends Controller
         if (request()->ajax()) {
             if ($isTrashed) {
                 $job_circulars = JobCircular::orderBy('id', 'desc')
-                    ->where('status', 0)
+                    ->where('is_active', 0)
                     ->get();
             } else {
                 $job_circulars = JobCircular::orderBy('id', 'desc')
                     ->where('deleted_at', null)
-                    ->where('status', 1)
+                    ->where('is_active', 1)
                     ->get();
             }
+
 
             $datatable = DataTables::of($job_circulars, $isTrashed)
                 ->addIndexColumn()
@@ -59,11 +60,11 @@ class JobsController extends Controller
                         $csrf = "" . csrf_field() . "";
                         $method_delete = "" . method_field("delete") . "";
                         $method_put = "" . method_field("put") . "";
-                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Blog Details" href="' . route('admin.jobs.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Job Circular Details" href="' . route('admin.jobs.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
 
                         if ($row->deleted_at === null) {
                             $deleteRoute =  route('admin.jobs.destroy', [$row->id]);
-                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Blog Details" href="' . route('admin.jobs.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle ml-1 " title="Edit Job Circular Details" href="' . route('admin.jobs.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         } else {
                             $deleteRoute =  route('admin.jobs.trashed.destroy', [$row->id]);
@@ -77,28 +78,28 @@ class JobsController extends Controller
                                 <button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary" data-dismiss="modal"><i
                                         class="fa fa-times"></i> Cancel</button>
                             </form>';
-                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Blog Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
+                            $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-1 text-white" title="Delete Job Circular Permanently" id="deleteItemPermanent' . $row->id . '"><i class="fa fa-trash"></i></a>';
                         }
 
 
 
                         $html .= '<script>
                             $("#deleteItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Blog will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Job Circular will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deleteForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#deleteItemPermanent' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Blog will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
+                                swal.fire({ title: "Are you sure?",text: "Job Circular will be deleted permanently, both from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
                                 }).then((result) => { if (result.value) {$("#deletePermanentForm' . $row->id . '").submit();}})
                             });
                         </script>';
 
                         $html .= '<script>
                             $("#revertItem' . $row->id . '").click(function(){
-                                swal.fire({ title: "Are you sure?",text: "Blog will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
+                                swal.fire({ title: "Are you sure?",text: "Job Circular will be revert back from trash !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, Revert Back!"
                                 }).then((result) => { if (result.value) {$("#revertForm' . $row->id . '").submit();}})
                             });
                         </script>';
@@ -125,14 +126,11 @@ class JobsController extends Controller
                 ->editColumn('title', function ($row) {
                     return $row->title . ' <br /><a href="' . route('pages.show', $row->slug) . '" target="_blank"><i class="fa fa-link"></i> View</a>';
                 })
-                ->editColumn('image', function ($row) {
-                    if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/blogs/' . $row->image) . "' class='img img-display-list' />";
-                    }
-                    return '-';
+                ->editColumn('description', function ($row) {
+                    return $row->description;
                 })
-                ->editColumn('status', function ($row) {
-                    if ($row->status) {
+                ->editColumn('is_active', function ($row) {
+                    if ($row->is_active) {
                         return '<span class="badge badge-success font-weight-100">Active</span>';
                     } else if ($row->deleted_at != null) {
                         return '<span class="badge badge-danger">Trashed</span>';
@@ -140,15 +138,15 @@ class JobsController extends Controller
                         return '<span class="badge badge-warning">Inactive</span>';
                     }
                 });
-            $rawColumns = ['action', 'title', 'status', 'image'];
+            $rawColumns = ['action', 'title', 'is_active', 'description'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
 
-        $count_blogs = count(JobCircular::select('id')->get());
-        $count_active_blogs = count(JobCircular::select('id')->where('status', 1)->get());
-        $count_trashed_blogs = count(JobCircular::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.jobs.index', compact('count_blogs', 'count_active_blogs', 'count_trashed_blogs'));
+        $count_jobs = count(JobCircular::select('id')->get());
+        $count_active_jobs = count(JobCircular::select('id')->where('is_active', 1)->get());
+        $count_trashed_jobs = count(JobCircular::select('id')->where('deleted_at', '!=', null)->get());
+        return view('backend.pages.jobs.index', compact('count_jobs', 'count_active_jobs', 'count_trashed_jobs'));
     }
 
     /**
@@ -261,7 +259,7 @@ class JobsController extends Controller
             return view('errors.403', compact('message'));
         }
         $job_circular = JobCircular::find($id);
-        return view('backend.pages.jobs.show', compact('blog'));
+        return view('backend.pages.jobs.show', compact('job_circular'));
     }
 
     /**
@@ -277,7 +275,8 @@ class JobsController extends Controller
             return view('errors.403', compact('message'));
         }
         $job_circular = JobCircular::find($id);
-        return view('backend.pages.jobs.edit', compact('blog'));
+
+        return view('backend.pages.jobs.edit', compact('job_circular'));
     }
 
     /**
@@ -303,28 +302,73 @@ class JobsController extends Controller
         $request->validate([
             'title'  => 'required|max:100',
             'slug'  => 'required|max:100|unique:pages,slug,' . $job_circular->id,
-        ]);
+            'file'  => 'required|file',
+            'is_downloadable'  => 'nullable',
+            'is_date_applicable'  => 'nullable',
+            'description'  => 'nullable',
+            'meta_description'  => 'nullable'
+        ],
+        [
+            'title.required' => 'Please give a title',
+            'file.required' => 'Please upload job circular'
+        ]
+    );
 
         try {
             DB::beginTransaction();
             $job_circular->title = $request->title;
-            $job_circular->slug = $request->slug;
-            $job_circular->status = $request->status;
 
-            if (!is_null($request->image)) {
-                $job_circular->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/blogs', $job_circular->image);
+            // if ($request->slug) {
+            //     $job_circular->slug = $request->slug;
+            // } else {
+            //     $job_circular->slug = StringHelper::createSlug($request->title, 'Blog', 'slug', '');
+            // }
+
+            $job_circular->slug = $this->make_slug($request->title);
+
+            $job_circular->is_active = $request->is_active;
+
+            if ($request->is_date_applicable) {
+                $job_circular->is_date_applicable = $request->is_date_applicable;
+            } else {
+                $job_circular->is_date_applicable = 0;
             }
 
-            $job_circular->status = $request->status;
+            $job_circular->start_date = $request->start_date;
+            $job_circular->end_date = $request->end_date;
             $job_circular->description = $request->description;
             $job_circular->meta_description = $request->meta_description;
             $job_circular->updated_by = Auth::guard('admin')->id();
             $job_circular->updated_at = Carbon::now();
             $job_circular->save();
 
-            Track::newTrack($job_circular->title, 'Blog has been updated successfully !!');
+            $jobSave = $job_circular->save();
+            if ($jobSave) {
+                // Delete previous attachments
+                $getId = $job_circular->id;
+                $attachmentToDelete = JobAttachment::where('job_circular_id', $getId)->first();
+                if ($attachmentToDelete) {
+                    $attachmentToDelete->delete();
+                }
+                // Create new attachments
+                $jobAttachment = new JobAttachment();
+                $jobAttachment->job_circular_id = $getId;
+                $jobAttachment->file = UploadHelper::upload('file', $request->file, $request->title . '-' . time() . '-circular', 'public/assets/files/circulars');
+                $jobAttachment->extension = $request->file->getClientOriginalExtension();
+                if ($request->is_downloadable) {
+                    $jobAttachment->is_downloadable = $request->is_downloadable;
+                } else {
+                    $jobAttachment->is_downloadable = 1;
+                }
+                $job_circular->created_at = Carbon::now();
+                $job_circular->created_by = Auth::guard('admin')->id();
+                $job_circular->updated_at = Carbon::now();
+                $jobAttachment->save();
+            }
+
+            Track::newTrack($job_circular->title, 'Job Circular has been updated successfully !!');
             DB::commit();
-            session()->flash('success', 'Blog has been updated successfully !!');
+            session()->flash('success', 'Job Circular has been updated successfully !!');
             return redirect()->route('admin.jobs.index');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
@@ -353,7 +397,7 @@ class JobsController extends Controller
         }
         $job_circular->deleted_at = Carbon::now();
         $job_circular->deleted_by = Auth::guard('admin')->id();
-        $job_circular->status = 0;
+        $job_circular->is_active = 0;
         $job_circular->save();
 
         session()->flash('success', 'Blog has been deleted successfully as trashed !!');
@@ -417,7 +461,7 @@ class JobsController extends Controller
     /**
      * trashed
      *
-     * @return view the trashed data list -> which data status = 0 and deleted_at != null
+     * @return view the trashed data list -> which data is_active = 0 and deleted_at != null
      */
     public function trashed()
     {

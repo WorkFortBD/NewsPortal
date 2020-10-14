@@ -7,10 +7,10 @@
                 @elseif(Route::is('admin.jobs.create'))
                     Create New Job    
                 @elseif(Route::is('admin.jobs.edit'))
-                    Edit Job <span class="badge badge-info">{{ $job->title }}</span>
+                    Edit Job <span class="badge badge-info">{{ $job_circular->title }}</span>
                 @elseif(Route::is('admin.jobs.show'))
-                    View Job <span class="badge badge-info">{{ $job->title }}</span>
-                    <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.jobs.edit', $job->id) }}"> <i class="fa fa-edit"></i></a>
+                    View Job <span class="badge badge-info">{{ $job_circular->title }}</span>
+                    <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.jobs.edit', $job_circular->id) }}"> <i class="fa fa-edit"></i></a>
                 @endif
             </h4>
         </div>
