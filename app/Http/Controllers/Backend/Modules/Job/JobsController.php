@@ -400,7 +400,7 @@ class JobsController extends Controller
         $job_circular->is_active = 0;
         $job_circular->save();
 
-        session()->flash('success', 'Blog has been deleted successfully as trashed !!');
+        session()->flash('success', 'Job Circular has been deleted successfully as trashed !!');
         return redirect()->route('admin.jobs.trashed');
     }
 
@@ -426,7 +426,7 @@ class JobsController extends Controller
         $job_circular->deleted_by = null;
         $job_circular->save();
 
-        session()->flash('success', 'Blog has been revert back successfully !!');
+        session()->flash('success', 'Job Circular has been revert back successfully !!');
         return redirect()->route('admin.jobs.trashed');
     }
 
@@ -448,13 +448,20 @@ class JobsController extends Controller
             return redirect()->route('admin.jobs.trashed');
         }
 
-        // Remove Image
-        UploadHelper::deleteFile('public/assets/images/blogs/' . $job_circular->image);
+        // Remove Attachment
+        UploadHelper::deleteFile('public/assets/files/circulars/' . $job_circular->attachments[0]->file);
 
-        // Delete Blog permanently
+
+        // Delete Job Attachment
+         $job_attachment = JobAttachment::where('job_circular_id', $id)->first();
+         if ($job_attachment) {
+             $job_attachment->delete();
+         }
+
+        // Delete Job Circular permanently
         $job_circular->delete();
 
-        session()->flash('success', 'Blog has been deleted permanently !!');
+        session()->flash('success', 'Job Circular has been deleted permanently !!');
         return redirect()->route('admin.jobs.trashed');
     }
 
