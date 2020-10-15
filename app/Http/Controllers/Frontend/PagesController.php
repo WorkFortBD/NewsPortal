@@ -99,10 +99,10 @@ class PagesController extends Controller
             ->get();
 
         $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
-        ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
-        ->where('job_circulars.is_active', 1)
-        ->orderBy('job_circulars.created_at', 'desc')
-        ->first();
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
 
         return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews', 'internationalNews', 'jobCircular'));
     }
@@ -130,7 +130,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.bangladesh', compact('bangladeshNews', 'entertainmentNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.bangladesh', compact('bangladeshNews', 'entertainmentNews', 'jobCircular'));
     }
 
     /**
@@ -163,7 +169,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.international', compact('internationalNews', 'entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.international', compact('internationalNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     /**
@@ -196,7 +208,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.economic', compact('economicalNews', 'entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.economic', compact('economicalNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     /**
@@ -229,7 +247,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.sports', compact('sportsNews', 'entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.sports', compact('sportsNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     /**
@@ -255,7 +279,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.entertainment', compact('entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.entertainment', compact('entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     /**
@@ -288,7 +318,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.akij-city', compact('akijCityNews', 'entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.akij-city', compact('akijCityNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     /**
@@ -317,7 +353,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.all-news', compact('allNews', 'entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.all-news', compact('allNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     /**
@@ -370,7 +412,13 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.education', compact('educationNews', 'entertainmentNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.education', compact('educationNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
     }
 
     // /**
@@ -442,6 +490,12 @@ class PagesController extends Controller
             ->orderBy('posts.created_at', 'desc')
             ->get();
 
-        return view('frontend.pages.quran', compact('quranNews', 'educationNews', 'bangladeshNews'));
+            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+            ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+            ->where('job_circulars.is_active', 1)
+            ->orderBy('job_circulars.created_at', 'desc')
+            ->first();
+
+        return view('frontend.pages.quran', compact('quranNews', 'educationNews', 'bangladeshNews', 'jobCircular'));
     }
 }

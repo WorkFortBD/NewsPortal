@@ -190,3 +190,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('reset-everything', function () {
+    app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+    return 'Congratualation Man !!';
+});
