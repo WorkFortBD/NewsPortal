@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobAttachment;
+use App\Models\JobCircular;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -96,7 +98,13 @@ class PagesController extends Controller
             ->limit(20)
             ->get();
 
-        return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews', 'internationalNews'));
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
+        ->where('job_circulars.is_active', 1)
+        ->orderBy('job_circulars.created_at', 'desc')
+        ->first();
+
+        return view('frontend.pages.index', compact('topNews', 'featureNews', 'entertainmentNews', 'sportsNews', 'noaparaNews', 'economicNews', 'lifeNews', 'scienceNews', 'bangladeshNews', 'internationalNews', 'jobCircular'));
     }
 
     /**
