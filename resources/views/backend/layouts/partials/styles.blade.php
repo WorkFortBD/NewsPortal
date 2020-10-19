@@ -17,7 +17,7 @@
 
 <!-- Sweet Alert -->
 <link rel="stylesheet" type="text/css"
-    href="{{ asset('public/assets/backend/js/sweetalert2/dist/sweetalert2.min.css') }}">
+      href="{{ asset('public/assets/backend/js/sweetalert2/dist/sweetalert2.min.css') }}">
 <!-- Sweet Alert -->
 
 <!-- Parsley CSS -->
@@ -38,7 +38,7 @@
 <!-- Dropify CSS -->
 <!-- Dropify CSS -->
 <link rel="stylesheet" type="text/css"
-    href="{{ asset('public/assets/backend/js/jquery-tags-input/jquery.tagsinput.min.js') }}">
+      href="{{ asset('public/assets/backend/js/jquery-tags-input/jquery.tagsinput.min.js') }}">
 
 <!-- Dropify CSS -->
 
@@ -61,6 +61,6 @@
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->

@@ -2,7 +2,7 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 
-<script src="{{ asset('public/js/app.js') }}"></script> {{-- For React --}}
+<script src="{{ asset('public/js/app.js') }}"></script>  For React
 
 <script src="{{ asset('public/assets/backend/js/jquery.min.js') }}"></script>
 <!-- Bootstrap tether Core JavaScript -->
@@ -46,9 +46,9 @@
 <!-- Select2 JS -->
 <script src="{{ asset('public/assets/backend/js/select2/select2.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/select2.js') }}"></script>
-{{-- <script>
+ <script>
     $(".select2").select2(); $('[data-toggle="tooltip"]').tooltip();
-</script> --}}
+</script>
 <!-- Select2 JS -->
 
 
@@ -64,7 +64,7 @@
 <!-- Dropify JS -->
 <script src="{{ asset('public/assets/backend/js/dropify/js/dropify.min.js') }}"></script>
 <script>
-    $(".dropify").dropify(); 
+    $(".dropify").dropify();
 </script>
 <!-- Dropify JS -->
 
@@ -73,14 +73,14 @@
 <script src="{{ asset('public/assets/backend/js/init.js') }}"></script>
 <!--This page JavaScript -->
 
-{{-- <!--chartis chart--> --}}
-{{-- <script src="{{ asset('public/assets/backend/js/chartist.min.js') }}"></script> --}}
-{{-- <script src="{{ asset('public/assets/backend/js/chartist-plugin-tooltip.min.js') }}"></script> --}}
+ <!--chartis chart-->
+ <script src="{{ asset('public/assets/backend/js/chartist.min.js') }}"></script>
+ <script src="{{ asset('public/assets/backend/js/chartist-plugin-tooltip.min.js') }}"></script>
 
-{{-- <!--c3 charts --> --}}
-{{-- <script src="{{ asset('public/assets/backend/js/d3.min.js') }}"></script>
+ <!--c3 charts -->
+ <script src="{{ asset('public/assets/backend/js/d3.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/c3.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('public/assets/backend/js/jquery-jvectormap-world-mill-en.js') }}"></script>
-<script src="{{ asset('public/assets/backend/js/dashboard1.js') }}"></script> --}}
+<script src="{{ asset('public/assets/backend/js/dashboard1.js') }}"></script>
 @include('backend.layouts.partials.flash-message')

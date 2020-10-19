@@ -14,89 +14,30 @@ class PagesController extends Controller
      * homePage
      *
      * HomePage of Application
-     * 
+     *
      * @return void
      */
     public function homePage()
     {
-        $topNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Top News')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->first();
+        $topNews = $this->newsQuery('name', 'Top News', false, false);
 
-        $featureNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Featured')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(12)
-            ->get();
+        $featureNews = $this->newsQuery('name', 'Featured', 12, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(20)
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 20, true);
 
-        $sportsNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Sports')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(6)
-            ->get();
+        $sportsNews = $this->newsQuery('name', 'Sports', 6, true);
 
-        $noaparaNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Noapara')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(20)
-            ->get();
+        $noaparaNews = $this->newsQuery('name', 'Noapara', 20, true);
 
-        $economicNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Economic')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(4)
-            ->get();
+        $economicNews = $this->newsQuery('name', 'Economic', 4, true);
 
-        $lifeNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Life')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(4)
-            ->get();
+        $lifeNews = $this->newsQuery('name', 'Life', 4, true);
 
-        $scienceNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Science')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(4)
-            ->get();
+        $scienceNews = $this->newsQuery('name', 'Science', 4, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(20)
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 20, true);
 
-        $internationalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'International')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->limit(20)
-            ->get();
+        $internationalNews = $this->newsQuery('name', 'International', 20, true);
 
         $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
@@ -111,26 +52,16 @@ class PagesController extends Controller
      * bangladeshNews
      *
      * Bangladesh News
-     * 
+     *
      * @return void
      */
     public function bangladeshNews()
     {
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -143,33 +74,18 @@ class PagesController extends Controller
      * internationalNews
      *
      * International News
-     * 
+     *
      * @return void
      */
     public function internationalNews()
     {
-        $internationalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'International')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $internationalNews = $this->newsQuery('name', 'International', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -182,33 +98,18 @@ class PagesController extends Controller
      * economicalNews
      *
      * Economic News
-     * 
+     *
      * @return void
      */
     public function economicalNews()
     {
-        $economicalNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Economic')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $economicalNews = $this->newsQuery('name', 'Economic', 0, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -221,33 +122,18 @@ class PagesController extends Controller
      * sportsNews
      *
      * Sports News
-     * 
+     *
      * @return void
      */
     public function sportsNews()
     {
-        $sportsNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Sports')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $sportsNews = $this->newsQuery('name', 'Sports', 0, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -260,26 +146,16 @@ class PagesController extends Controller
      * entertainmentNews
      *
      * Entertainment News
-     * 
+     *
      * @return void
      */
     public function entertainmentNews()
     {
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -292,33 +168,18 @@ class PagesController extends Controller
      * akijCityNews
      *
      * Akij City News
-     * 
+     *
      * @return void
      */
     public function akijCityNews()
     {
-        $akijCityNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Noapara')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $akijCityNews = $this->newsQuery('name', 'Noapara', 0, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -331,7 +192,7 @@ class PagesController extends Controller
      * allNews
      *
      * All News
-     * 
+     *
      * @return void
      */
     public function allNews()
@@ -339,21 +200,11 @@ class PagesController extends Controller
         ini_set('memory_limit', '300M');
         $allNews = Post::where('status', 1)->orderBy('posts.created_at', 'desc')->get();
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -366,7 +217,7 @@ class PagesController extends Controller
      * singleNews
      *
      * Single News
-     * 
+     *
      * @return void
      */
     public function singleNews($slug)
@@ -386,33 +237,18 @@ class PagesController extends Controller
      * educationNews
      *
      * Education News
-     * 
+     *
      * @return void
      */
     public function educationNews()
     {
-        $educationNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Education')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $educationNews = $this->newsQuery('name', 'Education', 0, true);
 
-        $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Fashion')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $entertainmentNews = $this->newsQuery('name', 'Fashion', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
@@ -425,7 +261,7 @@ class PagesController extends Controller
     //  * categoryNews
     //  *
     //  * Category News
-    //  * 
+    //  *
     //  * @return void
     //  */
     // public function categoryNews(Request $request)
@@ -464,38 +300,50 @@ class PagesController extends Controller
      * quranNews
      *
      * Quran and Hadith News
-     * 
+     *
      * @return void
      */
     public function quranNews()
     {
-        $quranNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Quran Hadith')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $quranNews = $this->newsQuery('name', 'Quran Hadith', 0, true);
 
-        $educationNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'posts.created_at as created_at', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Education')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $educationNews = $this->newsQuery('name', 'Education', 0, true);
 
-        $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
-            ->join('categories as c', 'posts.category_id', 'c.id')
-            ->where('c.name', 'Bangladesh')
-            ->where('posts.status', 1)
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
+        $bangladeshNews = $this->newsQuery('name', 'Bangladesh', 0, true);
 
-            $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
+        $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
             ->where('job_circulars.is_active', 1)
             ->orderBy('job_circulars.created_at', 'desc')
             ->first();
 
         return view('frontend.pages.quran', compact('quranNews', 'educationNews', 'bangladeshNews', 'jobCircular'));
+    }
+
+    /**
+     * @param $type
+     * @param $value
+     * @param $limit
+     * @param $isArray
+     * @return mixed
+     */
+    private function newsQuery($type, $value, $limit = false, $isArray = true)
+    {
+        $news = Post::select('posts.*', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.'.$type, $value)
+            ->where('posts.status', 1);
+
+        if(!$isArray) {
+           $news = $news->first();
+        } else {
+            $news = $news->orderBy('posts.created_at', 'desc');
+            if($limit) {
+                $news = $news->limit($limit);
+            }
+            $news = $news->get();
+        }
+
+        return $news;
     }
 }
