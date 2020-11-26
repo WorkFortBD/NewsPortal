@@ -61,7 +61,8 @@
                             বুধবার','বৃহস্পতিবার','শুক্রবার' 
                             );
                             
-                            $convertedDATE = str_replace($engDATE, $bangDATE, $currentDate);
+                            $createdDate = \Carbon\Carbon::parse($singleNews->created_at)->format('j F,Y');
+                            $convertedDATE = str_replace($engDATE, $bangDATE, $createdDate);
                         @endphp
                         <span>
                             {{ $convertedDATE }}

@@ -30,6 +30,7 @@ section.dateArea {
 }
 
 .today p {
+    font-size: 16px;
     line-height: 50px;
     color: #fff;
 }
@@ -778,7 +779,7 @@ section#footerArea {
     background: #ED2126;
     float: left;
     width: 100%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
