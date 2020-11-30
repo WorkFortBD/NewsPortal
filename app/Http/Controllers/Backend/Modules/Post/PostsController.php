@@ -326,7 +326,7 @@ class PostsController extends Controller
         }
 
         $request->validate([
-            'title'  => 'required|max:100',
+            'title'  => 'required|max:300',
             'slug'  => 'required|max:100|unique:posts,slug,' . $post->id,
         ]);
 

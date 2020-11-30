@@ -19,6 +19,10 @@ class CreateJobAttachmentsTable extends Migration
             $table->string('file');
             $table->string('extension');
             $table->boolean('is_downloadable')->default(1)->comment('1=>yes, 0=>no');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+
 
             $table->foreign('created_by')
                 ->references('id')

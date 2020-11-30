@@ -55,6 +55,30 @@
                         </div>
                     @endforeach 
 
+                    <div class="section-title">
+                        <h2>AL JAZEERA</h2>
+                    </div>
+                    
+                    @foreach ($aljajeeraNews as $news)
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h4>{{ $news->title }}</h4>
+                            <div class="singleGridBanner-border"></div>
+                        </div>
+                    @endforeach 
+
+                    <div class="section-title">
+                        <h2>REUTERS</h2>
+                    </div>
+                    
+                    @foreach ($reutersNews as $news)
+                        <div class="singleGridBanner" onclick="location.href='{{ route('single-article',  $news->slug) }}'">
+                            <img src="{{ asset('public/assets/images/posts/' . $news->featured_image) }}" alt="news_image">
+                            <h4>{{ $news->title }}</h4>
+                            <div class="singleGridBanner-border"></div>
+                        </div>
+                    @endforeach
+
                     {{-- <div class="singleGridBanner">
                         <img src="{{ asset('public/assets/frontend/img/gridBanner1.png') }}" alt="">
                         <h4>লকডাউনে ঘরে বসে যা শিখছেন তাঁরা</h4> 
@@ -68,6 +92,10 @@
                     </div>
 
                 </div>
+
+                <br><br>
+
+                {{ $internationalNews->links() }}
 
                 
 

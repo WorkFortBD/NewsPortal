@@ -27,6 +27,8 @@ Route::get('/news/{slug}', 'Frontend\PagesController@singleNews')->name('single-
 Route::get('/categories/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
 Route::get('/p/{slug}', 'Frontend\SitePagesController@show')->name('pages.show');
 
+Route::post('storePoll/{id}','Frontend\PollResponseController@storePoll')->name('storePoll');
+
 
 // Route::get('/articles/{id}/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
 
@@ -135,6 +137,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('polls/trashed/revert/{id}', 'Backend\Modules\Poll\PollsController@revertFromTrash')->name('polls.trashed.revert');
     });
 
+    
+
     /**
      * Slider Management Routes
      */
@@ -176,6 +180,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('subscriptions/trashed/revert/{id}', 'Backend\Modules\Subscription\SubscriptionsController@revertFromTrash')->name('subscriptions.trashed.revert');
     });
 
+    Route::group(['prefix' => ''], function () {
+        Route::get('widget-category/index','Backend\Modules\WidgetCategory\WidgetCategoryController@indexWidgetCategory')->name('indexWidgetCategory');
+        Route::get('widget-category/create','Backend\Modules\WidgetCategory\WidgetCategoryController@createWidgetCategory')->name('createWidgetCategory');
+        Route::post('widget-category/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetCategory')->name('storeWidgetCategory');
+        Route::get('widget-category/edit/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@editWidgetCategory')->name('editWidgetCategory');
+        Route::post('widget-category/update/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@updateWidgetCategory')->name('updateWidgetCategory');
+
+        Route::get('widget-post/create','Backend\Modules\WidgetCategory\WidgetCategoryController@createWidgetPost')->name('createWidgetPost');
+        Route::post('widget-post/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetPost')->name('storeWidgetPost');
+     });
+
+    //  Route::group(['prefix' => ''], function () {
+    //     Route::get('widget-post/create','Backend\Modules\WidgetPost\WidgetPostController@createWidgetPost')->name('createWidgetPost');
+    //      Route::post('widget-category/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetCategory')->name('storeWidgetCategory');
+    //  });
+
     /**
      * Job Management Routes
      */
@@ -191,7 +211,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('reset-everything', function () {
-    app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
-    return 'Congratualation Man !!';
-});
+// Route::get('reset-everything', function () {
+//     app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+//     return 'Congratualation Man !!';
+// });
