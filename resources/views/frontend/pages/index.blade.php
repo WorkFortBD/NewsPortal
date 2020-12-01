@@ -92,7 +92,8 @@
                 <!-- Hadith End -->
 
                 <!-- Namaz Start -->
-                @include('frontend.widgets.namaz.index')
+                <div id="prayer"></div>
+                {{-- @include('frontend.widgets.namaz.index') --}}
                 <!-- Namaz End -->
 
                 <!-- Update Start -->

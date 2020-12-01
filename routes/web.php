@@ -29,10 +29,24 @@ Route::get('/p/{slug}', 'Frontend\SitePagesController@show')->name('pages.show')
 
 Route::post('storePoll/{id}','Frontend\PollResponseController@storePoll')->name('storePoll');
 
-
+Route::get('/showPrayer/{id}','Frontend\PrayerController@showList')->name('showList');
 // Route::get('/articles/{id}/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| API Route List
+|
+*/
+Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+    Route::get('/districts', 'API\MasterDataController@getDistricts');
+    Route::get('/prayers/{district_id}', 'API\PrayersController@getPrayerByDistrict');
+});
 
 
 /*
@@ -189,6 +203,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('widget-post/create','Backend\Modules\WidgetCategory\WidgetCategoryController@createWidgetPost')->name('createWidgetPost');
         Route::post('widget-post/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetPost')->name('storeWidgetPost');
+     });
+
+     Route::group(['prefix' => ''], function () {
+        Route::get('district/index','Backend\Modules\Prayer\PrayerController@indexDistrict')->name('indexDistrict');
+        Route::get('create-district/create','Backend\Modules\Prayer\PrayerController@createDistrict')->name('createDistrict');
+        Route::get('edit-district/edit/{id}','Backend\Modules\Prayer\PrayerController@editDistrict')->name('editDistrict');
+
+        Route::post('store-district/store','Backend\Modules\Prayer\PrayerController@storeDistrict')->name('storeDistrict');
+        Route::post('update-district/update/{id}','Backend\Modules\Prayer\PrayerController@updateDistrict')->name('updateDistrict');
+     });
+
+     Route::group(['prefix' => ''], function () {
+        Route::get('prayer/index','Backend\Modules\Prayer\PrayerController@indexPrayer')->name('indexPrayer');
+        Route::get('create-prayer/create','Backend\Modules\Prayer\PrayerController@createPrayer')->name('createPrayer');
+        Route::get('edit-prayer/edit/{id}','Backend\Modules\Prayer\PrayerController@editPrayer')->name('editPrayer');
+
+        Route::post('store-prayer/store','Backend\Modules\Prayer\PrayerController@storePrayer')->name('storePrayer');
+        Route::post('update-prayer/update/{id}','Backend\Modules\Prayer\PrayerController@updatePrayer')->name('updatePrayer');
      });
 
     //  Route::group(['prefix' => ''], function () {

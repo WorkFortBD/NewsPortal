@@ -1,5 +1,8 @@
 <!-- Plugins JS File -->
+
+<script src="{{ asset('public/js/app.js') }}"></script> {{-- For React --}}
 <script src="{{ asset('public/assets/frontend/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('public/assets/frontend/js/popper.min.js') }}"></script>
 <script src="{{ asset('public/assets/frontend/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/assets/frontend/js/carousel.min.js') }}"></script>
 
