@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('metaContent')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
+
 @section('title')
     {{ config('app.name') }} | {{ config('app.description') }}
 @endsection
@@ -88,11 +92,24 @@
                 <!-- Hadith End -->
 
                 <!-- Namaz Start -->
-                @include('frontend.widgets.namaz.index')
+                <div id="prayer"></div>
+                {{-- @include('frontend.widgets.namaz.index') --}}
                 <!-- Namaz End -->
 
                 <!-- Update Start -->
                 @include('frontend.widgets.updates.index')
+                <!-- Update End -->
+
+                <!-- Update Start -->
+                @include('frontend.widgets.health.index')
+                <!-- Update End -->
+
+                <!-- Update Start -->
+                @include('frontend.widgets.adage.index')
+                <!-- Update End -->
+
+                <!-- Update Start -->
+                @include('frontend.widgets.polls.index')
                 <!-- Update End -->
 
                 {{-- For Temporary --}}

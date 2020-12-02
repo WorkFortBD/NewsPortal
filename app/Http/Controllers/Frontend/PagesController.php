@@ -153,21 +153,40 @@ class PagesController extends Controller
             ->where('c.name', 'International')
             ->where('posts.status', 1)
             ->orderBy('posts.created_at', 'desc')
-            ->get();
+            // ->get()
+            ->paginate(15);
 
         $entertainmentNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Fashion')
             ->where('posts.status', 1)
             ->orderBy('posts.created_at', 'desc')
-            ->get();
+            // ->get();
+            ->paginate(10);
+
+        $aljajeeraNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Aljazeera')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            // ->get();
+            ->paginate(5);
+
+        $reutersNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
+            ->join('categories as c', 'posts.category_id', 'c.id')
+            ->where('c.name', 'Reuters')
+            ->where('posts.status', 1)
+            ->orderBy('posts.created_at', 'desc')
+            // ->get();
+            ->paginate(5);
 
         $bangladeshNews = Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
             ->where('c.name', 'Bangladesh')
             ->where('posts.status', 1)
             ->orderBy('posts.created_at', 'desc')
-            ->get();
+            // ->get();
+            ->paginate(5);
 
             $jobCircular = JobCircular::select('job_circulars.*', 'a.file', 'a.extension', 'a.is_downloadable')
             ->join('job_attachments as a', 'job_circulars.id', 'a.job_circular_id')
@@ -175,7 +194,7 @@ class PagesController extends Controller
             ->orderBy('job_circulars.created_at', 'desc')
             ->first();
 
-        return view('frontend.pages.international', compact('internationalNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular'));
+        return view('frontend.pages.international', compact('internationalNews', 'entertainmentNews', 'bangladeshNews', 'jobCircular','aljajeeraNews','reutersNews'));
     }
 
     /**

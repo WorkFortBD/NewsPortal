@@ -283,6 +283,36 @@ $user = Auth::guard('admin')->user();
                                 </a>
                             </li>
                         @endif
+
+                       
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.indexWidgetCategory') }}" class="sidebar-link">
+                                <i class="mdi mdi-image"></i>
+                                <span class="hide-menu"> Widget Category </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.indexWidgetPost') }}" class="sidebar-link">
+                                <i class="mdi mdi-image"></i>
+                                <span class="hide-menu"> Widget Post </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.indexDistrict') }}" class="sidebar-link">
+                                <i class="mdi mdi-image"></i>
+                                <span class="hide-menu"> District </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.indexPrayer') }}" class="sidebar-link">
+                                <i class="mdi mdi-image"></i>
+                                <span class="hide-menu"> Prayer </span>
+                            </a>
+                        </li>
+                       
                     </ul>
                     {{-- <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.subscriptions.index') || Route::is('admin.subscriptions.create') || Route::is('admin.subscriptions.edit')) ? 'in' : null }}">
                         @if ($user->can('subscription.view'))

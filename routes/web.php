@@ -27,10 +27,26 @@ Route::get('/news/{slug}', 'Frontend\PagesController@singleNews')->name('single-
 Route::get('/categories/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
 Route::get('/p/{slug}', 'Frontend\SitePagesController@show')->name('pages.show');
 
+Route::post('storePoll/{id}','Frontend\PollResponseController@storePoll')->name('storePoll');
 
+Route::get('/showPrayer/{id}','Frontend\PrayerController@showList')->name('showList');
 // Route::get('/articles/{id}/{slug}', 'Frontend\CategoriesController@show')->name('category.show');
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| API Route List
+|
+*/
+Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+    Route::get('/districts', 'API\MasterDataController@getDistricts');
+    Route::get('/prayers/{district_id}', 'API\PrayersController@getPrayerByDistrict');
+});
 
 
 /*
@@ -135,6 +151,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('polls/trashed/revert/{id}', 'Backend\Modules\Poll\PollsController@revertFromTrash')->name('polls.trashed.revert');
     });
 
+    
+
     /**
      * Slider Management Routes
      */
@@ -176,6 +194,43 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('subscriptions/trashed/revert/{id}', 'Backend\Modules\Subscription\SubscriptionsController@revertFromTrash')->name('subscriptions.trashed.revert');
     });
 
+    Route::group(['prefix' => ''], function () {
+        Route::get('widget-category/index','Backend\Modules\WidgetCategory\WidgetCategoryController@indexWidgetCategory')->name('indexWidgetCategory');
+        Route::get('widget-category/create','Backend\Modules\WidgetCategory\WidgetCategoryController@createWidgetCategory')->name('createWidgetCategory');
+        Route::post('widget-category/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetCategory')->name('storeWidgetCategory');
+        Route::get('widget-category/edit/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@editWidgetCategory')->name('editWidgetCategory');
+        Route::post('widget-category/update/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@updateWidgetCategory')->name('updateWidgetCategory');
+
+        Route::get('widget-post/index','Backend\Modules\WidgetCategory\WidgetCategoryController@indexWidgetPost')->name('indexWidgetPost');
+        Route::get('widget-post/create','Backend\Modules\WidgetCategory\WidgetCategoryController@createWidgetPost')->name('createWidgetPost');
+        Route::get('widget-post/edit/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@editWidgetPost')->name('editWidgetPost');
+        Route::post('widget-post/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetPost')->name('storeWidgetPost');
+        Route::post('widget-post/update/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@updateWidgetPost')->name('updateWidgetPost');
+     });
+
+     Route::group(['prefix' => ''], function () {
+        Route::get('district/index','Backend\Modules\Prayer\PrayerController@indexDistrict')->name('indexDistrict');
+        Route::get('create-district/create','Backend\Modules\Prayer\PrayerController@createDistrict')->name('createDistrict');
+        Route::get('edit-district/edit/{id}','Backend\Modules\Prayer\PrayerController@editDistrict')->name('editDistrict');
+
+        Route::post('store-district/store','Backend\Modules\Prayer\PrayerController@storeDistrict')->name('storeDistrict');
+        Route::post('update-district/update/{id}','Backend\Modules\Prayer\PrayerController@updateDistrict')->name('updateDistrict');
+     });
+
+     Route::group(['prefix' => ''], function () {
+        Route::get('prayer/index','Backend\Modules\Prayer\PrayerController@indexPrayer')->name('indexPrayer');
+        Route::get('create-prayer/create','Backend\Modules\Prayer\PrayerController@createPrayer')->name('createPrayer');
+        Route::get('edit-prayer/edit/{id}','Backend\Modules\Prayer\PrayerController@editPrayer')->name('editPrayer');
+
+        Route::post('store-prayer/store','Backend\Modules\Prayer\PrayerController@storePrayer')->name('storePrayer');
+        Route::post('update-prayer/update/{id}','Backend\Modules\Prayer\PrayerController@updatePrayer')->name('updatePrayer');
+     });
+
+    //  Route::group(['prefix' => ''], function () {
+    //     Route::get('widget-post/create','Backend\Modules\WidgetPost\WidgetPostController@createWidgetPost')->name('createWidgetPost');
+    //      Route::post('widget-category/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetCategory')->name('storeWidgetCategory');
+    //  });
+
     /**
      * Job Management Routes
      */
@@ -191,7 +246,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('reset-everything', function () {
-    app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
-    return 'Congratualation Man !!';
-});
+// Route::get('reset-everything', function () {
+//     app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+//     return 'Congratualation Man !!';
+// });
