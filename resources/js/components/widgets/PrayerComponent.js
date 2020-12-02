@@ -31,7 +31,9 @@ function PrayerComponent() {
 
         <div className="HadithBox NamazBox">
             <h2> নামাজের সময়সূচী
-                <Select options={districts} onChange={e => selectDistrict(e)}/>
+                <Select options={districts} 
+                onChange={e => selectDistrict(e)}
+                />
             </h2>
 
 

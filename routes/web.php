@@ -201,8 +201,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('widget-category/edit/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@editWidgetCategory')->name('editWidgetCategory');
         Route::post('widget-category/update/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@updateWidgetCategory')->name('updateWidgetCategory');
 
+        Route::get('widget-post/index','Backend\Modules\WidgetCategory\WidgetCategoryController@indexWidgetPost')->name('indexWidgetPost');
         Route::get('widget-post/create','Backend\Modules\WidgetCategory\WidgetCategoryController@createWidgetPost')->name('createWidgetPost');
+        Route::get('widget-post/edit/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@editWidgetPost')->name('editWidgetPost');
         Route::post('widget-post/store','Backend\Modules\WidgetCategory\WidgetCategoryController@storeWidgetPost')->name('storeWidgetPost');
+        Route::post('widget-post/update/{id}','Backend\Modules\WidgetCategory\WidgetCategoryController@updateWidgetPost')->name('updateWidgetPost');
      });
 
      Route::group(['prefix' => ''], function () {

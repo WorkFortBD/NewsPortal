@@ -293,7 +293,7 @@ $user = Auth::guard('admin')->user();
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="{{ route('admin.createWidgetPost') }}" class="sidebar-link">
+                            <a href="{{ route('admin.indexWidgetPost') }}" class="sidebar-link">
                                 <i class="mdi mdi-image"></i>
                                 <span class="hide-menu"> Widget Post </span>
                             </a>

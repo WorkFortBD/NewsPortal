@@ -217,6 +217,7 @@ section.dateArea {
 .HadithBox div {
     border-bottom: 1px solid #ccc;
     padding: 2px;
+    color: black;
 }
 
 .HadithBox a {
@@ -368,11 +369,19 @@ section.dateArea {
 }
 
 .namazList table {
-    width: 170px;
+    /* width: 170px;
     text-align: center;
-    margin: 10px auto;
+    margin: 10px auto; */
 }
-
+.namazList table th {
+    
+    width: 42%;
+    
+    text-align: center;
+}
+.namazList table tr {
+    text-align: center;
+}
 .coronoUpdate {
     border: 1px solid #cccccc;
     padding: 20px;

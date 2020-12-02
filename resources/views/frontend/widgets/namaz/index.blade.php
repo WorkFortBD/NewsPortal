@@ -44,13 +44,13 @@
          </table>
      </div>
 </div> --}}
-
+{{-- 
 @php
     $districts = App\Models\District::select('districts.id','districts.district_name')->get();
-    // dd($prayers);
-@endphp
+ 
+@endphp --}}
 
-<div class="HadithBox NamazBox">
+{{-- <div class="HadithBox NamazBox">
     <h2>নামাজের সময়সূচী 
         <div class="dropdown float-right">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -61,13 +61,13 @@
                
                 <button class="dropdown-item" id="#showPrayerList{{ $district->id }}">{{$district->district_name}}</button>
 
-            @endforeach
+            @endforeach --}}
               {{-- <a class="dropdown-item" href="#">Link 1</a>
               <a class="dropdown-item" href="#">Link 2</a>
               <a class="dropdown-item" href="#">Link 3</a> --}}
-            </div>
+            {{-- </div>
           </div>
-    </h2>
+    </h2> --}}
     {{-- @php
         $reutersNews = App\Models\Post::select('posts.id as id', 'posts.title as title', 'posts.slug as slug', 'posts.short_description as short_description', 'posts.description as description', 'posts.featured_image as featured_image', 'posts.featured_image_caption as featured_image_caption', 'posts.category_id as category_id', 'posts.status as status', 'c.name as name')
             ->join('categories as c', 'posts.category_id', 'c.id')
@@ -84,16 +84,16 @@
         </div>
     @endforeach --}}
 
-    <div class="namazList">
+    {{-- <div class="namazList">
         <table>
 
             <thead>
                 <tr>
-                    <th>নামাজের নাম</th>
+                    <th>নামাজের নাম </th>
                     <th>নামাজের সময়</th>
                 </tr>
             </thead>
-            <tbody id="">
+            <tbody id=""> --}}
 
                 {{-- @foreach ($prayers as $prayer)
                     <tr>
@@ -101,8 +101,8 @@
                         <td>{{$prayer->prayer_time_bn}}</td>
                     </tr>
                 @endforeach --}}
-            </tbody>
+            {{-- </tbody>
             
         </table>
     </div>
-</div>
+</div> --}}

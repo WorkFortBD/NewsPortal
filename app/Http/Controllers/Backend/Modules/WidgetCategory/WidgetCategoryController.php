@@ -56,6 +56,14 @@ class WidgetCategoryController extends Controller
         return redirect()->route('admin.indexWidgetCategory');
     }
 
+    public function indexWidgetPost(){
+        $posts = WidgetPost::join('widget_categories', 'widget_categories.id', 'widget_posts.widget_categorie_id')
+        ->select('widget_posts.*', 'widget_categories.title as type')
+        ->latest()
+        ->get();
+        return view('backend.pages.widget.post.index',compact('posts'));
+    }
+
     public function createWidgetPost(){
         $categories = WidgetCategory::all();
         return view('backend.pages.widget.post.create',compact('categories'));
@@ -76,7 +84,32 @@ class WidgetCategoryController extends Controller
         $store->widget_categorie_id = $request->widget_categorie_id;
         $store->save();
 
-        return redirect()->route('admin.createWidgetPost');
+        return redirect()->route('admin.indexWidgetPost');
+    }
+
+    public function editWidgetPost($id){
+        $post = WidgetPost::find($id);
+        $categories = WidgetCategory::all();
+
+        return view('backend.pages.widget.post.edit',compact('post','categories'));
+    }
+
+    public function updateWidgetPost(Request $request,$id){
+        $this->validate($request,[
+            'title'=>'required',
+            'description'=>'required',
+            'widget_categorie_id'=>'required'   
+        ]);
+
+        $store = WidgetPost::find($id);
+        $store->title = $request->title;
+        $store->author = $request->author;
+        $store->description = $request->description;
+        $store->widget_categorie_id = $request->widget_categorie_id;
+        $store->update();
+
+        return redirect()->route('admin.indexWidgetPost');
+        
     }
 
     
